@@ -26,11 +26,11 @@ Player Data Structures
 
 file structure
 
-/    
+	/    
 
-	- root
+		- root
 	
-	- where all of the code directories will be based off of
+		- where all of the code directories will be based off of
 
 /logsFull.txt  
 
