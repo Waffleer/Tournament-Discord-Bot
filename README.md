@@ -129,18 +129,18 @@ api commands - still in progress of creating
 
 log commands 
 
-		def logServer(serverName, logStr): 
+	def logServer(serverName, logStr): 
 
-		    - logs to server log file as well as system log file
+		- logs to server log file as well as system log file
 
- 		    - private
+		- private
 
 
-		def logSystem(logStr): 
+	def logSystem(logStr): 
 
- 		   - logs only to system log file
+		- logs only to system log file
 
-  		   - private
+		- private
 
 
 information commands
