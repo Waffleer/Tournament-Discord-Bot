@@ -32,201 +32,201 @@ file structure
 	
 		- where all of the code directories will be based off of
 
-/logsFull.txt  
+	/logsFull.txt  
 
-	- full logs of api
+		- full logs of api
 
-    - Will have a extra line above text, will be fixed in code
+	    - Will have a extra line above text, will be fixed in code
 
-/main.py  
+	/main.py  
 
-	- where discord bot code will go
+		- where discord bot code will go
 
-/api.py     
+	/api.py     
 
-	- where api code will go
-
-/test.py       
-
-	- were api will be developed for ease of testing
+		- where api code will go
 	
-	- final code will be copied and pasted to api.py for each release
+	/test.py       
+
+		- were api will be developed for ease of testing
 	
-	- might have multiple test.py files for different releases
+		- final code will be copied and pasted to api.py for each release
+	
+		- might have multiple test.py files for different releases
 													 
-run.bat/run.sh
+	/run.bat or run.sh
 
-	- run files for api, bat for windows and sh for linux
+		- run files for api, bat for windows and sh for linux
 	
-	- this is for server and api testing
+		- this is for server and api testing
 													 
-/servers/   
+	/servers/   
 
-	- where all of the information for each server is stored
+		- where all of the information for each server is stored
 
-/servers/{name of server}/         
+	/servers/{name of server}/         
 
-	- each server will have a folder
+		- each server will have a folder
 	
-/servers/{name of server}/admin.txt        
+	/servers/{name of server}/admin.txt        
 
-	- lists what channels can run admin commands
+		- lists what channels can run admin commands
 	
-/servers/{name of server}/secondary.txt   
+	/servers/{name of server}/secondary.txt   
 
-	- lists what channels have secondary perms, tbd
+		- lists what channels have secondary perms, tbd
 
-/servers/{name of server}/logs.txt 
+	/servers/{name of server}/logs.txt 
 
-	- full logs of api
+		- full logs of api
 
-    - Will have a extra line above text, will be fixed in code
+ 	   	- Will have a extra line above text, will be fixed in code
 
-/servers/{name of server}/matches/          
+	/servers/{name of server}/matches/          
 
-	- stores all of the matches information
+		- stores all of the matches information
 	
-/servers/{name of server}/matches/{match id number}   
+	/servers/{name of server}/matches/{match id number}   
 
-	- stores all the data associated with the match
+		- stores all the data associated with the match
 
-/servers/{name of server}/teams/                   
+	/servers/{name of server}/teams/                   
 
-	- stores all of the team folders
+		- stores all of the team folders
 	
-/servers/{name of server}/teams/{name of team}/           
+	/servers/{name of server}/teams/{name of team}/           
 
-	- stores all of the team folders
+		- stores all of the team folders
 	
-/servers/{name of server}/teams/{name of team}/players.txt    
+	/servers/{name of server}/teams/{name of team}/players.txt    
 
-	- has the names of all the players on the team
+		- has the names of all the players on the team
 	
-/servers/{name of server}/teams/{name of team}/matches.txt    
+	/servers/{name of server}/teams/{name of team}/matches.txt    
 
-	- has the ids of all of the matches associated with the teams
+		- has the ids of all of the matches associated with the teams
 
-/servers/{name of server}/players/  
+	/servers/{name of server}/players/  
 
-	- stores all of the players information
+		- stores all of the players information
 	
-/servers/{name of server}/players/{player name}.txt   
+	/servers/{name of server}/players/{player name}.txt   
 
-	- stores all of the information related to each player
-
+		- stores all of the information related to each player
+	
 
 
 api commands - still in progress of creating
 
-    - if a function is declared as "public" then it can be accessed via api
+ 	   - if a function is declared as "public" then it can be accessed via api
 
-    - if a function is declared as "private" then it can be accessed via api
+	   - if a function is declared as "private" then it can be accessed via api
 
-    - if a function is declared as "discord accessible" then it can be accessed via discord bot
+ 	   - if a function is declared as "discord accessible" then it can be accessed via discord bot
 
-        - not implemented yet
+		- not implemented yet
 
 
 log commands 
 
-def logServer(serverName, logStr): 
+		def logServer(serverName, logStr): 
 
-    - logs to server log file as well as system log file
+		    - logs to server log file as well as system log file
 
-    - private
+ 		    - private
 
 
-def logSystem(logStr): 
+		def logSystem(logStr): 
 
-    - logs only to system log file
+ 		   - logs only to system log file
 
-    - private
+  		   - private
 
 
 information commands
 
-def getServers(): 
+	def getServers(): 
 
-    - gets list of servers
+ 	   - gets list of servers
 
-    - public
+ 	   - public
 
-def getTeams(serverName): 
+	def getTeams(serverName): 
 
-    - gets list of teams on a server
+	    - gets list of teams on a server
 
-    - public
+ 	    - public
 
-def getPlayers(serverName): 
+	def getPlayers(serverName): 
 
-    - gets list of players on a server
+	    - gets list of players on a server
 
-    - public
+ 	    - public
 
-def getMatches(serverName): 
+	def getMatches(serverName): 
     
-    - gets list of matches on a server
+  	  - gets list of matches on a server
 
-    - public
+          - public
 
-def getServerPlayerInfo(serverName, playerName): 
+	def getServerPlayerInfo(serverName, playerName): 
 
-    - returns player information
+ 	   - returns player information
     
-    - returns a dict
-
+  	   - returns a dict
+	
 
 
 server commands
 
-def genServer(user, serverName): 
+	def genServer(user, serverName): 
 
-    - Generates a server and file structure
+ 	   - Generates a server and file structure
 
-    - public
+ 	   - public
 
-    - discord accessible
+ 	   - discord accessible
 
-def addServerTeams(user, serverName, teamName): 
+	def addServerTeams(user, serverName, teamName): 
 
-    - adds team to a server
+ 	    - adds team to a server
 
-    - public
+	    - public
+	
+	    - discord accessible
 
-    - discord accessible
+	def addServerPlayer(user, serverName, playerName): 
 
-def addServerPlayer(user, serverName, playerName): 
+ 	   - adds player to server with empty data structure
 
-    - adds player to server with empty data structure
+	def editServerPlayerTeam(user, serverName, playerName, team): 
 
-def editServerPlayerTeam(user, serverName, playerName, team): 
-
-    - edits player team
+ 	   - edits player team
     
-    - team name is not used to determine players on each team
+  	   - team name is not used to determine players on each team
 
-def editServerPlayerRank(user, serverName, playerName, rank): 
+	def editServerPlayerRank(user, serverName, playerName, rank): 
 
     - edits player rank
 
-def editServerPlayerAge(user, serverName, playerName, age): 
+	def editServerPlayerAge(user, serverName, playerName, age): 
 
-    - edits player age
+  	  - edits player age
 
-def editServerPlayerComplete(user, serverName, playerName, team, rank, age): 
+	def editServerPlayerComplete(user, serverName, playerName, team, rank, age): 
 
-    - edits player team, rank, age
+  	  - edits player team, rank, age
 
 
 
 other commands 
 
-def genNum(num, list): 
+	def genNum(num, list): 
 
-    - generates a random number "num" digits that isn't on the inputted list
+ 	   - generates a random number "num" digits that isn't on the inputted list
 
-def strToDict(string): 
+	def strToDict(string): 
 
-    - turns a string into a dict via json
+ 	   - turns a string into a dict via json
 
-    - string dict must have " not '
+  	   - string dict must have " not '
