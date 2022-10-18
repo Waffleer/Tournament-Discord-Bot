@@ -24,3 +24,56 @@ testUser - Age for player "waffleer#URMOM" has been updated to 18 - 18/10/2022 1
 testUser - Team, Rank, and Age for player "waffleer#URMOM" has been updated to 18 - 18/10/2022 14:50:17
 testUser - Player "waffleer#URMOM" has been added to server- 18/10/2022 14:52:10
 testUser - Team, Rank, and Age for player "waffleer#URMOM" has been updated to freeAgent,Diamond 2,18 - 18/10/2022 14:52:10
+testUser - Player "pfunk#URMOM" has been added to server- 18/10/2022 15:39:57
+TestUser - Server Created - testing2 - 18/10/2022 15:40:32
+TestUser - Server Created - testing - 18/10/2022 15:40:53TestUser - Server Already Exists - testing - 18/10/2022 15:41:08
+testUser - Player "pfunk#URMOM" has been added to server- 18/10/2022 15:41:08TestUser - Server Already Exists - testing - 18/10/2022 15:41:18
+testUser - Player "waffleer#URMOM" has been added to server- 18/10/2022 15:41:18
+testUser - Player "waffleer#URMOM" has been added to server- 18/10/2022 15:45:05
+testUser - Team "testTeam" has been added - 18/10/2022 15:54:59
+testUser - Team "testTeam2" has been added - 18/10/2022 15:55:20
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:03:55
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:04:27
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:04:48
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:04:53
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:05:03
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:05:15
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:05:31
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:05:36
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:05:41
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:05:49
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:07:04
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:07:17
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:07:55
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:12:48
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:12:55
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:13:13
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:13:15
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:13:16
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:13:50
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:13:56
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:13:57
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:14:36
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:14:46
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:14:57
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:15:23
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:16:09
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:16:27
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:17:02
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:17:18
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:17:36
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:17:50
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:17:53
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:18:00
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:18:08
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:18:55
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:19:00
+testUser - Player "fellstar" has been added to testTeam - 18/10/2022 16:19:16
+testUser - Player "fellstar" was already in testTeam - 18/10/2022 16:21:26
+testUser - Player "fellstfdsa" has been added to testTeam - 18/10/2022 16:21:38
+testUser - Player "fellstfdsa" was already in testTeam - 18/10/2022 16:21:41
+testUser - Player "fellstfdsa" has been added to testTeam - 18/10/2022 16:21:55
+testUser - Player "fellstfdsa" has been added to testTeam - 18/10/2022 16:22:09
+testUser - Player "fellstfdsa" was already in testTeam - 18/10/2022 16:22:21
+testUser - Player "fellstfdsa" was already in testTeam - 18/10/2022 16:22:25
+testUser - Player "fellfdsastfdsa" has been added to testTeam - 18/10/2022 16:22:32

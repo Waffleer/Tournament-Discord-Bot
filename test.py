@@ -29,6 +29,14 @@ def logSystem(logStr): # logs only to system log file
     f.close()
     return logStr
 
+def strToList(data):
+    #['waffleer#URMOM', 'pfunk', 'fellstar']
+    data = data.strip("[]")
+    data = data.replace("'","")
+    data = data.split(", ")
+    return(data)
+
+
 def genServer(user, serverName): # Generates a server and file structure
     serverName = str(serverName)
     if not os.path.exists(f"servers/{serverName}"):
@@ -50,24 +58,8 @@ def getServers(): # gets list of servers
     return os.listdir("servers")
 #getServers()
 
-def getTeams(serverName): # gets list of teams on a server
-    return os.listdir(f"servers/{serverName}/teams")
-#print(getTeams("testing"))
 
-def addServerTeams(user, serverName, teamName): # adds team to a server
-    if not teamName in getTeams(serverName):
-        os.makedirs(f"servers/{serverName}/teams/{teamName}")
-        f = open(f"servers/{serverName}/teams/{teamName}/players.txt","x")
-        f = open(f"servers/{serverName}/teams/{teamName}/matches.txt","x")
-        f.close()
-        return logServer(serverName, f'{user} - Team "{teamName}" has been added - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
-    else:
-        return logServer(serverName, f'{user} - Team "{teamName}" already exists - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
-#addServerTeams("testUser", "testing", "testTeam2")
 
-def getTeams(serverName): # gets list of teams on a server
-    return os.listdir(f"servers/{serverName}/teams")
-#print(getTeams("testing"))
 
 def getPlayers(serverName): # gets list of players on a server
     return os.listdir(f"servers/{serverName}/players")
@@ -83,7 +75,7 @@ def addServerPlayer(user, serverName, playerName): # adds player to server with 
         playerDict = {
             "name": playerName,
             "dateAdded": datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S'),
-            "team": "",
+            "team": "freeAgent",
             "age": "",
             "rank": ""
         }
@@ -93,7 +85,7 @@ def addServerPlayer(user, serverName, playerName): # adds player to server with 
         return logServer(serverName, f'{user} - Player "{playerName}" has been added to server- {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
     else:
         return logServer(serverName, f'{user} - Player "{playerName}" already exists on server- {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
-print(addServerPlayer("testUser","testing","waffleer#URMOM"))
+#print(addServerPlayer("testUser","testing","waffleer#URMOM"))
 
 def getServerPlayerInfo(serverName, playerName): # returns player information in a dict
     f = open(f"servers/{serverName}/players/{playerName}.txt", "r")
@@ -129,7 +121,6 @@ def editServerPlayerAge(user, serverName, playerName, age): # edits player age
     return logServer(serverName, f'{user} - Age for player "{playerName}" has been updated to {age} - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
 #print(editServerPlayerAge("testUser", "testing", "waffleer#URMOM", "18"))
 
-
 def editServerPlayerComplete(user, serverName, playerName, team, rank, age): # edits player team, rank, age
     info = getServerPlayerInfo(serverName, playerName)
     info.update({
@@ -140,14 +131,43 @@ def editServerPlayerComplete(user, serverName, playerName, team, rank, age): # e
     f = open(f"servers/{serverName}/players/{playerName}.txt", "w")
     f.write(str(info).replace("'",'"')) # changes ' to " in string to not make the json loader break
     f.close()
-    return logServer(serverName, f'{user} - Team, Rank, and Age for player "{playerName}" has been updated to {team},{rank},{age} - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
-print(editServerPlayerComplete("testUser", "testing", "waffleer#URMOM", "freeAgent", "Diamond 2", "18"))
-
-
-#{"name": "waffleer#URMOM", "dateAdded": "18/10/2022 14:03:51", "team": "testTeam", "age": "", "rank": ""}
+    return logServer(serverName, f'{user} - Team, Rank, and Age for player "{playerName}" has been updated to {team}, {rank} ,{age} - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
+#print(editServerPlayerComplete("testUser", "testing", "waffleer#URMOM", "freeAgent", "Diamond 2", "18"))
 
 
 
+
+def getTeams(serverName): # gets list of teams on a server
+    return os.listdir(f"servers/{serverName}/teams")
+#print(getTeams("testing"))
+
+def addServerTeams(user, serverName, teamName): # adds team to a server
+    if not teamName in getTeams(serverName):
+        os.makedirs(f"servers/{serverName}/teams/{teamName}")
+        f = open(f"servers/{serverName}/teams/{teamName}/players.txt","x")
+        f.write("[]")
+        f = open(f"servers/{serverName}/teams/{teamName}/matches.txt","x")
+        f.close()
+        return logServer(serverName, f'{user} - Team "{teamName}" has been added - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
+    else:
+        return logServer(serverName, f'{user} - Team "{teamName}" already exists - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
+#print(addServerTeams("testUser", "testing", "testTeam2"))
+
+def addTeamPlayer(user, serverName, teamName, playerName):
+    f = open(f"servers/{serverName}/teams/{teamName}/players.txt","r")
+    data = f.read()
+    data = strToList(data)
+    if playerName not in data:
+        data.append(str(playerName))
+        f = open(f"servers/{serverName}/teams/{teamName}/players.txt","w")
+        f.write(str(data))
+        f.close()
+        return logServer(serverName, f'{user} - Player "{playerName}" has been added to {teamName} - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
+    else:
+        return logServer(serverName, f'{user} - Player "{playerName}" was already in {teamName} - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
+
+
+print(addTeamPlayer("testUser", "testing","testTeam","fellfdsastfdsa"))
 
 #print(getServerPlayerInfo("testing","waffleer#URMOM"))
 #print(type(getServerPlayerInfo("testing","waffleer#URMOM")))

@@ -1,0 +1,314 @@
+t=2022-09-14T15:50:14-0500 lvl=info msg="no configuration paths supplied"
+t=2022-09-14T15:50:14-0500 lvl=info msg="using configuration at default config path" path=C:\\Users\\waffleer\\AppData\\Local/ngrok/ngrok.yml
+t=2022-09-14T15:50:14-0500 lvl=info msg="open config file" path=C:\\Users\\waffleer\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+t=2022-09-14T15:50:22-0500 lvl=info msg="no configuration paths supplied"
+t=2022-09-14T15:50:22-0500 lvl=info msg="using configuration at default config path" path=C:\\Users\\waffleer\\AppData\\Local/ngrok/ngrok.yml
+t=2022-09-14T15:50:22-0500 lvl=info msg="open config file" path=C:\\Users\\waffleer\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+t=2022-09-14T15:50:22-0500 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040
+t=2022-09-14T15:50:23-0500 lvl=info msg="tunnel session started" obj=tunnels.session
+t=2022-09-14T15:50:23-0500 lvl=info msg="client session established" obj=csess id=59366abe3112
+t=2022-09-14T15:50:23-0500 lvl=info msg="started tunnel" obj=tunnels name=command_line addr=//localhost:25565 url=tcp://2.tcp.ngrok.io:19529
+t=2022-09-14T15:51:07-0500 lvl=info msg="no configuration paths supplied"
+t=2022-09-14T15:51:07-0500 lvl=info msg="using configuration at default config path" path=C:\\Users\\waffleer\\AppData\\Local/ngrok/ngrok.yml
+t=2022-09-14T15:51:07-0500 lvl=info msg="open config file" path=C:\\Users\\waffleer\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+t=2022-09-14T15:51:07-0500 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040
+t=2022-09-14T15:51:07-0500 lvl=info msg="tunnel session started" obj=tunnels.session
+t=2022-09-14T15:51:07-0500 lvl=info msg="client session established" obj=csess id=ffcd38d87a5a
+t=2022-09-14T15:51:07-0500 lvl=info msg="started tunnel" obj=tunnels name=command_line addr=//localhost:25565 url=tcp://8.tcp.ngrok.io:18205
+t=2022-09-14T15:51:21-0500 lvl=info msg=start pg=/ id=a72744901819ebfb
+t=2022-09-14T15:51:21-0500 lvl=info msg=end pg=/ id=a72744901819ebfb status=302 dur=0s
+t=2022-09-14T15:51:21-0500 lvl=info msg=start pg=/inspect/http id=a73c3d059a7c8aa2
+t=2022-09-14T15:51:21-0500 lvl=info msg=end pg=/inspect/http id=a73c3d059a7c8aa2 status=200 dur=0s
+t=2022-09-14T15:51:21-0500 lvl=info msg=start pg=/static/css/app.6adde81d4977beec56aa.css id=a9afeccd42883146
+t=2022-09-14T15:51:21-0500 lvl=info msg=start pg=/static/js/vendor.46a63b0dfb74468b4858.js id=903498c06e7bc88e
+t=2022-09-14T15:51:21-0500 lvl=info msg=start pg=/static/js/rpx.c6caf80052f2d1f7c5e9.js id=9f07f1e4809bd9ea
+t=2022-09-14T15:51:21-0500 lvl=info msg=start pg=/static/js/app.d7e664b6c53b78f03d7e.js id=4459850908bbd4d8
+t=2022-09-14T15:51:21-0500 lvl=info msg=end pg=/static/js/rpx.c6caf80052f2d1f7c5e9.js id=9f07f1e4809bd9ea status=200 dur=26.7422ms
+t=2022-09-14T15:51:21-0500 lvl=info msg=end pg=/static/js/app.d7e664b6c53b78f03d7e.js id=4459850908bbd4d8 status=200 dur=26.7422ms
+t=2022-09-14T15:51:21-0500 lvl=info msg=end pg=/static/css/app.6adde81d4977beec56aa.css id=a9afeccd42883146 status=200 dur=28.7979ms
+t=2022-09-14T15:51:21-0500 lvl=info msg=end pg=/static/js/vendor.46a63b0dfb74468b4858.js id=903498c06e7bc88e status=200 dur=27.2526ms
+t=2022-09-14T15:51:21-0500 lvl=info msg=start pg=/grpc/agent.Web/Preloaded id=e7c2ae54f194951b
+t=2022-09-14T15:51:21-0500 lvl=info msg=start pg=/grpc/agent.Web/State id=8a988b7c3cca5b78
+t=2022-09-14T15:51:21-0500 lvl=info msg=end pg=/grpc/agent.Web/Preloaded id=e7c2ae54f194951b status=200 dur=647.9µs
+t=2022-09-14T15:51:21-0500 lvl=info msg=start pg=/static/favicon.ico id=2b5c58402569c169
+t=2022-09-14T15:51:21-0500 lvl=info msg=end pg=/static/favicon.ico id=2b5c58402569c169 status=200 dur=0s
+t=2022-09-14T15:51:31-0500 lvl=info msg=end pg=/grpc/agent.Web/State id=8a988b7c3cca5b78 status=200 dur=10.0084371s
+t=2022-09-14T15:51:44-0500 lvl=info msg=start pg=/ id=23bc6eb814c312f8
+t=2022-09-14T15:51:44-0500 lvl=info msg=end pg=/ id=23bc6eb814c312f8 status=302 dur=858.9µs
+t=2022-09-14T15:51:44-0500 lvl=info msg=start pg=/inspect/http id=75f405879e778792
+t=2022-09-14T15:51:44-0500 lvl=info msg=end pg=/inspect/http id=75f405879e778792 status=200 dur=124.6µs
+t=2022-09-14T15:51:44-0500 lvl=info msg=start pg=/static/css/app.6adde81d4977beec56aa.css id=b4b2bd5a805e19fd
+t=2022-09-14T15:51:44-0500 lvl=info msg=end pg=/static/css/app.6adde81d4977beec56aa.css id=b4b2bd5a805e19fd status=304 dur=1.0003ms
+t=2022-09-14T15:51:44-0500 lvl=info msg=start pg=/static/js/vendor.46a63b0dfb74468b4858.js id=05681e6a9b10cfc6
+t=2022-09-14T15:51:44-0500 lvl=info msg=start pg=/static/js/rpx.c6caf80052f2d1f7c5e9.js id=6eff04d590ea4d9f
+t=2022-09-14T15:51:44-0500 lvl=info msg=start pg=/static/js/app.d7e664b6c53b78f03d7e.js id=fc3ab0d33cafee12
+t=2022-09-14T15:51:44-0500 lvl=info msg=end pg=/static/js/rpx.c6caf80052f2d1f7c5e9.js id=6eff04d590ea4d9f status=304 dur=0s
+t=2022-09-14T15:51:44-0500 lvl=info msg=end pg=/static/js/app.d7e664b6c53b78f03d7e.js id=fc3ab0d33cafee12 status=304 dur=1.0404ms
+t=2022-09-14T15:51:44-0500 lvl=info msg=end pg=/static/js/vendor.46a63b0dfb74468b4858.js id=05681e6a9b10cfc6 status=304 dur=9.2565ms
+t=2022-09-14T15:51:44-0500 lvl=info msg=start pg=/grpc/agent.Web/Preloaded id=37cd71f9d3079e57
+t=2022-09-14T15:51:44-0500 lvl=info msg=end pg=/grpc/agent.Web/Preloaded id=37cd71f9d3079e57 status=200 dur=119.3µs
+t=2022-09-14T15:51:44-0500 lvl=info msg=start pg=/grpc/agent.Web/State id=9b70238e8c022634
+t=2022-09-14T15:55:59-0500 lvl=info msg=start pg=/inspect/http id=dc51e665cf678c96
+t=2022-09-14T15:55:59-0500 lvl=info msg=end pg=/inspect/http id=dc51e665cf678c96 status=200 dur=0s
+t=2022-09-14T15:56:40-0500 lvl=info msg=start pg=/inspect/http id=591450e11201ee85
+t=2022-09-14T15:56:40-0500 lvl=info msg=end pg=/inspect/http id=591450e11201ee85 status=200 dur=0s
+t=2022-09-14T15:56:48-0500 lvl=info msg=start pg=/inspect/http id=cbe8a75675ad1fd1
+t=2022-09-14T15:56:48-0500 lvl=info msg=end pg=/inspect/http id=cbe8a75675ad1fd1 status=200 dur=0s
+t=2022-09-14T15:57:39-0500 lvl=info msg=start pg=/inspect/http id=92045d7fcdf8a9ef
+t=2022-09-14T15:57:39-0500 lvl=info msg=end pg=/inspect/http id=92045d7fcdf8a9ef status=200 dur=0s
+t=2022-09-14T15:58:35-0500 lvl=info msg=start pg=/inspect/http id=7e8f31b93dac43a5
+t=2022-09-14T15:58:35-0500 lvl=info msg=end pg=/inspect/http id=7e8f31b93dac43a5 status=200 dur=0s
+t=2022-09-14T15:58:49-0500 lvl=info msg=start pg=/inspect/http id=11be24270fd5a901
+t=2022-09-14T15:58:49-0500 lvl=info msg=end pg=/inspect/http id=11be24270fd5a901 status=200 dur=0s
+t=2022-09-14T15:59:12-0500 lvl=info msg=start pg=/inspect/http id=ad9ed83877fab60a
+t=2022-09-14T15:59:12-0500 lvl=info msg=end pg=/inspect/http id=ad9ed83877fab60a status=200 dur=0s
+t=2022-09-14T15:59:23-0500 lvl=info msg=start pg=/inspect/http id=02717e73383d67e5
+t=2022-09-14T15:59:23-0500 lvl=info msg=end pg=/inspect/http id=02717e73383d67e5 status=200 dur=0s
+t=2022-09-14T15:59:42-0500 lvl=info msg=start pg=/static/css/app.6adde81d4977beec56aa.css id=09c40e4eaea471a0
+t=2022-09-14T15:59:42-0500 lvl=info msg=end pg=/static/css/app.6adde81d4977beec56aa.css id=09c40e4eaea471a0 status=304 dur=0s
+t=2022-09-14T15:59:42-0500 lvl=info msg=start pg=/static/js/vendor.46a63b0dfb74468b4858.js.map id=62eedf650cb182f3
+t=2022-09-14T15:59:42-0500 lvl=info msg=start pg=/static/js/rpx.c6caf80052f2d1f7c5e9.js.map id=db4d36fd7f9b569d
+t=2022-09-14T15:59:42-0500 lvl=info msg=start pg=/static/js/app.d7e664b6c53b78f03d7e.js.map id=c80ba3b7da769423
+t=2022-09-14T15:59:42-0500 lvl=info msg=end pg=/static/js/rpx.c6caf80052f2d1f7c5e9.js.map id=db4d36fd7f9b569d status=200 dur=1.0276ms
+t=2022-09-14T15:59:42-0500 lvl=info msg=end pg=/static/js/app.d7e664b6c53b78f03d7e.js.map id=c80ba3b7da769423 status=200 dur=2.6406ms
+t=2022-09-14T15:59:42-0500 lvl=info msg=start pg=/static/css/app.6adde81d4977beec56aa.css.map id=1424098a2110bbfa
+t=2022-09-14T15:59:42-0500 lvl=info msg=end pg=/static/css/app.6adde81d4977beec56aa.css.map id=1424098a2110bbfa status=200 dur=1.0209ms
+t=2022-09-14T15:59:42-0500 lvl=info msg=end pg=/static/js/vendor.46a63b0dfb74468b4858.js.map id=62eedf650cb182f3 status=200 dur=18.2153ms
+t=2022-09-14T16:00:23-0500 lvl=info msg=start pg=/inspect/http id=0697c541ef16af8f
+t=2022-09-14T16:00:23-0500 lvl=info msg=end pg=/inspect/http id=0697c541ef16af8f status=200 dur=0s
+t=2022-09-14T16:00:25-0500 lvl=info msg=start pg=/inspect/http id=7c0076a629af75ca
+t=2022-09-14T16:00:25-0500 lvl=info msg=end pg=/inspect/http id=7c0076a629af75ca status=200 dur=0s
+t=2022-09-14T16:00:37-0500 lvl=info msg=start pg=/inspect/http id=420cccfb39451038
+t=2022-09-14T16:00:37-0500 lvl=info msg=end pg=/inspect/http id=420cccfb39451038 status=200 dur=0s
+t=2022-09-14T16:02:11-0500 lvl=info msg=start pg=/status id=49ed015cacacae91
+t=2022-09-14T16:02:11-0500 lvl=info msg=end pg=/status id=49ed015cacacae91 status=200 dur=0s
+t=2022-09-14T16:02:11-0500 lvl=info msg=start pg=/static/css/app.6adde81d4977beec56aa.css id=0ea14298aa39a871
+t=2022-09-14T16:02:11-0500 lvl=info msg=start pg=/static/js/vendor.46a63b0dfb74468b4858.js id=3e4adf3a401fb70c
+t=2022-09-14T16:02:11-0500 lvl=info msg=start pg=/static/js/rpx.c6caf80052f2d1f7c5e9.js id=7f713bf05c1dd5b7
+t=2022-09-14T16:02:11-0500 lvl=info msg=end pg=/static/css/app.6adde81d4977beec56aa.css id=0ea14298aa39a871 status=304 dur=513.1µs
+t=2022-09-14T16:02:11-0500 lvl=info msg=start pg=/static/js/app.d7e664b6c53b78f03d7e.js id=73b63ebe26c6a346
+t=2022-09-14T16:02:11-0500 lvl=info msg=end pg=/static/js/rpx.c6caf80052f2d1f7c5e9.js id=7f713bf05c1dd5b7 status=304 dur=513.1µs
+t=2022-09-14T16:02:11-0500 lvl=info msg=end pg=/static/js/app.d7e664b6c53b78f03d7e.js id=73b63ebe26c6a346 status=304 dur=1.5525ms
+t=2022-09-14T16:02:11-0500 lvl=info msg=end pg=/static/js/vendor.46a63b0dfb74468b4858.js id=3e4adf3a401fb70c status=304 dur=9.2303ms
+t=2022-09-14T16:02:11-0500 lvl=info msg=start pg=/static/css/app.6adde81d4977beec56aa.css.map id=45338b5fbe527c18
+t=2022-09-14T16:02:11-0500 lvl=info msg=end pg=/static/css/app.6adde81d4977beec56aa.css.map id=45338b5fbe527c18 status=200 dur=1.0197ms
+t=2022-09-14T16:02:11-0500 lvl=info msg=start pg=/static/js/vendor.46a63b0dfb74468b4858.js.map id=50e5843eee2b29a2
+t=2022-09-14T16:02:11-0500 lvl=info msg=end pg=/static/js/vendor.46a63b0dfb74468b4858.js.map id=50e5843eee2b29a2 status=200 dur=37.3334ms
+t=2022-09-14T16:02:11-0500 lvl=info msg=start pg=/grpc/agent.Web/Preloaded id=2112a023ed51357c
+t=2022-09-14T16:02:11-0500 lvl=info msg=start pg=/grpc/agent.Web/State id=24115334882ac3c8
+t=2022-09-14T16:02:11-0500 lvl=info msg=end pg=/grpc/agent.Web/Preloaded id=2112a023ed51357c status=200 dur=1.1663ms
+t=2022-09-14T16:02:11-0500 lvl=info msg=start pg=/static/js/rpx.c6caf80052f2d1f7c5e9.js.map id=c2f534cad8b2faa8
+t=2022-09-14T16:02:11-0500 lvl=info msg=start pg=/static/js/app.d7e664b6c53b78f03d7e.js.map id=8753e50b05debbe5
+t=2022-09-14T16:02:11-0500 lvl=info msg=end pg=/static/js/rpx.c6caf80052f2d1f7c5e9.js.map id=c2f534cad8b2faa8 status=200 dur=508.7µs
+t=2022-09-14T16:02:11-0500 lvl=info msg=end pg=/static/js/app.d7e664b6c53b78f03d7e.js.map id=8753e50b05debbe5 status=200 dur=1.5836ms
+t=2022-09-14T16:02:11-0500 lvl=info msg=start pg=/static/favicon.ico id=e9708d2a1e9bc126
+t=2022-09-14T16:02:11-0500 lvl=info msg=end pg=/static/favicon.ico id=e9708d2a1e9bc126 status=304 dur=0s
+t=2022-09-14T16:02:11-0500 lvl=info msg=end pg=/grpc/agent.Web/State id=9b70238e8c022634 status=200 dur=10m26.8218631s
+t=2022-09-14T16:02:20-0500 lvl=info msg=end pg=/grpc/agent.Web/State id=24115334882ac3c8 status=200 dur=9.1571526s
+t=2022-09-14T16:04:28-0500 lvl=info msg=start pg=/inspect/http id=7b3f7c2895224630
+t=2022-09-14T16:04:28-0500 lvl=info msg=end pg=/inspect/http id=7b3f7c2895224630 status=200 dur=0s
+t=2022-09-14T16:04:28-0500 lvl=info msg=start pg=/static/css/app.6adde81d4977beec56aa.css id=5f4b23fdaff1805e
+t=2022-09-14T16:04:28-0500 lvl=info msg=end pg=/static/css/app.6adde81d4977beec56aa.css id=5f4b23fdaff1805e status=304 dur=782.4µs
+t=2022-09-14T16:04:28-0500 lvl=info msg=start pg=/static/js/vendor.46a63b0dfb74468b4858.js id=ccd81ad98c08c7f0
+t=2022-09-14T16:04:28-0500 lvl=info msg=start pg=/static/js/rpx.c6caf80052f2d1f7c5e9.js id=c22d6c42b19297e5
+t=2022-09-14T16:04:28-0500 lvl=info msg=start pg=/static/js/app.d7e664b6c53b78f03d7e.js id=0a634fea3612b94a
+t=2022-09-14T16:04:28-0500 lvl=info msg=end pg=/static/js/rpx.c6caf80052f2d1f7c5e9.js id=c22d6c42b19297e5 status=304 dur=0s
+t=2022-09-14T16:04:28-0500 lvl=info msg=end pg=/static/js/app.d7e664b6c53b78f03d7e.js id=0a634fea3612b94a status=304 dur=1.548ms
+t=2022-09-14T16:04:28-0500 lvl=info msg=end pg=/static/js/vendor.46a63b0dfb74468b4858.js id=ccd81ad98c08c7f0 status=304 dur=9.7514ms
+t=2022-09-14T16:04:28-0500 lvl=info msg=start pg=/grpc/agent.Web/Preloaded id=1d2c0d9ce0fb318d
+t=2022-09-14T16:04:28-0500 lvl=info msg=end pg=/grpc/agent.Web/Preloaded id=1d2c0d9ce0fb318d status=200 dur=753.2µs
+t=2022-09-14T16:04:28-0500 lvl=info msg=start pg=/grpc/agent.Web/State id=d1d4cd6efe2948b6
+t=2022-09-14T16:04:32-0500 lvl=info msg=start pg=/static/js/vendor.46a63b0dfb74468b4858.js.map id=258347e8b06fb83d
+t=2022-09-14T16:04:32-0500 lvl=info msg=start pg=/static/js/rpx.c6caf80052f2d1f7c5e9.js.map id=71ae434e3f14a4fe
+t=2022-09-14T16:04:32-0500 lvl=info msg=start pg=/static/js/app.d7e664b6c53b78f03d7e.js.map id=ccf6d805092c0750
+t=2022-09-14T16:04:32-0500 lvl=info msg=end pg=/static/js/rpx.c6caf80052f2d1f7c5e9.js.map id=71ae434e3f14a4fe status=200 dur=510.4µs
+t=2022-09-14T16:04:32-0500 lvl=info msg=end pg=/static/js/app.d7e664b6c53b78f03d7e.js.map id=ccf6d805092c0750 status=200 dur=2.5529ms
+t=2022-09-14T16:04:32-0500 lvl=info msg=start pg=/static/css/app.6adde81d4977beec56aa.css.map id=d7493ed612984cd0
+t=2022-09-14T16:04:32-0500 lvl=info msg=end pg=/static/css/app.6adde81d4977beec56aa.css.map id=d7493ed612984cd0 status=200 dur=1.5987ms
+t=2022-09-14T16:04:32-0500 lvl=info msg=end pg=/static/js/vendor.46a63b0dfb74468b4858.js.map id=258347e8b06fb83d status=200 dur=16.8002ms
+t=2022-09-14T16:09:12-0500 lvl=info msg=end pg=/grpc/agent.Web/State id=d1d4cd6efe2948b6 status=200 dur=4m43.4615311s
+t=2022-09-14T16:39:00-0500 lvl=info msg="Got quit command" obj=consoleui
+t=2022-09-14T16:39:00-0500 lvl=info msg="received stop request" obj=app stopReq="{err:<nil> restart:false}"
+t=2022-09-14T16:39:00-0500 lvl=info msg="session closing" obj=tunnels.session err=nil
+t=2022-09-14T16:39:00-0500 lvl=info msg="accept failed" obj=csess id=ffcd38d87a5a err="reconnecting session closed"
+t=2022-09-14T16:41:19-0500 lvl=info msg="no configuration paths supplied"
+t=2022-09-14T16:41:19-0500 lvl=info msg="using configuration at default config path" path=C:\\Users\\waffleer\\AppData\\Local/ngrok/ngrok.yml
+t=2022-09-14T16:41:19-0500 lvl=info msg="open config file" path=C:\\Users\\waffleer\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+t=2022-09-14T16:41:19-0500 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040
+t=2022-09-14T16:41:19-0500 lvl=info msg="tunnel session started" obj=tunnels.session
+t=2022-09-14T16:41:19-0500 lvl=info msg="client session established" obj=csess id=4624a99a207f
+t=2022-09-14T16:41:19-0500 lvl=info msg="started tunnel" obj=tunnels name=command_line addr=//localhost:25565 url=tcp://4.tcp.ngrok.io:18659
+t=2022-09-14T16:42:07-0500 lvl=info msg="Got quit command" obj=consoleui
+t=2022-09-14T16:42:07-0500 lvl=info msg="received stop request" obj=app stopReq="{err:<nil> restart:false}"
+t=2022-09-14T16:42:07-0500 lvl=info msg="session closing" obj=tunnels.session err=nil
+t=2022-09-14T16:42:07-0500 lvl=info msg="accept failed" obj=csess id=4624a99a207f err="reconnecting session closed"
+t=2022-09-14T16:42:33-0500 lvl=info msg="no configuration paths supplied"
+t=2022-09-14T16:42:33-0500 lvl=info msg="using configuration at default config path" path=C:\\Users\\waffleer\\AppData\\Local/ngrok/ngrok.yml
+t=2022-09-14T16:42:33-0500 lvl=info msg="open config file" path=C:\\Users\\waffleer\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+t=2022-09-14T16:42:33-0500 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040
+t=2022-09-14T16:42:33-0500 lvl=info msg="tunnel session started" obj=tunnels.session
+t=2022-09-14T16:42:33-0500 lvl=info msg="client session established" obj=csess id=82f9a3ded260
+t=2022-09-14T16:42:33-0500 lvl=info msg="started tunnel" obj=tunnels name=command_line addr=//localhost:25565 url=tcp://0.tcp.ngrok.io:12648
+t=2022-09-14T16:42:45-0500 lvl=info msg="Got quit command" obj=consoleui
+t=2022-09-14T16:42:45-0500 lvl=info msg="received stop request" obj=app stopReq="{err:<nil> restart:false}"
+t=2022-09-14T16:42:45-0500 lvl=info msg="session closing" obj=tunnels.session err=nil
+t=2022-09-14T16:42:45-0500 lvl=info msg="accept failed" obj=csess id=82f9a3ded260 err="reconnecting session closed"
+t=2022-09-14T16:43:03-0500 lvl=info msg="no configuration paths supplied"
+t=2022-09-14T16:43:03-0500 lvl=info msg="using configuration at default config path" path=C:\\Users\\waffleer\\AppData\\Local/ngrok/ngrok.yml
+t=2022-09-14T16:43:03-0500 lvl=info msg="open config file" path=C:\\Users\\waffleer\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+t=2022-09-14T16:43:03-0500 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040
+t=2022-09-14T16:43:03-0500 lvl=info msg="tunnel session started" obj=tunnels.session
+t=2022-09-14T16:43:03-0500 lvl=info msg="client session established" obj=csess id=b378f592c287
+t=2022-09-14T16:43:03-0500 lvl=info msg="started tunnel" obj=tunnels name=command_line addr=//localhost:25565 url=tcp://0.tcp.ngrok.io:10277
+t=2022-09-14T16:44:27-0500 lvl=info msg="Got quit command" obj=consoleui
+t=2022-09-14T16:44:27-0500 lvl=info msg="received stop request" obj=app stopReq="{err:<nil> restart:false}"
+t=2022-09-14T16:44:27-0500 lvl=info msg="session closing" obj=tunnels.session err=nil
+t=2022-09-14T16:44:27-0500 lvl=info msg="accept failed" obj=csess id=b378f592c287 err="reconnecting session closed"
+t=2022-09-14T16:44:40-0500 lvl=info msg="no configuration paths supplied"
+t=2022-09-14T16:44:40-0500 lvl=info msg="using configuration at default config path" path=C:\\Users\\waffleer\\AppData\\Local/ngrok/ngrok.yml
+t=2022-09-14T16:44:40-0500 lvl=info msg="open config file" path=C:\\Users\\waffleer\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+t=2022-09-14T16:44:40-0500 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040
+t=2022-09-14T16:44:40-0500 lvl=info msg="tunnel session started" obj=tunnels.session
+t=2022-09-14T16:44:40-0500 lvl=info msg="client session established" obj=csess id=e710a3b3137e
+t=2022-09-14T16:44:40-0500 lvl=info msg="started tunnel" obj=tunnels name=command_line addr=//localhost:25565 url=tcp://6.tcp.ngrok.io:10107
+t=2022-09-14T16:44:55-0500 lvl=info msg="Got quit command" obj=consoleui
+t=2022-09-14T16:44:55-0500 lvl=info msg="received stop request" obj=app stopReq="{err:<nil> restart:false}"
+t=2022-09-14T16:44:55-0500 lvl=info msg="session closing" obj=tunnels.session err=nil
+t=2022-09-14T16:44:55-0500 lvl=info msg="accept failed" obj=csess id=e710a3b3137e err="reconnecting session closed"
+t=2022-09-14T16:45:54-0500 lvl=info msg="no configuration paths supplied"
+t=2022-09-14T16:45:54-0500 lvl=info msg="using configuration at default config path" path=C:\\Users\\waffleer\\AppData\\Local/ngrok/ngrok.yml
+t=2022-09-14T16:45:54-0500 lvl=info msg="open config file" path=C:\\Users\\waffleer\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+t=2022-09-14T16:45:54-0500 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040
+t=2022-09-14T16:45:54-0500 lvl=info msg="tunnel session started" obj=tunnels.session
+t=2022-09-14T16:45:54-0500 lvl=info msg="client session established" obj=csess id=2f03d6f1c5ee
+t=2022-09-14T16:45:54-0500 lvl=info msg="started tunnel" obj=tunnels name=command_line addr=//localhost:25565 url=tcp://4.tcp.ngrok.io:19182
+t=2022-09-14T16:46:27-0500 lvl=info msg="no configuration paths supplied"
+t=2022-09-14T16:46:27-0500 lvl=info msg="using configuration at default config path" path=C:\\Users\\waffleer\\AppData\\Local/ngrok/ngrok.yml
+t=2022-09-14T16:46:27-0500 lvl=info msg="open config file" path=C:\\Users\\waffleer\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+t=2022-09-14T16:46:27-0500 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040
+t=2022-09-14T16:46:27-0500 lvl=info msg="tunnel session started" obj=tunnels.session
+t=2022-09-14T16:46:27-0500 lvl=info msg="client session established" obj=csess id=cce02a674918
+t=2022-09-14T16:46:27-0500 lvl=info msg="started tunnel" obj=tunnels name=command_line addr=//localhost:25565 url=tcp://8.tcp.ngrok.io:10952
+t=2022-09-14T17:06:07-0500 lvl=info msg="Got quit command" obj=consoleui
+t=2022-09-14T17:06:07-0500 lvl=info msg="received stop request" obj=app stopReq="{err:<nil> restart:false}"
+t=2022-09-14T17:06:07-0500 lvl=info msg="session closing" obj=tunnels.session err=nil
+t=2022-09-14T17:06:07-0500 lvl=info msg="accept failed" obj=csess id=cce02a674918 err="reconnecting session closed"
+t=2022-09-14T17:06:12-0500 lvl=info msg="no configuration paths supplied"
+t=2022-09-14T17:06:12-0500 lvl=info msg="using configuration at default config path" path=C:\\Users\\waffleer\\AppData\\Local/ngrok/ngrok.yml
+t=2022-09-14T17:06:12-0500 lvl=info msg="open config file" path=C:\\Users\\waffleer\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+t=2022-09-14T17:06:12-0500 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040
+t=2022-09-14T17:06:12-0500 lvl=info msg="tunnel session started" obj=tunnels.session
+t=2022-09-14T17:06:12-0500 lvl=info msg="client session established" obj=csess id=fff8f32f75d2
+t=2022-09-14T17:06:12-0500 lvl=info msg="started tunnel" obj=tunnels name=command_line addr=//localhost:25565 url=tcp://0.tcp.ngrok.io:16164
+t=2022-09-14T17:06:29-0500 lvl=info msg="Got quit command" obj=consoleui
+t=2022-09-14T17:06:29-0500 lvl=info msg="received stop request" obj=app stopReq="{err:<nil> restart:false}"
+t=2022-09-14T17:06:29-0500 lvl=info msg="session closing" obj=tunnels.session err=nil
+t=2022-09-14T17:06:29-0500 lvl=info msg="accept failed" obj=csess id=fff8f32f75d2 err="reconnecting session closed"
+t=2022-09-14T17:07:32-0500 lvl=info msg="no configuration paths supplied"
+t=2022-09-14T17:07:32-0500 lvl=info msg="using configuration at default config path" path=C:\\Users\\waffleer\\AppData\\Local/ngrok/ngrok.yml
+t=2022-09-14T17:07:32-0500 lvl=info msg="open config file" path=C:\\Users\\waffleer\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+t=2022-09-14T17:07:32-0500 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040
+t=2022-09-14T17:07:32-0500 lvl=info msg="tunnel session started" obj=tunnels.session
+t=2022-09-14T17:07:32-0500 lvl=info msg="client session established" obj=csess id=c8dda8d5f4ad
+t=2022-09-14T17:07:32-0500 lvl=info msg="started tunnel" obj=tunnels name=command_line addr=//localhost:25565 url=tcp://6.tcp.ngrok.io:11230
+t=2022-09-14T17:10:01-0500 lvl=info msg="no configuration paths supplied"
+t=2022-09-14T17:10:01-0500 lvl=info msg="using configuration at default config path" path=C:\\Users\\waffleer\\AppData\\Local/ngrok/ngrok.yml
+t=2022-09-14T17:10:01-0500 lvl=info msg="open config file" path=C:\\Users\\waffleer\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+t=2022-09-14T17:10:01-0500 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040
+t=2022-09-14T17:10:01-0500 lvl=info msg="tunnel session started" obj=tunnels.session
+t=2022-09-14T17:10:01-0500 lvl=info msg="client session established" obj=csess id=c9a251fda477
+t=2022-09-14T17:10:01-0500 lvl=info msg="started tunnel" obj=tunnels name=command_line addr=//localhost:25565 url=tcp://6.tcp.ngrok.io:18248
+t=2022-09-14T17:39:05-0500 lvl=info msg="no configuration paths supplied"
+t=2022-09-14T17:39:05-0500 lvl=info msg="using configuration at default config path" path=C:\\Users\\waffleer\\AppData\\Local/ngrok/ngrok.yml
+t=2022-09-14T17:39:05-0500 lvl=info msg="open config file" path=C:\\Users\\waffleer\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+t=2022-09-14T17:39:05-0500 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040
+t=2022-09-14T17:39:05-0500 lvl=info msg="tunnel session started" obj=tunnels.session
+t=2022-09-14T17:39:05-0500 lvl=info msg="client session established" obj=csess id=1b453b9885a7
+t=2022-09-14T17:39:05-0500 lvl=info msg="started tunnel" obj=tunnels name=command_line addr=//localhost:25565 url=tcp://2.tcp.ngrok.io:15833
+t=2022-09-14T17:39:09-0500 lvl=info msg="no configuration paths supplied"
+t=2022-09-14T17:39:09-0500 lvl=info msg="using configuration at default config path" path=C:\\Users\\waffleer\\AppData\\Local/ngrok/ngrok.yml
+t=2022-09-14T17:39:09-0500 lvl=info msg="open config file" path=C:\\Users\\waffleer\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+t=2022-09-14T17:39:09-0500 lvl=warn msg="can't bind default web address, trying alternatives" obj=web addr=127.0.0.1:4040
+t=2022-09-14T17:39:09-0500 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4041
+t=2022-09-14T17:39:09-0500 lvl=eror msg="failed to auth" obj=tunnels.session err="Your account is limited to 1 simultaneous ngrok agent session.\nActive ngrok agent sessions in region 'us':\n  - ts_2EmK6iYZA0jurPmpU2iBSRI2PS2 (144.13.254.21)\r\n\r\nERR_NGROK_108\r\n"
+t=2022-09-14T17:39:09-0500 lvl=eror msg="failed to reconnect session" obj=csess id=a0692ec94ff7 err="Your account is limited to 1 simultaneous ngrok agent session.\nActive ngrok agent sessions in region 'us':\n  - ts_2EmK6iYZA0jurPmpU2iBSRI2PS2 (144.13.254.21)\r\n\r\nERR_NGROK_108\r\n"
+t=2022-09-14T17:39:09-0500 lvl=eror msg="session closing" obj=tunnels.session err="Your account is limited to 1 simultaneous ngrok agent session.\nActive ngrok agent sessions in region 'us':\n  - ts_2EmK6iYZA0jurPmpU2iBSRI2PS2 (144.13.254.21)\r\n\r\nERR_NGROK_108\r\n"
+t=2022-09-14T17:39:09-0500 lvl=info msg="received stop request" obj=app stopReq="{err:0xc0000fefc0 restart:false}"
+t=2022-09-14T17:39:09-0500 lvl=eror msg="terminating with error" obj=app err="Your account is limited to 1 simultaneous ngrok agent session.\nActive ngrok agent sessions in region 'us':\n  - ts_2EmK6iYZA0jurPmpU2iBSRI2PS2 (144.13.254.21)\r\n\r\nERR_NGROK_108\r\n"
+t=2022-09-14T17:39:09-0500 lvl=crit msg="command failed" err="Your account is limited to 1 simultaneous ngrok agent session.\nActive ngrok agent sessions in region 'us':\n  - ts_2EmK6iYZA0jurPmpU2iBSRI2PS2 (144.13.254.21)\r\n\r\nERR_NGROK_108\r\n"
+t=2022-09-14T17:39:09-0500 lvl=warn msg="failed to check for update" obj=updater err="Post \"https://update.equinox.io/check\": context canceled"
+t=2022-09-14T17:41:28-0500 lvl=info msg="Got quit command" obj=consoleui
+t=2022-09-14T17:41:28-0500 lvl=info msg="received stop request" obj=app stopReq="{err:<nil> restart:false}"
+t=2022-09-14T17:41:28-0500 lvl=info msg="session closing" obj=tunnels.session err=nil
+t=2022-09-14T17:41:28-0500 lvl=info msg="accept failed" obj=csess id=1b453b9885a7 err="reconnecting session closed"
+t=2022-09-14T17:41:43-0500 lvl=info msg="no configuration paths supplied"
+t=2022-09-14T17:41:43-0500 lvl=info msg="using configuration at default config path" path=C:\\Users\\waffleer\\AppData\\Local/ngrok/ngrok.yml
+t=2022-09-14T17:41:43-0500 lvl=info msg="open config file" path=C:\\Users\\waffleer\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+t=2022-09-14T17:41:43-0500 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040
+t=2022-09-14T17:41:44-0500 lvl=info msg="tunnel session started" obj=tunnels.session
+t=2022-09-14T17:41:44-0500 lvl=info msg="client session established" obj=csess id=9f0359aea587
+t=2022-09-14T17:41:44-0500 lvl=info msg="started tunnel" obj=tunnels name=command_line addr=//localhost:25565 url=tcp://4.tcp.ngrok.io:13010
+t=2022-09-14T17:42:51-0500 lvl=info msg="Got quit command" obj=consoleui
+t=2022-09-14T17:42:51-0500 lvl=info msg="received stop request" obj=app stopReq="{err:<nil> restart:false}"
+t=2022-09-14T17:42:51-0500 lvl=info msg="session closing" obj=tunnels.session err=nil
+t=2022-09-14T17:42:51-0500 lvl=info msg="accept failed" obj=csess id=9f0359aea587 err="reconnecting session closed"
+t=2022-09-14T17:42:53-0500 lvl=info msg="no configuration paths supplied"
+t=2022-09-14T17:42:53-0500 lvl=info msg="using configuration at default config path" path=C:\\Users\\waffleer\\AppData\\Local/ngrok/ngrok.yml
+t=2022-09-14T17:42:53-0500 lvl=info msg="open config file" path=C:\\Users\\waffleer\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+t=2022-09-14T17:42:53-0500 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040
+t=2022-09-14T17:42:53-0500 lvl=info msg="tunnel session started" obj=tunnels.session
+t=2022-09-14T17:42:53-0500 lvl=info msg="client session established" obj=csess id=e878f6b656c9
+t=2022-09-14T17:42:53-0500 lvl=info msg="started tunnel" obj=tunnels name=command_line addr=//localhost:25565 url=tcp://4.tcp.ngrok.io:19369
+t=2022-09-14T17:46:08-0500 lvl=info msg="no configuration paths supplied"
+t=2022-09-14T17:46:08-0500 lvl=info msg="using configuration at default config path" path=C:\\Users\\waffleer\\AppData\\Local/ngrok/ngrok.yml
+t=2022-09-14T17:46:08-0500 lvl=info msg="open config file" path=C:\\Users\\waffleer\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+t=2022-09-14T17:46:08-0500 lvl=warn msg="can't bind default web address, trying alternatives" obj=web addr=127.0.0.1:4040
+t=2022-09-14T17:46:08-0500 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4041
+t=2022-09-14T17:46:09-0500 lvl=eror msg="failed to auth" obj=tunnels.session err="Your account is limited to 1 simultaneous ngrok agent session.\nActive ngrok agent sessions in region 'us':\n  - ts_2EmKZJteBmuLfuURj5LftVNOyHc (144.13.254.21)\r\n\r\nERR_NGROK_108\r\n"
+t=2022-09-14T17:46:09-0500 lvl=eror msg="failed to reconnect session" obj=csess id=78bba87e8d81 err="Your account is limited to 1 simultaneous ngrok agent session.\nActive ngrok agent sessions in region 'us':\n  - ts_2EmKZJteBmuLfuURj5LftVNOyHc (144.13.254.21)\r\n\r\nERR_NGROK_108\r\n"
+t=2022-09-14T17:46:09-0500 lvl=eror msg="session closing" obj=tunnels.session err="Your account is limited to 1 simultaneous ngrok agent session.\nActive ngrok agent sessions in region 'us':\n  - ts_2EmKZJteBmuLfuURj5LftVNOyHc (144.13.254.21)\r\n\r\nERR_NGROK_108\r\n"
+t=2022-09-14T17:46:09-0500 lvl=info msg="received stop request" obj=app stopReq="{err:0xc0001365a0 restart:false}"
+t=2022-09-14T17:46:09-0500 lvl=eror msg="terminating with error" obj=app err="Your account is limited to 1 simultaneous ngrok agent session.\nActive ngrok agent sessions in region 'us':\n  - ts_2EmKZJteBmuLfuURj5LftVNOyHc (144.13.254.21)\r\n\r\nERR_NGROK_108\r\n"
+t=2022-09-14T17:46:09-0500 lvl=warn msg="failed to check for update" obj=updater err="Post \"https://update.equinox.io/check\": context canceled"
+t=2022-09-14T17:46:09-0500 lvl=crit msg="command failed" err="Your account is limited to 1 simultaneous ngrok agent session.\nActive ngrok agent sessions in region 'us':\n  - ts_2EmKZJteBmuLfuURj5LftVNOyHc (144.13.254.21)\r\n\r\nERR_NGROK_108\r\n"
+t=2022-09-14T17:46:23-0500 lvl=info msg="Got quit command" obj=consoleui
+t=2022-09-14T17:46:23-0500 lvl=info msg="received stop request" obj=app stopReq="{err:<nil> restart:false}"
+t=2022-09-14T17:46:23-0500 lvl=info msg="session closing" obj=tunnels.session err=nil
+t=2022-09-14T17:46:23-0500 lvl=info msg="accept failed" obj=csess id=e878f6b656c9 err="reconnecting session closed"
+t=2022-09-14T17:47:38-0500 lvl=info msg="no configuration paths supplied"
+t=2022-09-14T17:47:38-0500 lvl=info msg="using configuration at default config path" path=C:\\Users\\waffleer\\AppData\\Local/ngrok/ngrok.yml
+t=2022-09-14T17:47:38-0500 lvl=info msg="open config file" path=C:\\Users\\waffleer\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+t=2022-09-14T17:47:38-0500 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040
+t=2022-09-14T17:47:39-0500 lvl=info msg="tunnel session started" obj=tunnels.session
+t=2022-09-14T17:47:39-0500 lvl=info msg="client session established" obj=csess id=2f1dafa81a93
+t=2022-09-14T17:47:39-0500 lvl=info msg="started tunnel" obj=tunnels name=command_line addr=//localhost:25565 url=tcp://4.tcp.ngrok.io:18595
+t=2022-09-14T17:53:17-0500 lvl=info msg="join connections" obj=join id=82916b9ff31a l=[::1]:25565 r=144.13.254.84:48751
+t=2022-09-14T17:53:18-0500 lvl=info msg="join connections" obj=join id=4938fb2fc464 l=[::1]:25565 r=144.13.254.84:37390
+t=2022-09-14T17:54:20-0500 lvl=info msg="join connections" obj=join id=1f10189d999b l=[::1]:25565 r=144.13.254.84:59929
+t=2022-09-14T17:54:31-0500 lvl=info msg="Got quit command" obj=consoleui
+t=2022-09-14T17:54:31-0500 lvl=info msg="received stop request" obj=app stopReq="{err:<nil> restart:false}"
+t=2022-09-14T17:54:31-0500 lvl=info msg="session closing" obj=tunnels.session err=nil
+t=2022-09-14T17:54:31-0500 lvl=info msg="accept failed" obj=csess id=2f1dafa81a93 err="reconnecting session closed"
+t=2022-09-14T17:55:40-0500 lvl=info msg="no configuration paths supplied"
+t=2022-09-14T17:55:40-0500 lvl=info msg="using configuration at default config path" path=C:\\Users\\waffleer\\AppData\\Local/ngrok/ngrok.yml
+t=2022-09-14T17:55:40-0500 lvl=info msg="open config file" path=C:\\Users\\waffleer\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+t=2022-09-14T17:55:40-0500 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040
+t=2022-09-14T17:55:40-0500 lvl=info msg="tunnel session started" obj=tunnels.session
+t=2022-09-14T17:55:40-0500 lvl=info msg="client session established" obj=csess id=2d4387717dfa
+t=2022-09-14T17:55:40-0500 lvl=info msg="started tunnel" obj=tunnels name=command_line addr=//localhost:25565 url=tcp://2.tcp.ngrok.io:15562
+t=2022-09-14T17:57:55-0500 lvl=info msg="Got quit command" obj=consoleui
+t=2022-09-14T17:57:55-0500 lvl=info msg="received stop request" obj=app stopReq="{err:<nil> restart:false}"
+t=2022-09-14T17:57:55-0500 lvl=info msg="session closing" obj=tunnels.session err=nil
+t=2022-09-14T17:57:55-0500 lvl=info msg="accept failed" obj=csess id=2d4387717dfa err="reconnecting session closed"
+t=2022-09-15T09:52:49-0500 lvl=info msg="no configuration paths supplied"
+t=2022-09-15T09:52:49-0500 lvl=info msg="using configuration at default config path" path=C:\\Users\\waffleer\\AppData\\Local/ngrok/ngrok.yml
+t=2022-09-15T09:52:49-0500 lvl=info msg="open config file" path=C:\\Users\\waffleer\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+t=2022-09-15T09:52:49-0500 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040
+t=2022-09-15T09:52:49-0500 lvl=info msg="tunnel session started" obj=tunnels.session
+t=2022-09-15T09:52:49-0500 lvl=info msg="client session established" obj=csess id=ed8bb7a1b4c6
+t=2022-09-15T09:52:49-0500 lvl=info msg="started tunnel" obj=tunnels name=command_line addr=//localhost:25565 url=tcp://8.tcp.ngrok.io:12581
+t=2022-09-15T14:34:34-0500 lvl=info msg="join connections" obj=join id=7ebc283ba286 l=[::1]:25565 r=185.168.9.179:51095
+t=2022-09-15T15:00:23-0500 lvl=info msg="Got quit command" obj=consoleui
+t=2022-09-15T15:00:23-0500 lvl=info msg="received stop request" obj=app stopReq="{err:<nil> restart:false}"
+t=2022-09-15T15:00:23-0500 lvl=info msg="session closing" obj=tunnels.session err=nil
+t=2022-09-15T15:00:23-0500 lvl=info msg="accept failed" obj=csess id=ed8bb7a1b4c6 err="reconnecting session closed"
