@@ -201,6 +201,8 @@ server commands
 
  	   - adds player to server with empty data structure
 
+
+
 	def editServerPlayerTeam(user, serverName, playerName, team): 
 
  	   - edits player team
@@ -218,6 +220,14 @@ server commands
 	def editServerPlayerComplete(user, serverName, playerName, team, rank, age): 
 
   	  - edits player team, rank, age
+
+      
+
+    def addTeamPlayer(user, serverName, teamName, playerName): 
+    
+        - adds a player under a team
+        
+        - changes player information to the team as well
 
 
 

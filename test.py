@@ -31,6 +31,9 @@ def logSystem(logStr): # logs only to system log file
 
 def strToList(data):
     #['waffleer#URMOM', 'pfunk', 'fellstar']
+
+    if "'" not in data:
+        return []
     data = data.strip("[]")
     data = data.replace("'","")
     data = data.split(", ")
@@ -153,7 +156,7 @@ def addServerTeams(user, serverName, teamName): # adds team to a server
         return logServer(serverName, f'{user} - Team "{teamName}" already exists - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
 #print(addServerTeams("testUser", "testing", "testTeam2"))
 
-def addTeamPlayer(user, serverName, teamName, playerName):
+def addTeamPlayer(user, serverName, teamName, playerName): # adds a player under a team, changes player information to the team as well
     f = open(f"servers/{serverName}/teams/{teamName}/players.txt","r")
     data = f.read()
     data = strToList(data)
@@ -162,12 +165,29 @@ def addTeamPlayer(user, serverName, teamName, playerName):
         f = open(f"servers/{serverName}/teams/{teamName}/players.txt","w")
         f.write(str(data))
         f.close()
+        print(editServerPlayerTeam(user, serverName, playerName, teamName))
         return logServer(serverName, f'{user} - Player "{playerName}" has been added to {teamName} - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
     else:
         return logServer(serverName, f'{user} - Player "{playerName}" was already in {teamName} - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
+#print(addTeamPlayer("testUser", "testing","testTeam","waffleer#URMOM"))
 
+def removeTeamPlayer(user, serverName, teamName, playerName): # adds a player under a team, changes player information to the team as well
+    f = open(f"servers/{serverName}/teams/{teamName}/players.txt","r")
+    data = f.read()
+    data = strToList(data)
+    if playerName in range(len(data)):
+        for x in data:
+            if data[x] == str(playerName):
+                data.remove(x)
 
-print(addTeamPlayer("testUser", "testing","testTeam","fellfdsastfdsa"))
+        f = open(f"servers/{serverName}/teams/{teamName}/players.txt","w")
+        f.write(str(data))
+        f.close()
+        print(editServerPlayerTeam(user, serverName, playerName, ""))
+        return logServer(serverName, f'{user} - Player "{playerName}" has been added to {teamName} - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
+    else:
+        return logServer(serverName, f'{user} - Player "{playerName}" was already in {teamName} - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
+#print(addTeamPlayer("testUser", "testing","testTeam","waffleer#URMOM"))
 
 #print(getServerPlayerInfo("testing","waffleer#URMOM"))
 #print(type(getServerPlayerInfo("testing","waffleer#URMOM")))

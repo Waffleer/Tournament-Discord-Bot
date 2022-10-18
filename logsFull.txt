@@ -77,3 +77,18 @@ testUser - Player "fellstfdsa" has been added to testTeam - 18/10/2022 16:22:09
 testUser - Player "fellstfdsa" was already in testTeam - 18/10/2022 16:22:21
 testUser - Player "fellstfdsa" was already in testTeam - 18/10/2022 16:22:25
 testUser - Player "fellfdsastfdsa" has been added to testTeam - 18/10/2022 16:22:32
+testUser - Player "fellfdsastfdsa" has been added to testTeam - 18/10/2022 17:26:15
+testUser - Player "fellfdsastfdsa" has been added to testTeam - 18/10/2022 17:27:56
+testUser - Player "fellfdsafdsafdsastfdsa" has been added to testTeam - 18/10/2022 17:28:08
+testUser - Player "fellfdsafdsafdsastfdsa" has been added to testTeam - 18/10/2022 17:28:29
+testUser - Player "fellfdsafdsafdsastfdsa" has been added to testTeam - 18/10/2022 17:28:30
+testUser - Player "fellfdsafdsafdsastfdsa" has been added to testTeam - 18/10/2022 17:30:05
+testUser - Player "fellfdsafdsafdsastfdsa" was already in testTeam - 18/10/2022 17:31:13
+testUser - Player "fellfdsastfdsa" has been added to testTeam - 18/10/2022 17:31:25
+testUser - Player "fellfdsastfdsa" has been added to testTeam - 18/10/2022 17:31:38
+testUser - Player "waffleer#URMOM" has been added to testTeam - 18/10/2022 17:33:15
+testUser - Player "waffleer#URMOM" was already in testTeam - 18/10/2022 17:36:19
+testUser - Player "waffleer#URMOM" was already in testTeam - 18/10/2022 17:37:34
+testUser - Team for player "waffleer#URMOM" has been updated to testTeam - 18/10/2022 17:37:49
+testUser - Player "waffleer#URMOM" has been added to testTeam - 18/10/2022 17:37:49
+testUser - Player "waffleer#URMOM" was already in testTeam - 18/10/2022 17:38:17
