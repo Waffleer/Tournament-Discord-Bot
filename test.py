@@ -1,7 +1,7 @@
 import os
 import datetime
 
-def genNum(num, list):
+def genNum(num, list): # generates a random number "num" digits that isn't on the inputted list
     returnNumber = ""
     for x in range(num):
         returnNumber = returnNumber + str()
@@ -9,62 +9,51 @@ def genNum(num, list):
         returnNumber = genNum(num, list)
     return returnNumber
 
-def logServer(serverName, logStr):
+def logServer(serverName, logStr): # logs to server log file as well as system
     f = open("logsFull.txt", "a")
-    f.write(logStr)
+    f.write("\n"+logStr)
     f.close()
     f = open(f"servers/{serverName}/logs.txt","a")
-    f.write(logStr)
+    f.write("\n"+logStr)
     f.close()
     return logStr
 
-def logFull(logStr):
+def logSystem(logStr): # logs only to system log file
     f = open("logsFull.txt", "a")
     f.write(logStr)
     f.close()
     return logStr
 
-
-def gen(user, serverName):
+def genServer(user, serverName): # Generates a server and file structure
     serverName = str(serverName)
     if not os.path.exists(f"servers/{serverName}"):
         os.makedirs(f"servers/{serverName}")
         os.makedirs(f"servers/{serverName}/players")
         os.makedirs(f"servers/{serverName}/teams")
+        os.makedirs(f"servers/{serverName}/matches")
         f = open(f"servers/{serverName}/admin.txt","x")
         f = open(f"servers/{serverName}/secondary.txt","x")
-        f = open(f"servers/{serverName}/matchs.txt","x")
         f = open(f"servers/{serverName}/logs.txt","x")
         f.close()
 
-        return logFull(f"{user} - Server Created - {serverName}")
+        return logServer(serverName, f"{user} - Server Created - {serverName} - {datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')}")
     else:
-        return logFull(f"{user} - Server Already Exists - {serverName}")
-gen("TestUser","testing1")
+        return logSystem(serverName, f"{user} - Server Already Exists - {serverName} - {datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')}")
+genServer("TestUser","testing")
 
-def getServers():
+def getServers(): # gets list of servers
     return os.listdir("servers")
 #getServers()
 
-def addServerTeams(user, serverName, teamName):
+def addServerTeams(user, serverName, teamName): # adds team to a server
     teamList = os.listdir(f"servers/{serverName}/teams")
     if not teamName in teamList:
         os.makedirs(f"servers/{serverName}/teams/{teamName}")
-        return logServer(serverName, f'{user} - Team "{teamName}" has been added')
+        f = open(f"servers/{serverName}/teams/{teamName}/players.txt","x")
+        f = open(f"servers/{serverName}/teams/{teamName}/matches.txt","x")
+        f.close()
+        return logServer(serverName, f'{user} - Team "{teamName}" has been added - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
     else:
-        return logServer(serverName, f'{user} - Team "{teamName}" already exists')
+        return logServer(serverName, f'{user} - Team "{teamName}" already exists - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
+#addServerTeams("testUser", "testing", "testTeam")
 
-
-def updateServerInfo():
-    #name
-    #number of players
-    #teams
-        #team rosters
-        #match list
-    #matchs
-    #list of player Numbers
-
-    #turn matchs into team matches
-    pass
-
-print(addServerTeams("testUser","testing", "nothin"))

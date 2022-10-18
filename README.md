@@ -22,6 +22,8 @@ file structure
 
 	- full logs of api
 
+    - Will have a extra line above text, will be fixed in code
+
 /main.py  
 
 	- where discord bot code will go
@@ -60,11 +62,17 @@ run.bat/run.sh
 
 	- lists what channels have secondary perms, tbd
 
-/servers/{name of server}/matchs/          
+/servers/{name of server}/logs.txt 
+
+	- full logs of api
+
+    - Will have a extra line above text, will be fixed in code
+
+/servers/{name of server}/matches/          
 
 	- stores all of the matches information
 	
-/servers/{name of server}/matchs/{match id number}   
+/servers/{name of server}/matches/{match id number}   
 
 	- stores all the data associated with the match
 
@@ -80,7 +88,7 @@ run.bat/run.sh
 
 	- has the names of all the players on the team
 	
-/servers/{name of server}/teams/{name of team}/matchs.txt    
+/servers/{name of server}/teams/{name of team}/matches.txt    
 
 	- has the ids of all of the matches associated with the teams
 
@@ -96,3 +104,62 @@ run.bat/run.sh
 
 api commands - still in progress of creating
 
+    - if a function is declared as "public" then it can be accessed via api
+
+    - if a function is declared as "private" then it can be accessed via api
+
+    - if a function is declared as "discord accessible" then it can be accessed via discord bot
+
+        - not implemented yet
+
+
+log commands 
+
+def logServer(serverName, logStr): 
+
+    - logs to server log file as well as system
+
+    - private
+
+
+def logSystem(logStr): 
+
+    - logs only to system log file
+
+    - private
+
+
+information commands
+
+def getServers(): 
+
+    - gets list of servers
+
+    - public
+
+
+
+server commands
+
+def genServer(user, serverName): 
+
+    - Generates a server and file structure
+
+    - public
+
+    - discord accessible
+
+def addServerTeams(user, serverName, teamName): 
+
+    - adds team to a server
+
+    - public
+
+    - discord accessible
+
+
+other commands 
+
+def genNum(num, list): 
+
+    - generates a random number "num" digits that isn't on the inputted list

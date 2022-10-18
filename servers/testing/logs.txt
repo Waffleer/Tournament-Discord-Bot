@@ -1,1 +1,3 @@
-Server created - 18/10/2022 11:58:22
+
+TestUser - Server Created - testing - 18/10/2022 13:30:31
+testUser - Team "testTeam" has been added - 18/10/2022 13:30:31
