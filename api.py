@@ -14,28 +14,24 @@ def genNum(num, list):
         returnNumber = genNum(num, list)
     return returnNumber
 
+def logServer(serverName, logStr):
+    f = open("logsFull.txt", "a")
+    f.write(logStr)
+    f.close()
+    f = open(f"servers/{serverName}/logs.txt","a")
+    f.write(logStr)
+    f.close()
+    return logStr
+
+def logFull(logStr):
+    f = open("logsFull.txt", "a")
+    f.write(logStr)
+    f.close()
+    return logStr
+
+
 @api.get("/ping")
 async def ping():
     return {"string": "Pong"}
 
-@api.get("/genServer")
-async def gen(serverName):
-    serverName = str(serverName)
-    if not os.path.exists(f"servers/{serverName}"):
-        os.makedirs(f"servers/{serverName}")
-        os.makedirs(f"servers/{serverName}/match")
-        os.makedirs(f"servers/{serverName}/player")
-        os.makedirs(f"servers/{serverName}/teams")
-        f = open(f"servers/{serverName}/admin.txt","x")
-        f = open(f"servers/{serverName}/secondary.txt","x")
-        f = open(f"servers/{serverName}/info.txt","x")
-        f = open(f"servers/{serverName}/logs.txt","x")
-        f.write(f"Server created - {datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')}")
-        f = open("servers.txt","a")
-        f.write(f"{serverName} - {datetime.date.today()}")
-        f.close()
-
-        return f"Server Created - {serverName}"
-    else:
-        return f"Server Already Exists - {serverName}"
 
