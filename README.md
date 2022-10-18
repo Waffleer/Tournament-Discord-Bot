@@ -137,6 +137,30 @@ def getServers():
 
     - public
 
+def getTeams(serverName): 
+
+    - gets list of teams on a server
+
+    - public
+
+def getPlayers(serverName): 
+
+    - gets list of players on a server
+
+    - public
+
+def getMatches(serverName): 
+    
+    - gets list of matches on a server
+
+    - public
+
+def getServerPlayerInfo(serverName, playerName): 
+
+    - returns player information
+    
+    - returns a dict
+
 
 
 server commands
@@ -157,9 +181,25 @@ def addServerTeams(user, serverName, teamName):
 
     - discord accessible
 
+def addServerPlayer(user, serverName, playerName): 
+
+    - adds player to server with empty data structure
+
+def editServerPlayerTeam(user, serverName, playerName, team): 
+
+    - edits player team
+    
+    - team name is not used to determine players on each team
+
 
 other commands 
 
 def genNum(num, list): 
 
     - generates a random number "num" digits that isn't on the inputted list
+
+def strToDict(string): 
+
+    - turns a string into a dict via json
+
+    - string dict must have " not '
