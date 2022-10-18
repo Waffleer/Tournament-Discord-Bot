@@ -92,7 +92,7 @@ run.bat/run.sh
 
 	- stores all of the information related to each player
 
-\n\n\n
+
 
 api commands - still in progress of creating
 
