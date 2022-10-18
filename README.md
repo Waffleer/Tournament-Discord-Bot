@@ -10,7 +10,7 @@ use run.bat to start the api, it will run at localhost, use the link in the cons
 
 
 
-file structure, yes its a lot
+file structure
 
 /    
 
@@ -92,10 +92,7 @@ run.bat/run.sh
 
 	- stores all of the information related to each player
 
-
-
-
-
+\n\n\n
 
 api commands - still in progress of creating
 
