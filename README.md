@@ -117,7 +117,7 @@ log commands
 
 def logServer(serverName, logStr): 
 
-    - logs to server log file as well as system
+    - logs to server log file as well as system log file
 
     - private
 
