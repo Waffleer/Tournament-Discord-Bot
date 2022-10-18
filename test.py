@@ -93,7 +93,7 @@ def addServerPlayer(user, serverName, playerName): # adds player to server with 
         return logServer(serverName, f'{user} - Player "{playerName}" has been added to server- {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
     else:
         return logServer(serverName, f'{user} - Player "{playerName}" already exists on server- {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
-#print(addServerPlayer("testUser","testing","waffleer#URMOM"))
+print(addServerPlayer("testUser","testing","waffleer#URMOM"))
 
 def getServerPlayerInfo(serverName, playerName): # returns player information in a dict
     f = open(f"servers/{serverName}/players/{playerName}.txt", "r")
@@ -108,9 +108,46 @@ def editServerPlayerTeam(user, serverName, playerName, team): # edits player tea
     f = open(f"servers/{serverName}/players/{playerName}.txt", "w")
     f.write(str(info).replace("'",'"')) # changes ' to " in string to not make the json loader break
     f.close()
-    return logServer(serverName, f'{user} - Team for player "{playerName}" has been updated to {team}- {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
-    
-print(editServerPlayerTeam("testUser", "testing", "waffleer#URMOM", "testTeam"))
+    return logServer(serverName, f'{user} - Team for player "{playerName}" has been updated to {team} - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
+#print(editServerPlayerTeam("testUser", "testing", "waffleer#URMOM", "testTeam"))
+
+def editServerPlayerRank(user, serverName, playerName, rank): # edits player rank
+    info = getServerPlayerInfo(serverName, playerName)
+    info.update({"rank": rank})
+    f = open(f"servers/{serverName}/players/{playerName}.txt", "w")
+    f.write(str(info).replace("'",'"')) # changes ' to " in string to not make the json loader break
+    f.close()
+    return logServer(serverName, f'{user} - Rank for player "{playerName}" has been updated to {rank} - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
+#print(editServerPlayerRank("testUser", "testing", "waffleer#URMOM", "Diamond 2"))
+
+def editServerPlayerAge(user, serverName, playerName, age): # edits player age
+    info = getServerPlayerInfo(serverName, playerName)
+    info.update({"age": age})
+    f = open(f"servers/{serverName}/players/{playerName}.txt", "w")
+    f.write(str(info).replace("'",'"')) # changes ' to " in string to not make the json loader break
+    f.close()
+    return logServer(serverName, f'{user} - Age for player "{playerName}" has been updated to {age} - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
+#print(editServerPlayerAge("testUser", "testing", "waffleer#URMOM", "18"))
+
+
+def editServerPlayerComplete(user, serverName, playerName, team, rank, age): # edits player team, rank, age
+    info = getServerPlayerInfo(serverName, playerName)
+    info.update({
+        "team": team,
+        "rank": rank,
+        "age": age,
+        })
+    f = open(f"servers/{serverName}/players/{playerName}.txt", "w")
+    f.write(str(info).replace("'",'"')) # changes ' to " in string to not make the json loader break
+    f.close()
+    return logServer(serverName, f'{user} - Team, Rank, and Age for player "{playerName}" has been updated to {team},{rank},{age} - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
+print(editServerPlayerComplete("testUser", "testing", "waffleer#URMOM", "freeAgent", "Diamond 2", "18"))
+
+
+#{"name": "waffleer#URMOM", "dateAdded": "18/10/2022 14:03:51", "team": "testTeam", "age": "", "rank": ""}
+
+
+
 
 #print(getServerPlayerInfo("testing","waffleer#URMOM"))
 #print(type(getServerPlayerInfo("testing","waffleer#URMOM")))

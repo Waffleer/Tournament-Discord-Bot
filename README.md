@@ -8,6 +8,14 @@ gives a lot more freedom for coding and not everything will be in the discord py
 
 use run.bat to start the api, it will run at localhost, use the link in the console and go to /docs to interact
 
+data structures
+
+Player Data Structures
+    - name
+    - dataAdded
+    - team
+    - rank
+    - age
 
 
 file structure
@@ -190,6 +198,19 @@ def editServerPlayerTeam(user, serverName, playerName, team):
     - edits player team
     
     - team name is not used to determine players on each team
+
+def editServerPlayerRank(user, serverName, playerName, rank): 
+
+    - edits player rank
+
+def editServerPlayerAge(user, serverName, playerName, age): 
+
+    - edits player age
+
+def editServerPlayerComplete(user, serverName, playerName, team, rank, age): 
+
+    - edits player team, rank, age
+
 
 
 other commands 

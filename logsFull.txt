@@ -16,3 +16,11 @@ testUser - Player "waffleer#URMOM" already exists on server- 18/10/2022 14:05:53
 testUser - Player "waffleer#URMOM" already exists on server- 18/10/2022 14:16:36
 testUser - Team for player "waffleer#URMOM" has been updated to testTeam- 18/10/2022 14:16:36
 testUser - Team for player "waffleer#URMOM" has been updated to testTeam- 18/10/2022 14:17:01
+testUser - Team for player "waffleer#URMOM" has been updated to testTeam- 18/10/2022 14:37:58
+testUser - Rank for player "waffleer#URMOM" has been updated to testTeam- 18/10/2022 14:37:58
+testUser - Rank for player "waffleer#URMOM" has been updated to Diamond 2- 18/10/2022 14:38:24
+testUser - Age for player "waffleer#URMOM" has been updated to 18- 18/10/2022 14:40:04
+testUser - Age for player "waffleer#URMOM" has been updated to 18 - 18/10/2022 14:50:17
+testUser - Team, Rank, and Age for player "waffleer#URMOM" has been updated to 18 - 18/10/2022 14:50:17
+testUser - Player "waffleer#URMOM" has been added to server- 18/10/2022 14:52:10
+testUser - Team, Rank, and Age for player "waffleer#URMOM" has been updated to freeAgent,Diamond 2,18 - 18/10/2022 14:52:10
