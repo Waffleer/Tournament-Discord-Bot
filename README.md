@@ -11,11 +11,17 @@ use run.bat to start the api, it will run at localhost, use the link in the cons
 data structures
 
 Player Data Structures
+
     - name
+    
     - dataAdded
+    
     - team
+    
     - rank
+    
     - age
+    
 
 
 file structure
