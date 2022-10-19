@@ -12,7 +12,7 @@ bot join url : https://discord.com/api/oauth2/authorize?client_id=10321210331860
 
 data structures
 
-Player Data Structures
+# Player Data Structures
 
     - name
     
@@ -26,7 +26,7 @@ Player Data Structures
     
 
 
-file structure
+# file structure
 
 	/    
 
@@ -120,7 +120,7 @@ file structure
 
 
 
-api commands - still in progress of creating
+# api commands - still in progress of creating
 
  	   - if a function is declared as "public" then it can be accessed via api
 
@@ -131,7 +131,7 @@ api commands - still in progress of creating
 		- not implemented yet
 
 
-log commands 
+# log commands 
 
 	def logServer(serverName, logStr): 
 
@@ -147,7 +147,7 @@ log commands
 		- private
 
 
-information commands
+# information commands
 
 	def getServers(): 
 
@@ -189,7 +189,7 @@ information commands
 	
 		- returns all of the player's data for a team
 
-server commands
+# server commands
 
 	def genServer(user, serverName): 
 
@@ -272,7 +272,7 @@ server commands
 
 
 
-other commands 
+# other commands 
 
 	def genNum(num, list): 
 
@@ -286,7 +286,7 @@ other commands
 
 
 
-To Do:
+# To Do:
 
     - add role to player data structure
 
@@ -326,4 +326,5 @@ To Do:
 
 	- Need to make discord outputs more user freindly
 
-	
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
