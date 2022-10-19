@@ -359,6 +359,8 @@ data structures
 	- delete tournament or have a check when creating 
 	
 	- deal with reactions, would add a level of professionalism
+	
+	- add status to player data object, (active, inactive, kicked)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
