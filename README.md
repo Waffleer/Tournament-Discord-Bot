@@ -203,6 +203,7 @@ server commands
 
 
 
+
 	def editServerPlayerTeam(user, serverName, playerName, team): 
 
  	   - edits player team
@@ -221,13 +222,24 @@ server commands
 
   	  - edits player team, rank, age
 
-      
+
+
 
     def addTeamPlayer(user, serverName, teamName, playerName): 
     
         - adds a player under a team
         
         - changes player information to the team as well
+
+    def removeTeamPlayer(user, serverName, teamName, playerName): 
+    
+        - adds a player under a team
+        
+        - changes player information to the team as well
+
+
+
+
 
 
 

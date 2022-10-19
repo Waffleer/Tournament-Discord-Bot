@@ -92,3 +92,15 @@ testUser - Player "waffleer#URMOM" was already in testTeam - 18/10/2022 17:37:34
 testUser - Team for player "waffleer#URMOM" has been updated to testTeam - 18/10/2022 17:37:49
 testUser - Player "waffleer#URMOM" has been added to testTeam - 18/10/2022 17:37:49
 testUser - Player "waffleer#URMOM" was already in testTeam - 18/10/2022 17:38:17
+testUser - Team for player "waffleer#URMOM" has been updated to  - 18/10/2022 17:52:29
+testUser - Player "waffleer#URMOM" has been added to testTeam - 18/10/2022 17:52:29
+testUser - Player "waffleer#URMOM" was not found in testTeam - 18/10/2022 17:52:56
+testUser - Player "waffleer#URMOM" was not found in testTeam - 18/10/2022 17:53:29
+testUser - Team for player "waffleer#URMOM" has been updated to testTeam - 18/10/2022 17:53:41
+testUser - Player "waffleer#URMOM" has been added to testTeam - 18/10/2022 17:53:41
+testUser - Team for player "waffleer#URMOM" has been updated to blank - 18/10/2022 17:53:41
+testUser - Player "waffleer#URMOM" has been removed from testTeam - 18/10/2022 17:53:41
+testUser - Team for player "waffleer#URMOM" has been updated to testTeam - 18/10/2022 17:54:32
+testUser - Player "waffleer#URMOM" has been added to testTeam - 18/10/2022 17:54:32
+testUser - Team for player "waffleer#URMOM" has been updated to blank - 18/10/2022 17:54:32
+testUser - Player "waffleer#URMOM" has been removed from testTeam - 18/10/2022 17:54:32

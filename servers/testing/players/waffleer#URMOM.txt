@@ -1,1 +1,1 @@
-{"name": "waffleer#URMOM", "dateAdded": "18/10/2022 15:45:05", "team": "testTeam", "age": "", "rank": ""}
+{"name": "waffleer#URMOM", "dateAdded": "18/10/2022 15:45:05", "team": "", "age": "", "rank": ""}
