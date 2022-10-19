@@ -9,6 +9,14 @@ intents.message_content = True
 
 client = discord.Client(intents=intents)
 
+def strToList(data):
+    if "'" not in data and '"' not in data:
+        return []
+    data = data.strip("[]")
+    data = data.replace("'","")
+    data = data.replace('"',"")
+    data = data.split(",")
+    return(data)
 
 def addServerTeam(message):
     user = str(message.author).replace("#","_")
@@ -62,15 +70,25 @@ def editServerPlayerAge(message):
     context = resp.text.replace(")","#")
     return context
 
+def editServerPlayerRole(message):
+    user = str(message.author).replace("#",")")
+    channel = str(message.channel.name)
+    server = str(message.guild)
+    name = str(message.content).split(' ')[1].replace("#",")")
+    role = str(message.content).split(' ')[2].replace("#",")")
+    resp = requests.get(f'http://127.0.0.1:9101/editServerPlayerRole?user={user}&serverName={server}&playerName={name}&role={role}')
+    context = resp.text.replace(")","#")
+    return context
+
 def editServerPlayerComplete(message):
     user = str(message.author).replace("#",")")
     channel = str(message.channel.name)
     server = str(message.guild)
     name = str(message.content).split(' ')[1].replace("#",")")
-    #team = str(message.content).split(' ')[2].replace("#",")")
     rank = str(message.content).split(' ')[2].replace("#",")")
     age = str(message.content).split(' ')[3].replace("#",")")
-    resp = requests.get(f'http://127.0.0.1:9101/editServerPlayerComplete?user={user}&serverName={server}&playerName={name}&rank={rank}&age={age}')
+    role = str(message.content).split(' ')[4].replace("#",")")
+    resp = requests.get(f'http://127.0.0.1:9101/editServerPlayerComplete?user={user}&serverName={server}&playerName={name}&rank={rank}&age={age}&role={role}')
     context = resp.text.replace(")","#")
     return context
 
@@ -185,6 +203,15 @@ def getTeamRoster(message):
 
 
 
+
+
+#Utility Functions
+
+def createChannel(message):
+    pass
+
+
+
 @client.event
 async def on_ready():
     pass
@@ -193,6 +220,42 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
+
+    if message.content.startswith('!createTeamChannels'):
+        #should run an admin check
+        user = str(message.author).replace("#",")")
+        channel = str(message.channel.name)
+        server = str(message.guild)
+        
+        teams = getTeams(message)
+        teams = strToList(teams)
+
+        usedCategories = message.guild.categories
+        usedCategoriesNames = []
+        for x in usedCategories:
+            usedCategoriesNames.append(x.name)
+
+        repeatCategories = []
+        madeCategories = []
+        num = 0
+        for x in teams:
+            if x in usedCategoriesNames:
+                repeatCategories.append(x)
+            else:
+                num += 1
+                madeCategories.append(x)
+                category = await message.guild.create_category(name=x)
+                await category.create_text_channel("general")
+                await category.create_voice_channel("vibes")
+                await category.create_voice_channel("match")
+
+
+
+        if len(repeatCategories) > 0:
+            await message.channel.send(f"Success in making {num} team channels - {madeCategories}\nThese Team channels already existed - {repeatCategories}")
+        else:
+            await message.channel.send(f"Success in making {num} team channels - {teams}")
+
 
     #print(message.content)
     if message.content.startswith('!addServerTeam'):

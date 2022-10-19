@@ -284,17 +284,31 @@ data structures
 
   	   - string dict must have " not '
 
+# Discord Commands
 
+	!createTeamChannels
+
+		- creates a channel for each team
+
+			- general text
+
+			- vibes vc
+
+			- match vc
 
 # To Do:
 
-    - add role to player data structure
-
-        - for things like team captain and what not 
+    - add role to player data structure  -- finished, need to validate
 
 	- add a record system for wins and losses
 
 	- have bot create channels for each team
+
+		- can create channels - **fin**
+
+		- adds permissions to channels
+
+	- adds team roles to players on a team
 
 	- need to add authorized channels as well as the checks for them in discord bot
 
@@ -325,6 +339,16 @@ data structures
 		- need to check if necessary
 
 	- Need to make discord outputs more user freindly
+
+	- make matches have data slots for bo3 or bo5 to record results
+
+	- add discord username to player data structure
+
+		- store with #
+
+			- change last ")" or 5th to last charater to a # when storing and pulling from database
+
+
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

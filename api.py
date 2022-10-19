@@ -107,7 +107,8 @@ def addServerPlayer(user, serverName, playerName): # adds player to server with 
             "dateAdded": datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S'),
             "team": "freeAgent",
             "age": "",
-            "rank": ""
+            "rank": "",
+            "role": "",
         }
         playerDict = str(playerDict).replace("'",'"')
         f.write(playerDict)
@@ -159,19 +160,27 @@ def editServerPlayerAge(user, serverName, playerName, age): # edits player age
 #print(editServerPlayerAge("testUser", "testing", "waffleer#URMOM", "18"))
 
 @api.get("/editServerPlayerComplete")
-def editServerPlayerComplete(user, serverName, playerName, rank, age): # edits player team, rank, age
+def editServerPlayerComplete(user, serverName, playerName, rank, age, role): # edits player team, rank, age
     info = getServerPlayerInfo(serverName, playerName)
     info.update({
         "rank": rank,
         "age": age,
+        "role": role,
         })
     f = open(f"servers/{serverName}/players/{playerName}.txt", "w")
     f.write(str(info).replace("'",'"')) # changes ' to " in string to not make the json loader break
     f.close()
-    return logServer(serverName, f'{user} - Rank, and Age for player "{playerName}" has been updated to "{rank}" ,"{age}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
+    return logServer(serverName, f'{user} - Role, Rank, and Age for player "{playerName}" has been updated to "{role}" "{rank}" ,"{age}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
 #print(editServerPlayerComplete("testUser", "testing", "waffleer#URMOM", "freeAgent", "Diamond 2", "18"))
 
-
+@api.get("/editServerPlayerRole")
+def editServerPlayerRole(user, serverName, playerName, role):
+    info = getServerPlayerInfo(serverName, playerName)
+    info.update({"role": role})
+    f = open(f"servers/{serverName}/players/{playerName}.txt", "w")
+    f.write(str(info).replace("'",'"')) # changes ' to " in string to not make the json loader break
+    f.close()
+    return logServer(serverName, f'{user} - Role for player "{playerName}" has been updated to "{role}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
 
 
 @api.get("/getTeams")
