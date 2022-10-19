@@ -314,8 +314,6 @@ To Do:
 
 	- get server logs
 
-	- add ".replace(")","#")" to every variable that comes into the api, its a replacement for # which cant be sent via url
-
 	- add rules for team names and shit, no parenthesis, one word (no spaces), no ' or "
 
 	- add public and discord to documentation
