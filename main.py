@@ -256,6 +256,44 @@ async def on_message(message):
         else:
             await message.channel.send(f"Success in making {num} team channels - {teams}")
 
+    if message.content.startswith('!createTournament'):
+        
+        pass
+
+        #perimeters
+            #name of league - keep it short, will displayed with every role for league
+
+        #Creates file structure like genServer does
+
+        #-- need to add leagueName to every method
+
+        # Catagory call {league}
+
+        # add adminChannel in league
+
+        #Prompts things to do
+
+            # tell them to run the commands from that channel to interact with this server
+
+            # send the rest of info into the adminChannel
+
+                # give user who ran commands perms in that channel
+
+                # they can grant access to any roles who should have perms
+
+            # if you want to make secondary commands usable only in secondary channels or all server channels
+
+            # tell about the functions to grow league
+
+                # add teams
+
+                # add players
+
+                    # add players from csv
+
+                # add matches
+
+
 
     #print(message.content)
     if message.content.startswith('!addServerTeam'):

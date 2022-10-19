@@ -348,7 +348,9 @@ data structures
 
 			- change last ")" or 5th to last charater to a # when storing and pulling from database
 
+	- add league folder so that a server can have more then 1 tournament going on
 
+		- can have a create tournament discord command
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
