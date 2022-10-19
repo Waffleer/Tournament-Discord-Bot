@@ -151,7 +151,7 @@ def getTeams(serverName): # gets list of teams on a server
     return os.listdir(f"servers/{serverName}/teams")
 #print(getTeams("testing"))
 
-def addServerTeams(user, serverName, teamName): # adds team to a server
+def addServerTeam(user, serverName, teamName): # adds team to a server
     if not teamName in getTeams(serverName):
         os.makedirs(f"servers/{serverName}/teams/{teamName}")
         f = open(f"servers/{serverName}/teams/{teamName}/players.txt","x")

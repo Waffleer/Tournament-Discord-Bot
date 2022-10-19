@@ -8,6 +8,8 @@ gives a lot more freedom for coding and not everything will be in the discord py
 
 use run.bat to start the api, it will run at localhost, use the link in the console and go to /docs to interact
 
+bot join url : https://discord.com/api/oauth2/authorize?client_id=1032121033186091031&permissions=268487760&scope=bot
+
 data structures
 
 Player Data Structures
@@ -171,6 +173,8 @@ information commands
 
           - public
 
+		  - used for debug
+
 	def getServerPlayerInfo(serverName, playerName): 
 
  	   - returns player information
@@ -195,7 +199,7 @@ server commands
 
  	   - discord accessible
 
-	def addServerTeams(user, serverName, teamName): 
+	def addServerTeam(user, serverName, teamName): 
 
  	    - adds team to a server
 
@@ -237,13 +241,13 @@ server commands
     
         - adds a player under a team
         
-        - changes player information to the team as well
+        - changes player information to the team
 
     def removeTeamPlayer(user, serverName, teamName, playerName): 
     
-        - adds a player under a team
+        - removes a player under a team
         
-        - changes player information to the team as well
+        - changes player information to the "" team
 
 
 
@@ -289,3 +293,39 @@ To Do:
         - for things like team captain and what not 
 
 	- add a record system for wins and losses
+
+	- have bot create channels for each team
+
+	- need to add authorized channels as well as the checks for them in discord bot
+
+	- add secondary checks to see if channel is authorized to use a secondary command
+
+		- could add server config to disable this and make all channels viable for secondary commands
+
+	- add check in every method that sees if server file structure is made and makes it if it isn't
+
+	- how to use bot commands
+
+	- instructions on how to use bot
+
+	- add failsafes for every method
+
+	- get free agents
+
+	- get server logs
+
+	- add ".replace(")","#")" to every variable that comes into the api, its a replacement for # which cant be sent via url
+
+	- add rules for team names and shit, no parenthesis, one word (no spaces), no ' or "
+
+	- add public and discord to documentation
+
+	- change api response for add and remove match to be string instead of list for date and time
+
+	- return match information command
+
+		- need to check if necessary
+
+	- Need to make discord outputs more user freindly
+
+	

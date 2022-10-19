@@ -1,0 +1,1 @@
+{"name": "245728", "dateAdded": "18/10/2022 20:10:38", "time": {"hour": "14", "minute": "30"}, "date": {"year": "2022", "month": "10", "day": "20"}, "team1": "testTeam", "team2": "testTeam2"}
