@@ -211,7 +211,6 @@ def createChannel(message):
     pass
 
 
-
 @client.event
 async def on_ready():
     pass
@@ -257,21 +256,40 @@ async def on_message(message):
             await message.channel.send(f"Success in making {num} team channels - {teams}")
 
     if message.content.startswith('!createTournament'):
+        user = message.author
+        channel = message.channel.name
+        server = message.guild
+
+        leagueName = str(message.content).split(' ')[1] #keep it short, will displayed with every role for league
         
-        pass
+        #genTournament(str(user).replace("#",")"), str(server), )
+            #Creates file structure like genServer does
 
-        #perimeters
-            #name of league - keep it short, will displayed with every role for league
 
-        #Creates file structure like genServer does
+            #-- need to add leagueName to every method
 
-        #-- need to add leagueName to every method
+        # creates {leagueName} role
 
-        # Catagory call {league}
+        # creates {leagueName} Admin role
 
-        # add adminChannel in league
+        category = await server.create_category(name=leagueName)
+            # add default pers so only people with league role
+        adminChannel = await category.create_text_channel("adminChannel")
+            #add perms and save to admin.txt
+        general = await category.create_text_channel("general")
+
 
         #Prompts things to do
+
+        adminChannel.send(f"""
+            Welcome to the Admin Channel: This is where all of the tournament commands can be run from
+
+            **ONLY USERS WHO HAVE {leagueName}Admin ROLE CAN SEE THIS CHANNEL AND CAN USE COMMANDS**
+
+
+        
+        
+        """)
 
             # tell them to run the commands from that channel to interact with this server
 

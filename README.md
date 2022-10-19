@@ -352,5 +352,13 @@ data structures
 
 		- can have a create tournament discord command
 
+	- change league role names via bot
+
+		- makes it so that any find by role doesn't break
+
+	- delete tournament or have a check when creating 
+	
+	- deal with reactions, would add a level of professionalism
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
