@@ -324,7 +324,7 @@ data structures
 
 	- add failsafes for every method
 
-	- get free agents
+	- filter players not on a team
 
 	- get server logs
 
@@ -338,7 +338,7 @@ data structures
 
 		- need to check if necessary
 
-	- Need to make discord outputs more user freindly
+	- Need to make discord outputs more user friendly
 
 	- make matches have data slots for bo3 or bo5 to record results
 
