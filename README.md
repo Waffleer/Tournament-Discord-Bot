@@ -176,8 +176,14 @@ information commands
  	   - returns player information
     
   	   - returns a dict
-	
 
+    def getTeamMatches(serverName, teamName): 
+    
+        - returns the dictionaries for all of the matches associated with a team
+	
+	def getTeamRoster(serverName, teamName): 
+	
+		- returns all of the player's data for a team
 
 server commands
 
@@ -200,6 +206,8 @@ server commands
 	def addServerPlayer(user, serverName, playerName): 
 
  	   - adds player to server with empty data structure
+
+       - must have "#" in playerName or other function will break
 
 
 
@@ -241,6 +249,23 @@ server commands
 
 
 
+    def addMatch(user, serverName, date, time, team1, team2): 
+    
+        - Adds match object to the matches folder
+        
+        - then adds the matches to the related teams
+        
+        - date should be in a dd/mm/year format
+        
+        - time should be in a hour:day format in military time
+
+    def removeMatch(user, serverName, matchTag): 
+    
+        - Removes a match object to the matches folder
+    
+        - then removes the matches in the related teams
+
+
 
 
 other commands 
@@ -254,3 +279,13 @@ other commands
  	   - turns a string into a dict via json
 
   	   - string dict must have " not '
+
+
+
+To Do:
+
+    - add role to player data structure
+
+        - for things like team captain and what not 
+
+	- add a record system for wins and losses
