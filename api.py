@@ -42,7 +42,7 @@ def logServer(serverName, logStr): # logs to server log file as well as system l
 
 def logSystem(logStr): # logs only to system log file
     f = open("logsFull.txt", "a")
-    f.write(logStr)
+    f.write(f"\n{logStr}")
     f.close()
     return logStr
 
@@ -66,8 +66,11 @@ def genTournament(user, serverName, tournamentName): # Generates a server and fi
         os.makedirs(f"servers/{serverName}/{tournamentName}/matches")
         f = open(f"servers/{serverName}/{tournamentName}/admin.txt","x")
         f = open(f"servers/{serverName}/{tournamentName}/secondary.txt","x")
-        f = open(f"servers/{serverName}/{tournamentName}/logs.txt","x")
         f = open(f"servers/{serverName}/{tournamentName}/config.txt","x")
+        config = {
+            "secondary": True,
+        }
+        f.write(str(config).replace("'",'"'))
         f.close()
         return logServer(serverName, f'{user} - Tournament Created - "{tournamentName}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
     else:

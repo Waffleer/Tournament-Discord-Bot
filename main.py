@@ -201,9 +201,16 @@ def getTeamRoster(message):
     context = resp.text.replace(")","#")
     return context
 
+def genTournament(message):
+    user = str(message.author).replace("#",")")
+    channel = message.channel.name
+    server = str(message.guild).replace("#",")")
 
+    leagueName = str(message.content).split(' ')[1]
 
-
+    resp = requests.get(f'http://127.0.0.1:9101/genTournament?user={user}&serverName={server}&tournamentName={leagueName}')
+    context = resp.text.replace(")","#")
+    return context
 
 #Utility Functions
 
@@ -268,7 +275,10 @@ async def on_message(message):
         for x in usedCategories:
             usedCategoriesNames.append(x.name)
 
-        if leagueName not in usedCategories:
+        if leagueName not in usedCategoriesNames:
+
+            genTournament(message)
+
             adminRole = await server.create_role(name=f"{leagueName}-Admin", mentionable=True) # 
             leagueRole = await server.create_role(name=f"{leagueName}") # for general participents
 
@@ -279,14 +289,12 @@ async def on_message(message):
             general = await category.create_text_channel("general")
 
             await user.add_roles(adminRole, atomic=True)
-
             await adminChannel.set_permissions(adminRole, view_channel=True)
             await adminChannel.set_permissions(server.self_role, view_channel=True)
             await adminChannel.set_permissions(server.default_role, view_channel=False)
 
-            print(server.self_role)
-
             await adminChannel.send(f"""
+            @{user}
             Welcome to the Admin Channel: This is where all of the tournament commands can be run from
 
             **ONLY USERS WHO HAVE {leagueName}-Admin ROLE CAN SEE THIS CHANNEL AND CAN USE COMMANDS**
