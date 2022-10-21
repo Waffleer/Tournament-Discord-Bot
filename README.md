@@ -374,5 +374,7 @@ data structures
 	- make api genTournament function
 
 	- make config file
+	- get tournaments
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
