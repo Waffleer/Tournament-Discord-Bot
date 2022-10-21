@@ -362,5 +362,7 @@ data structures
 	
 	- add status to player data object, (active, inactive, kicked)
 
+	- get tournaments
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
