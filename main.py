@@ -255,6 +255,58 @@ async def on_message(message):
         else:
             await message.channel.send(f"Success in making {num} team channels - {teams}")
 
+    if message.content.startswith('!test1'):
+        user = message.author
+        channel = message.channel.name
+        server = message.guild
+
+        leagueName = str(message.content).split(' ')[1]
+
+
+        usedCategories = server.categories
+        usedCategoriesNames = []
+        for x in usedCategories:
+            usedCategoriesNames.append(x.name)
+
+        if leagueName not in usedCategories:
+            adminRole = await server.create_role(name=f"{leagueName}-Admin", mentionable=True) # 
+            leagueRole = await server.create_role(name=f"{leagueName}") # for general participents
+
+            category = await server.create_category(name=leagueName)
+            # add default pers so only people with league role
+            adminChannel = await category.create_text_channel("adminChannel")
+            #add perms and save to admin.txt
+            general = await category.create_text_channel("general")
+
+            await user.add_roles(adminRole, atomic=True)
+
+            await adminChannel.set_permissions(adminRole, view_channel=True)
+            await adminChannel.set_permissions(server.self_role, view_channel=True)
+            await adminChannel.set_permissions(server.default_role, view_channel=False)
+
+            print(server.self_role)
+
+            await adminChannel.send(f"""
+            Welcome to the Admin Channel: This is where all of the tournament commands can be run from
+
+            **ONLY USERS WHO HAVE {leagueName}-Admin ROLE CAN SEE THIS CHANNEL AND CAN USE COMMANDS**
+
+            Things to do next:
+            Edit your tournament Config file - these command can only be run from this channel
+                !config secondary True
+            
+
+        """)
+
+            await message.channel.send(f"The league has been created, head over to the admin channel to see what to do next")
+        else:
+            await message.channel.send(f"This league Name is already in use")
+
+            
+
+        
+
+
     if message.content.startswith('!createTournament'):
         user = message.author
         channel = message.channel.name
@@ -268,28 +320,9 @@ async def on_message(message):
 
             #-- need to add leagueName to every method
 
-        # creates {leagueName} role
-
-        # creates {leagueName} Admin role
-
-        category = await server.create_category(name=leagueName)
-            # add default pers so only people with league role
-        adminChannel = await category.create_text_channel("adminChannel")
-            #add perms and save to admin.txt
-        general = await category.create_text_channel("general")
 
 
-        #Prompts things to do
 
-        adminChannel.send(f"""
-            Welcome to the Admin Channel: This is where all of the tournament commands can be run from
-
-            **ONLY USERS WHO HAVE {leagueName}Admin ROLE CAN SEE THIS CHANNEL AND CAN USE COMMANDS**
-
-
-        
-        
-        """)
 
             # tell them to run the commands from that channel to interact with this server
 

@@ -362,5 +362,17 @@ data structures
 	
 	- add status to player data object, (active, inactive, kicked)
 
+	- generate new adminchannel
+
+	- add try catch error codes for discord commands if no parameters are passed though
+
+	- add color of admin role in config file
+
+
+# Things to do next
+
+	- make api genTournament function
+
+	- make config file
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
