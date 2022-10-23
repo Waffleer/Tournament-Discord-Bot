@@ -284,43 +284,10 @@ data structures
 
   	   - string dict must have " not '
 
-# Discord Commands
-
-	!createTeamChannels
-
-		- creates a channel for each team
-
-			- general text
-
-			- vibes vc
-
-			- match vc
-
 # To Do:
-
-    - add role to player data structure  -- finished, need to validate
-
 	- add a record system for wins and losses
 
-	- have bot create channels for each team
-
-		- can create channels - **fin**
-
-		- adds permissions to channels
-
 	- adds team roles to players on a team
-
-	- need to add authorized channels as well as the checks for them in discord bot
-
-	- add secondary checks to see if channel is authorized to use a secondary command
-
-		- could add server config to disable this and make all channels viable for secondary commands
-
-	- add check in every method that sees if server file structure is made and makes it if it isn't
-
-	- how to use bot commands
-
-	- instructions on how to use bot
 
 	- add failsafes for every method
 
@@ -328,9 +295,9 @@ data structures
 
 	- get server logs
 
-	- add rules for team names and shit, no parenthesis, one word (no spaces), no ' or "
+	- add rules for team names and shit, no parenthesis, one word (no spaces), no banned characters
 
-	- add public and discord to documentation
+	- Documentation
 
 	- change api response for add and remove match to be string instead of list for date and time
 
@@ -338,21 +305,11 @@ data structures
 
 		- need to check if necessary
 
-	- Need to make discord outputs more user friendly
-
 	- make matches have data slots for bo3 or bo5 to record results
 
-	- add discord username to player data structure
+	- change league {role} via bot
 
-		- store with #
-
-			- change last ")" or 5th to last charater to a # when storing and pulling from database
-
-	- add league folder so that a server can have more then 1 tournament going on
-
-		- can have a create tournament discord command
-
-	- change league role names via bot
+		- role is from player data not discord roles
 
 		- makes it so that any find by role doesn't break
 
@@ -366,15 +323,28 @@ data structures
 
 	- work on !help function
 
+	- pin !adminHelp to adminChannel so that it doesn't need to be spammed
+
 
 # Things to do next
 
-	- make api genTournament function
-
-	- make config file
+	- add to config file
 
 		- if you want tournament channels visable to non tournament members
+
+		- add timezone
+
 	- get tournaments
+
+	- add discord username to player data structure
+
+		- store with #
+
+			- change last ")" or 5th to last charater to a # when storing and pulling from database
+
+	- decide what commands can be run outside the adminchannel
+	
+	- Need to make discord outputs more user friendly
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

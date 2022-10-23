@@ -64,11 +64,9 @@ def genTournament(user, serverName, tournamentName): # Generates a server and fi
         os.makedirs(f"servers/{serverName}/{tournamentName}/players")
         os.makedirs(f"servers/{serverName}/{tournamentName}/teams")
         os.makedirs(f"servers/{serverName}/{tournamentName}/matches")
-        f = open(f"servers/{serverName}/{tournamentName}/admin.txt","x")
-        f = open(f"servers/{serverName}/{tournamentName}/secondary.txt","x")
         f = open(f"servers/{serverName}/{tournamentName}/config.txt","x")
         config = {
-            "secondary": True,
+            "allChannels": False,
         }
         f.write(str(config).replace("'",'"'))
         f.close()
@@ -76,7 +74,9 @@ def genTournament(user, serverName, tournamentName): # Generates a server and fi
     else:
         return logSystem(f'{user} - Tournament Already Exists - "{tournamentName}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
 
-
+@api.get("/getTournament")
+def getTournament(serverName):
+    return os.listdir(f"servers/{serverName}/")
 
 @api.get("/genServer")
 def genServer(user, serverName): # Generates a server and file structure
@@ -110,7 +110,11 @@ def getPlayers(serverName, tournamentName): # gets list of players on a server
 
 @api.get("/getMatches")
 def getMatches(serverName, tournamentName): # gets list of matches on a server
-    return os.listdir(f"servers/{serverName}/{tournamentName}/Matches")
+    matchList = os.listdir(f"servers/{serverName}/{tournamentName}/Matches")
+    context = []
+    for x in matchList:
+        context.append(x.replace(".txt",""))
+    return context
 #print(getMatches("testing"))
 
 
@@ -118,12 +122,12 @@ def getMatches(serverName, tournamentName): # gets list of matches on a server
 
 @api.get("/addServerPlayer")
 def addServerPlayer(user, serverName, tournamentName,playerName): # adds player to server with empty data structure
-    if not str(playerName)+".txt" in getPlayers(serverName):
+    if not str(playerName)+".txt" in getPlayers(serverName, tournamentName):
         f = open(f"servers/{serverName}/{tournamentName}/players/{playerName}.txt","x")
         playerDict = {
             "name": playerName,
             "dateAdded": datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S'),
-            "team": "freeAgent",
+            "team": "free",
             "age": "",
             "rank": "",
             "role": "",
@@ -147,7 +151,7 @@ def getServerPlayerInfo(serverName, tournamentName, playerName): # returns playe
 
 @api.get("/editServerPlayerTeam")
 def editServerPlayerTeam(user, serverName, tournamentName, playerName, team): # edits player team, team name is not used to determine players on each team
-    info = getServerPlayerInfo(serverName, playerName)
+    info = getServerPlayerInfo(serverName, tournamentName, playerName)
     info.update({"team": team})
     f = open(f"servers/{serverName}/{tournamentName}/players/{playerName}.txt", "w")
     f.write(str(info).replace("'",'"')) # changes ' to " in string to not make the json loader break
@@ -159,7 +163,7 @@ def editServerPlayerTeam(user, serverName, tournamentName, playerName, team): # 
 
 @api.get("/editServerPlayerRank")
 def editServerPlayerRank(user, serverName, tournamentName, playerName, rank): # edits player rank
-    info = getServerPlayerInfo(serverName, playerName)
+    info = getServerPlayerInfo(serverName, tournamentName, playerName)
     info.update({"rank": rank})
     f = open(f"servers/{serverName}/{tournamentName}/players/{playerName}.txt", "w")
     f.write(str(info).replace("'",'"')) # changes ' to " in string to not make the json loader break
@@ -169,7 +173,7 @@ def editServerPlayerRank(user, serverName, tournamentName, playerName, rank): # 
 
 @api.get("/editServerPlayerAge")
 def editServerPlayerAge(user, serverName, tournamentName, playerName, age): # edits player age
-    info = getServerPlayerInfo(serverName, playerName)
+    info = getServerPlayerInfo(serverName, tournamentName, playerName)
     info.update({"age": age})
     f = open(f"servers/{serverName}/{tournamentName}/players/{playerName}.txt", "w")
     f.write(str(info).replace("'",'"')) # changes ' to " in string to not make the json loader break
@@ -179,7 +183,7 @@ def editServerPlayerAge(user, serverName, tournamentName, playerName, age): # ed
 
 @api.get("/editServerPlayerComplete")
 def editServerPlayerComplete(user, serverName, tournamentName, playerName, rank, age, role): # edits player team, rank, age
-    info = getServerPlayerInfo(serverName, playerName)
+    info = getServerPlayerInfo(serverName, tournamentName, playerName)
     info.update({
         "rank": rank,
         "age": age,
@@ -193,7 +197,7 @@ def editServerPlayerComplete(user, serverName, tournamentName, playerName, rank,
 
 @api.get("/editServerPlayerRole")
 def editServerPlayerRole(user, serverName, tournamentName, playerName, role):
-    info = getServerPlayerInfo(serverName, playerName)
+    info = getServerPlayerInfo(serverName, tournamentName, playerName)
     info.update({"role": role})
     f = open(f"servers/{serverName}/{tournamentName}/players/{playerName}.txt", "w")
     f.write(str(info).replace("'",'"')) # changes ' to " in string to not make the json loader break
@@ -208,7 +212,7 @@ def getTeams(serverName, tournamentName): # gets list of teams on a server
 
 @api.get("/addServerTeam")
 def addServerTeam(user, serverName, tournamentName, teamName): # adds team to a server
-    if not teamName in getTeams(serverName):
+    if not teamName in getTeams(serverName, tournamentName):
         os.makedirs(f"servers/{serverName}/{tournamentName}/teams/{teamName}")
         f = open(f"servers/{serverName}/{tournamentName}/teams/{teamName}/players.txt","x")
         f.write("[]")
@@ -229,7 +233,7 @@ def addTeamPlayer(user, serverName, tournamentName, teamName, playerName): # add
         f = open(f"servers/{serverName}/{tournamentName}/teams/{teamName}/players.txt","w")
         f.write(str(data))
         f.close()
-        print(editServerPlayerTeam(user, serverName, playerName, teamName))
+        print(editServerPlayerTeam(user, serverName, tournamentName, playerName, teamName))
         return logServer(serverName, f'{user} - Player "{playerName}" has been added to "{teamName}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
     else:
         return logServer(serverName, f'{user} - Player "{playerName}" was already in "{teamName}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
@@ -252,7 +256,7 @@ def removeTeamPlayer(user, serverName, tournamentName, teamName, playerName): # 
             f.close()
         except IndexError:
             pass
-        print(editServerPlayerTeam(user, serverName, playerName, ""))
+        print(editServerPlayerTeam(user, serverName, tournamentName, playerName, ""))
         return logServer(serverName, f'{user} - Player "{playerName}" has been removed from "{teamName}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
     else:
         return logServer(serverName, f'{user} - Player "{playerName}" was not found in "{teamName}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
@@ -264,10 +268,12 @@ def getTeamRoster(serverName, tournamentName, teamName): # returns all of the pl
     playerList = f.read()
     f.close()
     print(playerList)
-    if "," not in playerList and ")" not in playerList:
+    if "," not in playerList and "'" not in playerList:
         return None
     playerList = strToList(playerList)
+
     context = []
+    """
     try:
         for x in range(0, len(playerList)):
             el = playerList[x]
@@ -277,8 +283,11 @@ def getTeamRoster(serverName, tournamentName, teamName): # returns all of the pl
                 playerList.pop(x)
     except IndexError:
             pass
+    """
     for x in playerList:
-        context.append(getServerPlayerInfo(serverName, x))
+        context.append(getServerPlayerInfo(serverName, tournamentName,  x))
+    
+
 
     return context
 #print(getTeamRoster("testing", "testTeam"))
@@ -314,7 +323,7 @@ def getTeamMatches(serverName, tournamentName, teamName): # returns the dictiona
 
 @api.get("/addMatch")
 def addMatch(user, serverName, tournamentName, date, time, team1, team2): # Adds match object to the matches folder, then adds the matches to the related teams, date should be in a dd/mm/year format, time should be in a hour:day format in military time
-    matchList = getMatches(serverName)
+    matchList = getMatches(serverName, tournamentName)
     for x in matchList:
         x = x.strip(".txt")
         x = int(x)

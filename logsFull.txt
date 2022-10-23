@@ -171,3 +171,25 @@ TheBetterNick)5462 - Team for player "fellstart)9999" has been updated to "Arby_
 TheBetterNick)5462 - Player "fellstart)9999" has been added to "Arby_s" - 18/10/2022 23:58:38
 TheBetterNick)5462 - Tournament Created - "mncs" - 21/10/2022 15:36:14TheBetterNick)5462 - Tournament Already Exists - "mncs" - 21/10/2022 15:36:14
 TheBetterNick)5462 - Tournament Created - "mncs" - 21/10/2022 18:35:21
+TheBetterNick_5462 - Team "bacon" has been added - 22/10/2022 19:22:25
+TheBetterNick)5462 - Player "baconLeader" has been added to server- 22/10/2022 19:22:47
+TheBetterNick)5462 - Rank for player "baconLeader" has been updated to "god" - 22/10/2022 19:30:54
+TheBetterNick)5462 - Age for player "baconLeader" has been updated to "yes" - 22/10/2022 19:31:12
+TheBetterNick)5462 - Role for player "baconLeader" has been updated to "server'sGod" - 22/10/2022 19:35:47
+TheBetterNick)5462 - Role for player "baconLeader" has been updated to "serversGod" - 22/10/2022 19:37:35
+TheBetterNick)5462 - Player "baconLeader" was not found in "bacon" - 22/10/2022 19:53:01
+TheBetterNick)5462 - Team for player "baconLeader" has been updated to "bacon" - 22/10/2022 19:53:12
+TheBetterNick)5462 - Player "baconLeader" has been added to "bacon" - 22/10/2022 19:53:12
+TheBetterNick)5462 - Team for player "baconLeader" has been updated to "blank" - 22/10/2022 19:53:19
+TheBetterNick)5462 - Player "baconLeader" has been removed from "bacon" - 22/10/2022 19:53:19
+TheBetterNick)5462 - Team for player "baconLeader" has been updated to "bacon" - 22/10/2022 19:53:30
+TheBetterNick)5462 - Player "baconLeader" has been added to "bacon" - 22/10/2022 19:53:30
+TheBetterNick)5462 - Team for player "baconLeader" has been updated to "blank" - 22/10/2022 19:53:36
+TheBetterNick)5462 - Player "baconLeader" has been removed from "bacon" - 22/10/2022 19:53:36
+TheBetterNick_5462 - Team "salad" has been added - 22/10/2022 19:58:52
+TheBetterNick)5462 - Match Tag : 219098 - A Match between bacon and salad has been added on ['12', '06', '2000'], at ['14', '30'] - 22/10/2022 20:00:10
+TheBetterNick)5462 - Player "waffleer)URMOM" has been added to server- 22/10/2022 20:11:08
+PFunk)0093 - Tournament Created - "DeeZNutZ" - 22/10/2022 20:24:13
+PFunk)0093 - Tournament Already Exists - "DeeZNutZ" - 22/10/2022 20:27:31
+TheBetterNick)5462 - Team for player "baconLeader" has been updated to "salad" - 22/10/2022 20:47:55
+TheBetterNick)5462 - Player "baconLeader" has been added to "salad" - 22/10/2022 20:47:55
