@@ -346,5 +346,7 @@ data structures
 	
 	- Need to make discord outputs more user friendly
 
+	- add perms for teams and team channels
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

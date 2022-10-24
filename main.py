@@ -403,6 +403,14 @@ async def on_message(message):
         server = message.guild
         category = channel.category
 
+        serverRoles = server.roles
+        adminRole = ""
+        for x in serverRoles:
+            if x.name == f"{category.name}-Admin":
+                adminRole = x
+
+        print(adminRole)
+
         if category.name != "adminchannel":
             await channel.send(f"Not in adminchannel")
             return None
@@ -415,6 +423,7 @@ async def on_message(message):
         for x in usedCategories:
             usedCategoriesNames.append(x.name)
 
+        
         repeatCategories = []
         madeCategories = []
         num = 0
@@ -424,10 +433,18 @@ async def on_message(message):
             else:
                 num += 1
                 madeCategories.append(x)
-                category = await message.guild.create_category(name=x)
-                await category.create_text_channel("general")
-                await category.create_voice_channel("vibes")
-                await category.create_voice_channel("match")
+                teamRole = await server.create_role(name=f"{x}-Team")
+
+                category = await message.guild.create_category(name=f"{x}-Team")
+                general = await category.create_text_channel("general")
+                vibes = await category.create_voice_channel("vibes")
+                match = await category.create_voice_channel("match")
+
+                await category.set_permissions(teamRole, view_channel=True)
+                await category.set_permissions(adminRole, view_channel=True)
+                await category.set_permissions(server.default_role, view_channel=False)
+
+
 
 
 
@@ -435,7 +452,6 @@ async def on_message(message):
             await message.channel.send(f"Success in making {num} team channels - {madeCategories}\nThese Team channels already existed - {repeatCategories}")
         else:
             await message.channel.send(f"Success in making {num} team channels - {teams}")
-
 
 
     if message.content.startswith('!test2'):
