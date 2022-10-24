@@ -514,7 +514,8 @@ see !adminHelp for help in a adminChannel
                 await adminChannel.set_permissions(server.default_role, view_channel=False)
 
                 for x in adminHelp(user, leagueName):
-                    await adminChannel.send(x)
+                    message = await adminChannel.send(x)
+                    await message.pin()
 
                 await message.channel.send(f"The league has been created, head over to the admin channel to see what to do next")
             else:
