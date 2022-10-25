@@ -285,6 +285,8 @@ data structures
   	   - string dict must have " not '
 
 # To Do:
+	- 
+	
 	- add a record system for wins and losses
 
 	- adds team roles to players on a team
@@ -324,6 +326,8 @@ data structures
 	- work on !help function
 
 	- pin !adminHelp to adminChannel so that it doesn't need to be spammed
+
+	- do a trade system
 
 
 # Things to do next

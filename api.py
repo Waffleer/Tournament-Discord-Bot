@@ -27,7 +27,6 @@ def genNum(num, list): # generates a random number "num" digits that isn't on th
     return returnNumber
 
 def strToDict(string): # turns a string into a dict via json
-    
     context = json.loads(string)
     return context
 
@@ -131,6 +130,8 @@ def addServerPlayer(user, serverName, tournamentName,playerName): # adds player 
             "age": "",
             "rank": "",
             "role": "",
+            "discordName": "",
+            "discordTag": "",
         }
         playerDict = str(playerDict).replace("'",'"')
         f.write(playerDict)
@@ -171,6 +172,20 @@ def editServerPlayerRank(user, serverName, tournamentName, playerName, rank): # 
     return logServer(serverName, f'{user} - Rank for player "{playerName}" has been updated to "{rank}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
 #print(editServerPlayerRank("testUser", "testing", "waffleer#URMOM", "Diamond 2"))
 
+
+@api.get("/editServerPlayerDiscordName")
+def editServerPlayerRank(user, serverName, tournamentName, playerName, discordName, discordTag): # edits player rank
+    info = getServerPlayerInfo(serverName, tournamentName, playerName)
+    info.update({"discordName": discordName, "discordTag": discordTag})
+    f = open(f"servers/{serverName}/{tournamentName}/players/{playerName}.txt", "w")
+    f.write(str(info).replace("'",'"')) # changes ' to " in string to not make the json loader break
+    f.close()
+    return logServer(serverName, f'{user} - Discord Name for player "{playerName}" has been updated to "{discordName}#{discordTag}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
+#print(editServerPlayerRank("testUser", "testing", "waffleer#URMOM", "Diamond 2"))
+
+
+
+
 @api.get("/editServerPlayerAge")
 def editServerPlayerAge(user, serverName, tournamentName, playerName, age): # edits player age
     info = getServerPlayerInfo(serverName, tournamentName, playerName)
@@ -182,17 +197,19 @@ def editServerPlayerAge(user, serverName, tournamentName, playerName, age): # ed
 #print(editServerPlayerAge("testUser", "testing", "waffleer#URMOM", "18"))
 
 @api.get("/editServerPlayerComplete")
-def editServerPlayerComplete(user, serverName, tournamentName, playerName, rank, age, role): # edits player team, rank, age
+def editServerPlayerComplete(user, serverName, tournamentName, playerName, rank, age, role, discordName, discordTag): # edits player team, rank, age
     info = getServerPlayerInfo(serverName, tournamentName, playerName)
     info.update({
         "rank": rank,
         "age": age,
         "role": role,
+        "discordName": discordName,
+        "discordTag": discordTag,
         })
     f = open(f"servers/{serverName}/{tournamentName}/players/{playerName}.txt", "w")
     f.write(str(info).replace("'",'"')) # changes ' to " in string to not make the json loader break
     f.close()
-    return logServer(serverName, f'{user} - Role, Rank, and Age for player "{playerName}" has been updated to "{role}" "{rank}" ,"{age}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
+    return logServer(serverName, f'{user} - Role, Rank, Age and Discord Name for player "{playerName}" has been updated to "{role}", "{rank}", "{age}", "{discordName}#{discordTag}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
 #print(editServerPlayerComplete("testUser", "testing", "waffleer#URMOM", "freeAgent", "Diamond 2", "18"))
 
 @api.get("/editServerPlayerRole")

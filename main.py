@@ -4,8 +4,10 @@ from discord.ext import commands #, tasks
 from secrets import TOKEN
 import json, requests
 
+
 intents = discord.Intents.default()
 intents.message_content = True
+intents.members = True
 
 from time import sleep
 
@@ -19,6 +21,11 @@ def strToList(data):
     data = data.replace('"',"")
     data = data.split(",")
     return(data)
+
+def strToDict(string): # turns a string into a dict via json
+    string.strip()
+    context = json.loads(string)
+    return context
 
 def addServerTeam(message):
     user = str(message.author).replace("#","_")
@@ -87,16 +94,39 @@ def editServerPlayerRole(message):
     context = resp.text.replace(")","#")
     return context
 
-def editServerPlayerComplete(message):
+def editServerPlayerDiscordName(message):
     user = str(message.author).replace("#",")")
     channel = str(message.channel.name)
     server = str(message.guild)
     leagueName = str(message.channel.category.name)
     name = str(message.content).split(' ')[1].replace("#",")")
+    discordFULL = str(message.content).split(' ')[2]
+    discordFULL = discordFULL.split("#")
+    discordName = discordFULL[0]
+    discordTag = discordFULL[1]
+    resp = requests.get(f'http://127.0.0.1:9101/editServerPlayerDiscordName?user={user}&serverName={server}&tournamentName={leagueName}&playerName={name}&discordName={discordName}&discordTag={discordTag}')
+    context = resp.text.replace(")","#")
+    return context
+
+def editServerPlayerComplete(message):
+    user = str(message.author).replace("#",")")
+    channel = str(message.channel.name)
+    server = str(message.guild)
+    leagueName = str(message.channel.category.name)
+
+    name = str(message.content).split(' ')[1].replace("#",")")
     rank = str(message.content).split(' ')[2].replace("#",")")
     age = str(message.content).split(' ')[3].replace("#",")")
     role = str(message.content).split(' ')[4].replace("#",")")
-    resp = requests.get(f'http://127.0.0.1:9101/editServerPlayerComplete?user={user}&serverName={server}&tournamentName={leagueName}&playerName={name}&rank={rank}&age={age}&role={role}')
+    discordFULL = str(message.content).split(' ')[5]
+
+    discordFULL = discordFULL.split("#")
+    discordName = discordFULL[0]
+    discordTag = discordFULL[1]
+    print(discordTag)
+    print(discordName)
+
+    resp = requests.get(f'http://127.0.0.1:9101/editServerPlayerComplete?user={user}&serverName={server}&tournamentName={leagueName}&playerName={name}&rank={rank}&age={age}&role={role}&discordName={discordName}&discordTag={discordTag}')
     context = resp.text.replace(")","#")
     return context
 
@@ -208,6 +238,18 @@ def getServerPlayerInfo(message):
     context = resp.text.replace(")","#")
     return context
 
+def getServerPlayerInfoByName(message, name):
+    user = str(message.author).replace("#",")")
+    channel = str(message.channel.name)
+    server = str(message.guild)
+    leagueName = str(message.channel.category.name)
+    playerName = name.replace("#",")")
+
+    resp = requests.get(f'http://127.0.0.1:9101/getServerPlayerInfo?&serverName={server}&tournamentName={leagueName}&playerName={playerName}')
+    context = resp.text.replace(")","#")
+    return context
+
+
 def getTeamMatches(message):
     user = str(message.author).replace("#",")")
     channel = str(message.channel.name)
@@ -255,6 +297,7 @@ Welcome to the Admin Channel: This is where all of the tournament commands can b
 
 **ONLY USERS WHO HAVE {leagueName}-Admin ROLE CAN SEE THIS CHANNEL AND CAN USE COMMANDS**
 
+
 Things to do next:
 Edit your tournament Config file - these command can only be run from this channel
     !config {{variable}} True/False
@@ -293,7 +336,11 @@ Things that you can do now:
                 - changes a player's server profile with new rank
                 - stores a string, doesn't have to be a real rank
 
-            !editServerPlayerComplete {{name of player}} {{rank}} {{age}} {{role}}
+            !editServerPlayerDiscordName {{name of player}} {{Discord Name}}
+                - changes a player's server profile with new rank
+                - stores a string, doesn't have to be a real rank
+
+            !editServerPlayerComplete {{name of player}} {{rank}} {{age}} {{role}} {{Discord Name}}
                 - changes a player's server profile with all new information
                 - used if manually adding a player
 
@@ -316,6 +363,7 @@ Things that you can do now:
         !addServerTeam {{name of team}} 
             - adds a new team folder to database where you can store players and matches
             - no duplicate team names
+            - do not have same team name as tournament name
             - Banned Team Names
                 - free
 
@@ -358,6 +406,20 @@ Things that you can do now:
             - used for debug and such, not very helpful, use !getTeamMatches for info
         
 
+    # General Commands
+""",f"""
+
+        !addServerRole
+            - adds tournament role and team roles to registered players
+            - should be run periodically or when a new person is added to a team
+
+        !createTeamChannels
+            - creates channels for each team in there own category
+            - adds perms so only leagueAdmins and people with team tag can view category
+
+
+
+
 
             """]
     return context
@@ -386,6 +448,14 @@ def checkChannel(message):
 def createChannel(message):
     pass
 
+def applyRole(message, name, role):
+    playerDict = getServerPlayerInfoByName(message, name).replace("'",'"')
+    playerDict = strToDict(playerDict)
+    discordName = f"{playerDict['discordName']}#{playerDict['discordTag']}"
+    for z in message.guild.members:
+        if str(z) == discordName:
+            memberObj = z
+    return memberObj.add_roles(role)
 
 @client.event
 async def on_ready():
@@ -396,6 +466,54 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+
+    if message.content.startswith('!addServerRoles'):
+        if type(context) == bool:
+            user = message.author
+            channel = message.channel
+            server = message.guild
+            category = channel.category
+
+            playerList = getPlayers(message)
+            playerList = strToList(playerList)
+
+
+            serverRoles = server.roles # Gets tournament Role
+            tournamentRole = ""
+            for x in serverRoles:
+                if x.name == f"{category}":
+                    tournamentRole = x
+
+            for x in playerList: # applies base tournament role to all members
+                await applyRole(message, x, tournamentRole)
+        
+            teams = strToList(getTeams(message))
+
+            for x in teams:
+                #Checks to see if role exists already and if not creates one
+                used = False
+                for y in serverRoles:
+                    if f"{x}-Team" == str(y):
+                        used = True
+                        break
+                teamRole = None
+                if not used:
+                    teamRole = await server.create_role(name=f"{x}-Team")
+                else:
+                    for y in serverRoles:
+                        if y.name == f"{x}-Team":
+                            teamRole = y
+
+                players = getPlayers(message)
+                players = strToList(players)
+                for y in players: # adds role to discord tags
+                    await applyRole(message, y, teamRole)
+                await message.channel.send("Success")
+        else:
+            pass
+
+        
+
     if message.content.startswith('!createTeamChannels'):
         #should run an admin check
         user = message.author
@@ -403,55 +521,69 @@ async def on_message(message):
         server = message.guild
         category = channel.category
 
-        serverRoles = server.roles
-        adminRole = ""
-        for x in serverRoles:
-            if x.name == f"{category.name}-Admin":
-                adminRole = x
+        context = checkChannel(message)
+        if type(context) == bool:
+            serverRoles = server.roles
+            adminRole = ""
+            for x in serverRoles:
+                if x.name == f"{category.name}-Admin":
+                    adminRole = x
+            
+            teams = getTeams(message)
+            teams = strToList(teams)
 
-        print(adminRole)
+            usedCategories = message.guild.categories
+            usedCategoriesNames = []
+            for x in usedCategories:
+                usedCategoriesNames.append(x.name)
 
-        if category.name != "adminchannel":
-            await channel.send(f"Not in adminchannel")
-            return None
-        
-        teams = getTeams(message)
-        teams = strToList(teams)
+            
+            repeatCategories = []
+            madeCategories = []
+            num = 0
+            for x in teams:
+                #Checks to see if role exists already and if not creates one
+                used = False
+                for y in serverRoles:
+                    if f"{x}-Team" == str(y):
+                        used = True
+                        break
+                teamRole = None
+                if not used:
+                    teamRole = await server.create_role(name=f"{x}-Team")
+                else:
+                    for y in serverRoles:
+                        if y.name == f"{x}-Team":
+                            teamRole = y
 
-        usedCategories = message.guild.categories
-        usedCategoriesNames = []
-        for x in usedCategories:
-            usedCategoriesNames.append(x.name)
 
-        
-        repeatCategories = []
-        madeCategories = []
-        num = 0
-        for x in teams:
-            if x in usedCategoriesNames:
-                repeatCategories.append(x)
+                players = getPlayers(message)
+                players = strToList(players)
+                for y in players: # adds role to discord tags
+                    await applyRole(message, y, teamRole)
+
+
+                if f"{x}-Team-{category.name}" in usedCategoriesNames: # if category already exits
+                    repeatCategories.append(x)
+                else: # Creates category
+                    num += 1
+                    madeCategories.append(x)
+                    
+                    category = await message.guild.create_category(name=f"{x}-Team-{category.name}")
+                    general = await category.create_text_channel("general")
+                    vibes = await category.create_voice_channel("vibes")
+                    match = await category.create_voice_channel("match")
+
+                    await category.set_permissions(teamRole, view_channel=True)
+                    await category.set_permissions(adminRole, view_channel=True)
+                    await category.set_permissions(server.default_role, view_channel=False)
+
+            if len(repeatCategories) > 0:
+                await message.channel.send(f"Success in making {num} team channels - {madeCategories}\nThese Team channels already existed - {repeatCategories}")
             else:
-                num += 1
-                madeCategories.append(x)
-                teamRole = await server.create_role(name=f"{x}-Team")
-
-                category = await message.guild.create_category(name=f"{x}-Team")
-                general = await category.create_text_channel("general")
-                vibes = await category.create_voice_channel("vibes")
-                match = await category.create_voice_channel("match")
-
-                await category.set_permissions(teamRole, view_channel=True)
-                await category.set_permissions(adminRole, view_channel=True)
-                await category.set_permissions(server.default_role, view_channel=False)
-
-
-
-
-
-        if len(repeatCategories) > 0:
-            await message.channel.send(f"Success in making {num} team channels - {madeCategories}\nThese Team channels already existed - {repeatCategories}")
+                await message.channel.send(f"Success in making {num} team channels - {teams}")
         else:
-            await message.channel.send(f"Success in making {num} team channels - {teams}")
+            pass
 
 
     if message.content.startswith('!test2'):
@@ -576,6 +708,13 @@ see !adminHelp for help in a adminChannel
         context = checkChannel(message)
         if type(context) == bool:
             await message.channel.send(editServerPlayerRole(message))
+        else:
+            pass
+
+    if message.content.startswith('!editServerPlayerDiscordName'):
+        context = checkChannel(message)
+        if type(context) == bool:
+            await message.channel.send(editServerPlayerDiscordName(message))
         else:
             pass
         

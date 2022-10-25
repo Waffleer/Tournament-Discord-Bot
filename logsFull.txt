@@ -193,3 +193,14 @@ PFunk)0093 - Tournament Created - "DeeZNutZ" - 22/10/2022 20:24:13
 PFunk)0093 - Tournament Already Exists - "DeeZNutZ" - 22/10/2022 20:27:31
 TheBetterNick)5462 - Team for player "baconLeader" has been updated to "salad" - 22/10/2022 20:47:55
 TheBetterNick)5462 - Player "baconLeader" has been added to "salad" - 22/10/2022 20:47:55
+TheBetterNick)5462 - Player "baconLeader2" has been added to server- 24/10/2022 17:08:19
+TheBetterNick)5462 - Role, Rank, Age and Discord Name for player "baconLeader2" has been updated to "something", "basic", "55", "testingName#" - 24/10/2022 17:16:29
+TheBetterNick)5462 - Role, Rank, Age and Discord Name for player "baconLeader2" has been updated to "something", "basic", "55", "testingName#4321" - 24/10/2022 17:17:07
+TheBetterNick)5462 - Rank for player "baconLeader2" has been updated to "loldoesthiswork#4321" - 24/10/2022 17:20:17
+TheBetterNick)5462 - Rank for player "baconLeader2" has been updated to "loldoesthiswork#4321" - 24/10/2022 17:21:33
+TheBetterNick)5462 - Team for player "baconLeader2" has been updated to "salad" - 24/10/2022 17:34:26
+TheBetterNick)5462 - Player "baconLeader2" has been added to "salad" - 24/10/2022 17:34:26
+TheBetterNick)5462 - Player "PFunk)URMOM" has been added to server- 24/10/2022 20:43:43
+TheBetterNick)5462 - Rank for player "PFunk)URMOM" has been updated to "PFUNK#0093" - 24/10/2022 20:44:15
+TheBetterNick)5462 - Team for player "PFunk)URMOM" has been updated to "salad" - 24/10/2022 20:46:22
+TheBetterNick)5462 - Player "PFunk)URMOM" has been added to "salad" - 24/10/2022 20:46:22
