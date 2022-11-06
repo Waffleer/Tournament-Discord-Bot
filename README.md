@@ -329,6 +329,8 @@ data structures
 
 	- do a trade system
 
+	- replace names with discord id NUM
+
 
 # Things to do next
 

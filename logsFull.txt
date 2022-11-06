@@ -204,3 +204,4 @@ TheBetterNick)5462 - Player "PFunk)URMOM" has been added to server- 24/10/2022 2
 TheBetterNick)5462 - Rank for player "PFunk)URMOM" has been updated to "PFUNK#0093" - 24/10/2022 20:44:15
 TheBetterNick)5462 - Team for player "PFunk)URMOM" has been updated to "salad" - 24/10/2022 20:46:22
 TheBetterNick)5462 - Player "PFunk)URMOM" has been added to "salad" - 24/10/2022 20:46:22
+TheBetterNick#5462 - Server has been enabled - "Tournament Discord Bot Testing Grounds" - 06/11/2022 01:35:43

@@ -6,7 +6,7 @@ bot = discord.Bot()
 async def hello(ctx, user, message):
     await ctx.send("hello world")
 
-@bot.slash_command(name="hi")
+@bot.slash_command(description="Sends the bot's latency.", name = "hi")
 async def hi(ctx, name: str, age: int = 18): #Sets 18 as default age
     await ctx.send(f'Hello {name}, you are {age} years old!')
 

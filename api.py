@@ -83,10 +83,27 @@ def genServer(user, serverName): # Generates a server and file structure
     if not os.path.exists(f"servers/{serverName}"):
         f = open(f"servers/{serverName}/logs.txt","x")
         f = open(f"servers/{serverName}/config.txt","x")
+        f.write(str({"ready": "False"}))
         f.close()
         return logServer(serverName, f'{user} - Server Created - "{serverName}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
     else:
         return logSystem(f'{user} - Server Already Exists - "{serverName}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
+
+
+@api.get("/getServerReady")
+def getServerReady(serverName): # Generates a server and file structure
+    f = open(f"servers/{serverName}/config.txt","r")
+    read = f.read()
+    read = strToDict(read)
+    f.close()
+    return read["ready"]
+
+@api.get("/readyServer")
+def readyServer(user, serverName): # Generates a server and file structure
+    f = open(f"servers/{serverName}/config.txt","w")
+    f.write(str({"ready": "True"}).replace("'",'"'))
+    f.close()
+    return logServer(serverName, f'{user} - Server has been enabled - "{serverName}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
 
 
 #genServer("TestUser","testing")
