@@ -3,7 +3,7 @@ import discord
 from discord.ui import Button, View
 from discord.ext import commands
 
-
+#https://discord.com/api/oauth2/authorize?client_id=1032121033186091031&permissions=8&scope=bot%20applications.commands
 
 
 bot = discord.Bot(
@@ -38,15 +38,16 @@ def addServerTeamAPI(ctx, teamName):
     resp = requests.get(f'http://127.0.0.1:9101/addServerTeam?user={user}&serverName={server}&tournamentName={category}&teamName={teamName}')
     context = resp.text
     return context
-def addServerPlayerAPI(ctx, name): 
+def addServerPlayerAPI(ctx, name, discord_username): 
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
     server = str(ctx.guild)
     category = str(ctx.channel.category)
 
     name = name.replace("#","%23")
-    
-    resp = requests.get(f'http://127.0.0.1:9101/addServerPlayer?user={user}&serverName={server}&tournamentName={category}&playerName={name}')
+    discord_username = discord_username.replace("#","%23")
+
+    resp = requests.get(f'http://127.0.0.1:9101/addServerPlayer?user={user}&serverName={server}&tournamentName={category}&playerName={name}&discordName={discord_username}')
     context = json.loads(resp.text)
     return context
 """ Ignore this block
@@ -143,7 +144,7 @@ def removeTeamPlayerAPI(ctx, name, team):
     category = str(ctx.channel.category)
 
     name = name.replace("#","%23")
-    team = name.replace("#","%23")
+    team = team.replace("#","%23")
 
     resp = requests.get(f'http://127.0.0.1:9101/removeTeamPlayer?user={user}&serverName={server}&tournamentName={category}&playerName={name}&teamName={team}')
     context = resp.text
@@ -194,13 +195,11 @@ def getTeamsAPI(ctx):
     context = resp.text
     return context
 def getPlayersAPI(ctx):
-    print("running")
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
     server = str(ctx.guild)
     category = str(ctx.channel.category)
     resp = requests.get(f'http://127.0.0.1:9101/getPlayers?&serverName={server}&tournamentName={category}')
-    print("returned")
     context = resp.text
     return context
 def getMatchesAPI(ctx):
@@ -217,7 +216,7 @@ def getServerPlayerInfoAPI(ctx, player):
     channel = str(ctx.channel)
     server = str(ctx.guild)
     category = str(ctx.channel.category.name)
-
+    player = str(player).replace("#","%23")
     resp = requests.get(f'http://127.0.0.1:9101/getServerPlayerInfo?&serverName={server}&tournamentName={category}&playerName={player}')
     context = resp.text
     return context
@@ -289,6 +288,23 @@ def genTournamentAPI(ctx, name):
     resp = requests.get(f'http://127.0.0.1:9101/genTournament?user={user}&serverName={server}&tournamentName={category}')
     context = resp.text
     return context
+
+def getConfigAPI(ctx):
+    user = str(ctx.author).replace("#","%23")
+    channel = str(ctx.channel)
+    server = str(ctx.guild)
+    category = str(ctx.channel.category.name)
+    resp = requests.get(f'http://127.0.0.1:9101/getConfig?&serverName={server}')
+    context = strToDict(resp.text)
+    return context
+
+def registerIdAPI(ctx, roleName, id):
+    user = str(ctx.author).replace("#","%23")
+    channel = str(ctx.channel)
+    server = str(ctx.guild)
+    category = str(ctx.channel.category.name)
+    id = str(id)
+    resp = requests.get(f'http://127.0.0.1:9101/registerRole?&serverName={server}&roleName={roleName}&id={id}')
 
 #Utility Functions
 
@@ -427,7 +443,8 @@ Things that you can do now:
 
             """]
     return context
-
+def enableError():
+    return "This Server Has not been Enabled by an Admin"
 
 def checkChannel(ctx):
     channel = ctx.channel
@@ -459,92 +476,33 @@ def applyRole(message, name, role):
 
 
 
-@bot.slash_command()
-async def test(ctx):
-    print("run")
-    players = getPlayersAPI(ctx)
-    print("ran")
-    await ctx.send("Bruh")
-    await ctx.send(str(players))
+@bot.event
+async def on_guild_join(guild):
+    #This doesn't Work
+    #print("Join Server")
+    #adminRole = await guild.create_role(name=f"Tournament Admin", mentionable=True)
+    pass
+
+
 
 @bot.slash_command()
-async def test2(ctx):
-    players = getPlayersAPI(ctx)
-    await ctx.send(str(players))
+async def test(ctx):
+    getConfigAPI(ctx)
+
 
 @bot.slash_command(description="you can add descriptons")
 async def test3(ctx):
-    
-    if await serverready(ctx):
+    if await getServerReadyAPI(ctx):
         await ctx.respond(str(ctx.channel.category))
     else:
-        await ctx.respond("Server has not been made ready by the admin")
-
-@bot.slash_command()
-async def addroles(ctx):
-
-    await ctx.send(type(ctx))
-
-    context = checkChannel(ctx)
-    if type(context) == bool:
-        user = ctx.author
-        channel = ctx.channel
-        server = ctx.guild
-        category = channel.category
-
-        playerList = getPlayers(ctx)
-        playerList = strToList(playerList)
+        await ctx.respond("Server has not been made enabled by the admin")
 
 
-        serverRoles = server.roles # Gets tournament Role
-        tournamentRole = ""
-        for x in serverRoles:
-            if x.name == f"{category}":
-                tournamentRole = x
-
-        for x in playerList: # applies base tournament role to all members
-            await applyRole(message, x, tournamentRole)
-    
-        teams = strToList(getTeams(message))
-
-        for x in teams:
-            #Checks to see if role exists already and if not creates one
-            used = False
-            for y in serverRoles:
-                if f"{x}-Team" == str(y):
-                    used = True
-                    break
-            teamRole = None
-            if not used:
-                teamRole = await server.create_role(name=f"{x}-Team")
-            else:
-                for y in serverRoles:
-                    if y.name == f"{x}-Team":
-                        teamRole = y
-
-            players = getPlayers(message)
-            players = strToList(players)
-            for y in players: # adds role to discord tags
-                await applyRole(message, y, teamRole)
-            await message.channel.send("Success")
-    else:
-        pass
-
-
-@bot.slash_command()
-async def getteamroster(ctx, team_name):
-    await ctx.send_response(getTeamRosterAPI(ctx, team_name))
-
-
-
-
-@bot.slash_command()
-async def serverready(ctx):
-    ready = bool(getServerReadyAPI(ctx))
+#Setup Commands
+@bot.slash_command(description="Check to see if your server has been enabled or not, True or False")
+async def server_ready(ctx):
     await ctx.send_response(getServerReadyAPI(ctx), ephemeral=True)
-
 class enableServerView(discord.ui.View): # Create a class called MyView that subclasses discord.ui.View
-
     def __init__ (self, ctx):
         super().__init__()
         self.ctx = ctx
@@ -552,8 +510,6 @@ class enableServerView(discord.ui.View): # Create a class called MyView that sub
     @discord.ui.button(label="ENABLES BOT", style=discord.ButtonStyle.danger)
     async def button_callback(self, button, interaction):
         await interaction.response.send_message(enableServerAPI(self.ctx)) # Send a message when the button is clicked
-
-
 @bot.slash_command(description="Allows commands to be run by the the bot. Can only be run by admins")
 async def enable_server(ctx):
     user = ctx.author
@@ -563,65 +519,365 @@ async def enable_server(ctx):
     if user.guild_permissions.administrator:
         await ctx.send_response("DON'T RUN UNTIL YOU HAVE UPDATED THE SERVER INTEGRATIONS. see /get_started for details", ephemeral=True, view=enableServerView(ctx))
 
+@bot.slash_command(description="What you need to do to enable the bot and get it running")
+async def get_started(ctx):
+    user = ctx.author
+    channel = ctx.channel
+    server = ctx.guild
+    category = channel.category
+
+
+
+    if user.guild_permissions.administrator:
+        usedCategories = server.categories
+        usedCategoriesNames = []
+        for x in usedCategories:
+            usedCategoriesNames.append(x.name)
+
+        if "Tournament Administration" not in usedCategoriesNames:
+            adminRole = await server.create_role(name=f"Tournament Admin", mentionable=True)
+            category = await server.create_category(name="Tournament Administration")
+            adminChannel = await category.create_text_channel("bot-commands-admin")
+
+            registerIdAPI(ctx, adminRole.name, adminRole.id)
+            registerIdAPI(ctx, adminChannel.name, adminChannel.id)
+
+            await adminChannel.set_permissions(adminRole, view_channel=True)
+            await adminChannel.set_permissions(server.self_role, view_channel=True)
+            await adminChannel.set_permissions(server.default_role, view_channel=False)
+            botCommands = adminChannel
+        else:
+            config = getConfigAPI(ctx)
+            adminRole = server.get_role(int(config["Tournament Admin"]))
+            botCommands = server.get_channel(int(config["bot-commands-admin"]))
+            category = botCommands.category
+            print(type(category))
+
+        text = f"""
+Welcome to Tournament Bot
+
+**The Role {adminRole.mention} and Category {category.mention} should have been created **
+
+
+Things to do
+    1. Set integration Permissions
+        - Go to Server Settings and then integrations
+        - Click on this bot
+
+        - Under Roles & Members set @everyone to False
+        - Add role {adminRole.mention} and set to True
+            - This role can run the bots important commands, dont let this role fall into the wrong hands
+            - You might want to more this role further up the role list
+
+        - Under Channels set All Channels to False
+        - Add the channel <#{botCommands.id}> and set to True
+
+        - Now only members with the role {adminRole.mention} and in the channel <#{botCommands.id}> can run all of the administration commands
+        - Make sure to add the people who need access, including yourself
+
+
+    2. Enable Server
+        - Next thing to do is enable your server
+        - This will allow the running of /commands other then the set-up commands
+        - You need to set integration permissions otherwise anyone can start generating tournaments which would be a shit show
+        - Run /enable_server in any channel
+
+
+    3. Generate your First Tournament
+        - Congratulations on getting the bot working
+        - Next Run /genTournament in <#{botCommands.name}>, it will get you started from there
+    
+
+    4. Have Fun and TO better
+    """
+
+        await ctx.send_response(text, ephemeral=True)
+    else:
+        await ctx.send_response("Admin only command", ephemeral=True)
  
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Generic Smaller Commands Below
+get_group = discord.SlashCommandGroup("get", "All Get Commands")
+team_group = get_group.create_subgroup("team", "Commands related to get team")
+player_group = get_group.create_subgroup("player", "Commands related to get player")
+
+remove_group = discord.SlashCommandGroup("remove", "Commands related to removing")
+add_group = discord.SlashCommandGroup("add", "Commands related to get adding")
+
+add_team_group = add_group.create_subgroup("team", "Commands related to add team")
+add_new_group = add_group.create_subgroup("new", "Commands related to add team")
+remove_team_group = remove_group.create_subgroup("team", "Commands related to remove team")
+
+edit_group = discord.SlashCommandGroup("edit", "Commands related to editing")
+edit_player_group = edit_group.create_subgroup("player", "Commands related to editing player")
+
+
+
+class playerOption(discord.Option):
+    def __init__(self):
+        super().__init__(discord.SlashCommandOptionType.string, description="Name of Registered Player")
+class teamOption(discord.Option):
+    def __init__(self):
+        super().__init__(discord.SlashCommandOptionType.string, description="Name of Registered Team")
+class discordUserOption(discord.Option):
+    def __init__(self):
+        super().__init__(discord.SlashCommandOptionType.string, description="Discord username with tag   Example - 'TheBetterNick#5462'")
+
+"""
+@.command(description="")
+async def (ctx, show: bool = False):
+    show = not show
+    if getServerReadyAPI(ctx):
+        await ctx.send_response(, ephemeral=show)
+    else:
+        await ctx.respond(enableError())
 """
 
-@bot.slash_command()
-async def addroles(ctx):
+#Edit player
+@edit_player_group.command(description="Edits the rank of the player")
+async def rank(
+    ctx, 
+    player_name: playerOption(),
+    rank: discord.Option(discord.SlashCommandOptionType.string, description="Competitive Rank of Player"),
+    show: bool = False
+    ):
 
-@bot.slash_command()
-async def addroles(ctx):
+    show = not show
+    if getServerReadyAPI(ctx):
+        await ctx.send_response(editServerPlayerRankAPI(ctx, player_name, rank), ephemeral=show)
+    else:
+        await ctx.respond(enableError())
+@edit_player_group.command(description="Edits the age of the player")
+async def age(
+    ctx, 
+    player_name: playerOption(),
+    age: discord.Option(discord.SlashCommandOptionType.string, description="Age of Player"),
+    show: bool = False
+    ):
+    
+    show = not show
+    if getServerReadyAPI(ctx):
+        await ctx.send_response(editServerPlayerAgeAPI(ctx, player_name, age), ephemeral=show)
+    else:
+        await ctx.respond(enableError())
+@edit_player_group.command(description="Edits the role of the player")
+async def role(
+    ctx, 
+    player_name: playerOption(),
+    role: discord.Option(discord.SlashCommandOptionType.string, description="Role in team of Player"),
+    show: bool = False
+    ):
+    
+    show = not show
+    if getServerReadyAPI(ctx):
+        await ctx.send_response(editServerPlayerRoleAPI(ctx, player_name, role), ephemeral=show)
+    else:
+        await ctx.respond(enableError())
+@edit_player_group.command(description="Edits the discord username of the player")
+async def discord_username(
+    ctx, 
+    player_name: playerOption(),
+    discord_username: discordUserOption(),
+    show: bool = False
+    ):
+    
+    show = not show
+    if getServerReadyAPI(ctx):
+        await ctx.send_response(editServerPlayerDiscordNameAPI(ctx, player_name, discord_username), ephemeral=show)
+    else:
+        await ctx.respond(enableError())
+@edit_player_group.command(description="Edits all of the information of a player")
+async def all(
+    ctx, 
+    player_name: playerOption(),
+    rank: discord.Option(discord.SlashCommandOptionType.string, description="Competitive Rank of Player"),
+    age: discord.Option(discord.SlashCommandOptionType.string, description="Age of Player"),
+    role: discord.Option(discord.SlashCommandOptionType.string, description="Role in team of Player"),
+    discord_username: discordUserOption(),
+    show: bool = False
+    ):
+    
+    show = not show
+    if getServerReadyAPI(ctx):
+        await ctx.send_response(editServerPlayerCompleteAPI(ctx, player_name, rank, age, role, discord_username), ephemeral=show)
+    else:
+        await ctx.respond(enableError())
+#Remove Commands
+@remove_group.command(description="Removes a match from database")
+async def match(
+    ctx, 
+    match_id: discord.Option(discord.SlashCommandOptionType.string, description="ID of a match, can be obtained via /get team matches, /get matches, or when you create a match"), 
+    show: bool = False
+    ):
 
-@bot.slash_command()
-async def addroles(ctx):
+    show = not show
+    if getServerReadyAPI(ctx):
+        await ctx.send_response(removeMatchAPI(ctx, match_id), ephemeral=show)
+    else:
+        await ctx.respond(enableError())
+#Add Commands
+@add_new_group.command(description="Adds a match to database, ")
+async def match(
+    ctx, 
+    date: discord.Option(discord.SlashCommandOptionType.string, description="dd/mm/year format"), 
+    time: discord.Option(discord.SlashCommandOptionType.string, description="hour:minute format - military time"), 
+    team_one: discord.Option(discord.SlashCommandOptionType.string, description="Team Name that has been registered"), 
+    team_two: discord.Option(discord.SlashCommandOptionType.string, description="Team Name that has been registered"), 
+    show: bool = False
+    ):
 
-@bot.slash_command()
-async def addroles(ctx):
+    show = not show
+    if getServerReadyAPI(ctx):
+        await ctx.send_response(addMatchAPI(ctx, date, time, team_one, team_two), ephemeral=show)
+    else:
+        await ctx.respond(enableError())
+@add_new_group.command(description="Adds a new player to database")
+async def player(
+    ctx,
+    player_name: playerOption(),
+    discord_username: discordUserOption(),
+    show: bool = False
+    ):
 
-@bot.slash_command()
-async def addroles(ctx):
+    show = not show
+    if getServerReadyAPI(ctx):
+        await ctx.send_response(addServerPlayerAPI(ctx, player_name, discord_username), ephemeral=show)
+    else:
+        await ctx.respond(enableError())
+@add_new_group.command(description="")
+async def team(
+    ctx,
+    team_name: teamOption(),
+    show: bool = False
+    ):
 
-@bot.slash_command()
-async def addroles(ctx):
+    show = not show
+    if getServerReadyAPI(ctx):
+        await ctx.send_response(addServerTeamAPI(ctx, team_name), ephemeral=show)
+    else:
+        await ctx.respond(enableError())
+#Remove Team Commands
+@remove_team_group.command(description="")
+async def player(
+    ctx, 
+    player_name: playerOption(),
+    team_name: teamOption(),
+    show: bool = False
+    ):
 
-@bot.slash_command()
-async def addroles(ctx):
+    show = not show
+    if getServerReadyAPI(ctx):
+        await ctx.send_response(removeTeamPlayerAPI(ctx, player_name, team_name), ephemeral=show)
+    else:
+        await ctx.respond(enableError())
+#Add Team Commands
+@add_team_group.command(description="Adds player to team")
+async def player(
+    ctx, 
+    player_name: playerOption(),
+    team_name: teamOption(),
+    show: bool = False
+    ):
 
-@bot.slash_command()
-async def addroles(ctx):
+    show = not show
+    if getServerReadyAPI(ctx):
+        await ctx.send_response(addTeamPlayerAPI(ctx, player_name, team_name), ephemeral=show)
+    else:
+        await ctx.respond(enableError())
+#Generic Get Commands
+@get_group.command(description="Returns all matches in database, see /get team matches for more information")
+async def matches(ctx, show: bool = False):
+    show = not show
+    if getServerReadyAPI(ctx):
+        await ctx.send_response(getMatchesAPI(ctx), ephemeral=show)
+    else:
+        await ctx.respond(enableError())
+@get_group.command(description="Returns all Players in database")
+async def players(ctx, show: bool = False):
+    show = not show
+    if getServerReadyAPI(ctx):
+        await ctx.send_response(getPlayersAPI(ctx), ephemeral=show)
+    else:
+        await ctx.respond(enableError())
+@get_group.command(description="Returns all Teams in database")
+async def teams(ctx, show: bool = False):
+    show = not show
+    if getServerReadyAPI(ctx):
+        await ctx.send_response(getTeamsAPI(ctx), ephemeral=show)
+    else:
+        await ctx.respond(enableError())
+#Player Commands
+@player_group.command(description="Returns Player Information")
+async def info(
+    ctx,
+    player_name: playerOption(), 
+    show: bool = False
+    ):
+    
+    show = not show
+    if getServerReadyAPI(ctx):
+        await ctx.send_response(getServerPlayerInfoAPI(ctx, player_name), ephemeral=show)
+    else:
+        await ctx.respond(enableError())
+#Team commands
+@team_group.command(description="Returns all of the matches for a Team")
+async def matches(
+    ctx, 
+    team_name: teamOption(), 
+    show: bool = False
+    ):
 
-@bot.slash_command()
-async def addroles(ctx):
-
-@bot.slash_command()
-async def addroles(ctx):
-
-@bot.slash_command()
-async def addroles(ctx):
-
-@bot.slash_command()
-async def addroles(ctx):
-
-@bot.slash_command()
-async def addroles(ctx):
-
-@bot.slash_command()
-async def addroles(ctx):
-
-@bot.slash_command()
-async def addroles(ctx):
-"""
+    show = not show
+    if getServerReadyAPI(ctx):
+        await ctx.send_response(getTeamMatchesAPI(ctx, team_name), ephemeral=show)
+    else:
+        await ctx.respond(enableError())
+@team_group.command(description="Returns all of the Players on a Specified Team")
+async def roster(
+    ctx, 
+    team_name: teamOption(), 
+    show: bool = False
+    ):
+    
+    show = not show
+    if getServerReadyAPI(ctx):
+        await ctx.send_response(getTeamRosterAPI(ctx, team_name), ephemeral=show)
+    else:
+        await ctx.respond(enableError())
 
 
-
+#Doesn't Work
 @bot.event
 async def on_guild_join(guild):
     pass
 
-
+#For testing interactions
 @bot.slash_command()
 async def test4(ctx):
     user = ctx.author
@@ -638,7 +894,10 @@ async def test4(ctx):
 
 
 
-
+bot.add_application_command(get_group)
+bot.add_application_command(add_group)
+bot.add_application_command(remove_group)
+bot.add_application_command(edit_group)
 
 from secrets import TOKEN2
 bot.run(TOKEN2)

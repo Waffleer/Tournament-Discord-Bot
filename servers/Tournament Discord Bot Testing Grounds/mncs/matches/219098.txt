@@ -1,1 +1,0 @@
-{"name": "219098", "dateAdded": "22/10/2022 20:00:10", "time": {"hour": "14", "minute": "30"}, "date": {"year": "2000", "month": "06", "day": "12"}, "team1": "bacon", "team2": "salad"}

@@ -105,6 +105,25 @@ def readyServer(user, serverName): # Generates a server and file structure
     f.close()
     return logServer(serverName, f'{user} - Server has been enabled - "{serverName}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
 
+@api.get("/getConfig")
+def getConfig(serverName):
+    f = open(f"servers/{serverName}/config.txt", "r")
+    read = f.read()
+    read = strToDict(read)
+    f.close()
+    return read
+
+@api.get("/registerRole")
+def registerRole(serverName, roleName, id):
+    config = getConfig(serverName)
+    print(config)
+    config.update(
+        {roleName: id}
+        )
+    print(config)
+    f = open(f"servers/{serverName}/config.txt","w")
+    f.write(str(config).replace("'",'"'))
+    f.close()
 
 #genServer("TestUser","testing")
 
@@ -137,7 +156,7 @@ def getMatches(serverName, tournamentName): # gets list of matches on a server
 
 
 @api.get("/addServerPlayer")
-def addServerPlayer(user, serverName, tournamentName,playerName): # adds player to server with empty data structure
+def addServerPlayer(user, serverName, tournamentName,playerName,discordName): # adds player to server with empty data structure
     if not str(playerName)+".txt" in getPlayers(serverName, tournamentName):
         f = open(f"servers/{serverName}/{tournamentName}/players/{playerName}.txt","x")
         playerDict = {
@@ -147,7 +166,7 @@ def addServerPlayer(user, serverName, tournamentName,playerName): # adds player 
             "age": "",
             "rank": "",
             "role": "",
-            "discordName": "",
+            "discordName": discordName,
         }
         playerDict = str(playerDict).replace("'",'"')
         f.write(playerDict)
@@ -332,17 +351,9 @@ def getTeamRoster(serverName, tournamentName, teamName): # returns all of the pl
 def getTeamMatches(serverName, tournamentName, teamName): # returns the dictionaries for all of the matches assosiated with a team
     f = open(f"servers/{serverName}/{tournamentName}/teams/{teamName}/matches.txt","r")
     matchList = f.read()
-    matchList = matchList.split("\n")
-    try:
-        for x in range(0, len(matchList)):
-            el = matchList[x]
-            if "1" in el or "2" in el or "3" in el or "4" in el or "5" in el or "6" in el or "7" in el or "8" in el or "9" in el or "0" in el:
-                pass
-            else:
-                matchList.pop(x)
-        f.close()
-    except IndexError:
-            pass
+    f.close()
+    matchList = matchList.strip(",")
+    matchList = matchList.split(",")
 
     context = []
     for x in matchList:
@@ -383,11 +394,11 @@ def addMatch(user, serverName, tournamentName, date, time, team1, team2): # Adds
     f.close()
 
     f = open(f"servers/{serverName}/{tournamentName}/teams/{team1}/matches.txt","a")
-    f.write(f"\n{key}")
+    f.write(f"{key},")
     f.close
 
     f = open(f"servers/{serverName}/{tournamentName}/teams/{team2}/matches.txt","a")
-    f.write(f"\n{key}")
+    f.write(f"{key},")
     f.close
 
     return logServer(serverName, f'{user} - Match Tag : {key} - A Match between {team1} and {team2} has been added on {date}, at {time} - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
@@ -395,58 +406,44 @@ def addMatch(user, serverName, tournamentName, date, time, team1, team2): # Adds
 
 @api.get("/removeMatch")
 def removeMatch(user, serverName, tournamentName, matchTag): # Removes a match object to the matches folder, then removes the matches in the related teams
+    #pulls information from file and stores it
     try:
         f = open(f"servers/{serverName}/{tournamentName}/matches/{matchTag}.txt","r")
     except:
         return logServer(serverName, f'{user} - The match that was suppose to be deleted could not be found - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
     data = f.read()
     data = strToDict(data)
-
     team1 = data["team1"]
     team2 = data["team2"]
     date = data["date"]
     time = data["time"]
     
+    #Team one remove
     f = open(f"servers/{serverName}/{tournamentName}/teams/{team1}/matches.txt","r")
     matchList = f.read()
     f.close()
-    os.remove(f"servers/{serverName}/{tournamentName}/teams/{team1}/matches.txt")
-    f = open(f"servers/{serverName}/{tournamentName}teams/{team1}/matches.txt","a")
-    try:
-        matchList = matchList.split("\n")
-        for x in range(0, len(matchList)):
-            el = matchList[x]
-            if "1" in el or "2" in el or "3" in el or "4" in el or "5" in el or "6" in el or "7" in el or "8" in el or "9" in el or "0" in el:
-                if str(matchTag) == str(el):
-                    matchList.pop(x)
-                else:
-                    f.write(f"\n{el}")
-            else:
-                matchList.pop(x)
-        f.close()
-    except IndexError:
-        pass
+    matchList = matchList.strip(",")
+    matchList = matchList.split(",")
+    f = open(f"servers/{serverName}/{tournamentName}/teams/{team1}/matches.txt","a")
+    print(matchList)
+    matchList.remove(str(matchTag))
+    print(matchList)
 
 
+    #Team two remove
     f = open(f"servers/{serverName}/{tournamentName}/teams/{team2}/matches.txt","r")
     matchList = f.read()
+    matchList = matchList.strip(",")
+    matchList = matchList.split(",")
     f.close()
-    os.remove(f"servers/{serverName}/{tournamentName}/teams/{team2}/matches.txt")
-    f = open(f"servers/{serverName}/{tournamentName}/teams/{team2}/matches.txt","a")
-    matchList = matchList.split("\n")
-    try:
-        for x in range(0, len(matchList)):
-            el = matchList[x]
-            if "1" in el or "2" in el or "3" in el or "4" in el or "5" in el or "6" in el or "7" in el or "8" in el or "9" in el or "0" in el:
-                if str(matchTag) == str(el):
-                    matchList.pop(x)
-                else:
-                    f.write(f"\n{el}")
-            else:
-                matchList.pop(x)
-        f.close()
-    except IndexError:
-        pass
+    f = open(f"servers/{serverName}/{tournamentName}/teams/{team2}/matches.txt","w")
+    print(matchList)
+    matchList.remove(str(matchTag))
+    print(matchList)
+
+
+
+    #Removes Match File
     os.remove(f"servers/{serverName}/{tournamentName}/matches/{matchTag}.txt")
 
     return logServer(serverName, f'{user} - A Match between {team1} and {team2} has been removed on {date}, at {time} - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
