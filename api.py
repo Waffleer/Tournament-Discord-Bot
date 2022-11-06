@@ -79,11 +79,13 @@ def getTournament(serverName):
 
 @api.get("/genServer")
 def genServer(user, serverName): # Generates a server and file structure
+    print("Running")
     serverName = str(serverName)
     if not os.path.exists(f"servers/{serverName}"):
+        os.mkdir(f"servers/{serverName}")
         f = open(f"servers/{serverName}/logs.txt","x")
         f = open(f"servers/{serverName}/config.txt","x")
-        f.write(str({"ready": "False"}))
+        f.write(str({"ready": "False"}).replace("'",'"'))
         f.close()
         return logServer(serverName, f'{user} - Server Created - "{serverName}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
     else:
@@ -97,6 +99,18 @@ def getServerReady(serverName): # Generates a server and file structure
     read = strToDict(read)
     f.close()
     return read["ready"]
+
+@api.get("/getServerExist")
+def getServerExist(serverName): # Generates a server and file structure
+    print("\n\nstarted\n\n")
+    try:
+        f = open(f"servers/{serverName}/config.txt","r")
+        read = f.read()
+        print("\n\n\nworked\n\n")
+    except:
+        print("\n\nFailed\n\n")
+        return "False"
+    return "True"
 
 @api.get("/readyServer")
 def readyServer(user, serverName): # Generates a server and file structure

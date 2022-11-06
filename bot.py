@@ -3,11 +3,11 @@ import discord
 from discord.ui import Button, View
 from discord.ext import commands
 
-#https://discord.com/api/oauth2/authorize?client_id=1032121033186091031&permissions=8&scope=bot%20applications.commands
+#https://discord.com/api/oauth2/authorize?client_id=1038641710835703808&permissions=8&scope=bot%20applications.commands
 
 
 bot = discord.Bot(
-    debug_guilds = [1032120703094362192]
+    debug_guilds = [1032120703094362192,1010740300823662623]
 )
 import json, requests
 from time import sleep
@@ -256,15 +256,39 @@ def getTeamRosterAPI(ctx, teamName):
     return context
 
 
+def genServerAPI(ctx):
+    user = ctx.author
+    channel = ctx.channel
+    server = ctx.guild
+    serverList = requests.get(f'http://127.0.0.1:9101/getServers')
+    serverList = strToList(serverList.text)
+    if server.name not in serverList:
+        userName = str(user.name).replace("#","%23")
+        serverName = str(server.name).replace("#","%23")
+        resp = requests.get(f'http://127.0.0.1:9101/genServer?user={userName}&serverName={serverName}')
+        return resp.text
 
 def getServerReadyAPI(ctx):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
     server = str(ctx.guild)
     category = str(ctx.channel.category.name)
-    resp = requests.get(f'http://127.0.0.1:9101/getServerReady?&serverName={server}')
-    context = bool(resp.text)
-    return context
+    resp = str(requests.get(f'http://127.0.0.1:9101/getServerExist?&serverName={server}').text)
+    resp = resp.strip('"')
+    #print("True")
+    
+    if resp == "True":
+        #print("Second Check is running")
+        resp = str(requests.get(f'http://127.0.0.1:9101/getServerReady?&serverName={server}').text)
+        resp = resp.strip('"')
+        if resp == "True":
+            context = True
+        else:
+            context = False
+
+        return context
+    else:
+        return False
 
 def enableServerAPI(ctx):
     user = str(ctx.author).replace("#","%23")
@@ -283,9 +307,7 @@ def genTournamentAPI(ctx, name):
     server = str(ctx.guild)
     category = str(ctx.channel.category.name)
 
-    category = name.split(' ')[1]
-
-    resp = requests.get(f'http://127.0.0.1:9101/genTournament?user={user}&serverName={server}&tournamentName={category}')
+    resp = requests.get(f'http://127.0.0.1:9101/genTournament?user={user}&serverName={server}&tournamentName={name}')
     context = resp.text
     return context
 
@@ -483,11 +505,13 @@ async def on_guild_join(guild):
     #adminRole = await guild.create_role(name=f"Tournament Admin", mentionable=True)
     pass
 
-
-
-@bot.slash_command()
+@bot.slash_command(description="Test")
 async def test(ctx):
-    getConfigAPI(ctx)
+    getServerReadyAPI(ctx)
+    print(type(getServerReadyAPI(ctx)))
+    print(getServerReadyAPI(ctx))
+
+
 
 
 @bot.slash_command(description="you can add descriptons")
@@ -509,15 +533,22 @@ class enableServerView(discord.ui.View): # Create a class called MyView that sub
 
     @discord.ui.button(label="ENABLES BOT", style=discord.ButtonStyle.danger)
     async def button_callback(self, button, interaction):
-        await interaction.response.send_message(enableServerAPI(self.ctx)) # Send a message when the button is clicked
+        await interaction.response.send_message(enableServerAPI(self.ctx), ephemeral=True) # Send a message when the button is clicked
 @bot.slash_command(description="Allows commands to be run by the the bot. Can only be run by admins")
 async def enable_server(ctx):
     user = ctx.author
     channel = ctx.channel
     server = ctx.guild
     category = channel.category
+
+    genServerAPI(ctx)
+
     if user.guild_permissions.administrator:
-        await ctx.send_response("DON'T RUN UNTIL YOU HAVE UPDATED THE SERVER INTEGRATIONS. see /get_started for details", ephemeral=True, view=enableServerView(ctx))
+        if not getServerReadyAPI(ctx):
+            await ctx.send_response("DON'T RUN UNTIL YOU HAVE UPDATED THE SERVER INTEGRATIONS. see /get_started for details", ephemeral=True, view=enableServerView(ctx))
+        else:
+            await ctx.send_response("Server is already enabled", ephemeral=True)
+
 
 @bot.slash_command(description="What you need to do to enable the bot and get it running")
 async def get_started(ctx):
@@ -529,6 +560,10 @@ async def get_started(ctx):
 
 
     if user.guild_permissions.administrator:
+        #Creates server file structure if it doesn't exist
+        genServerAPI(ctx)
+
+            
         usedCategories = server.categories
         usedCategoriesNames = []
         for x in usedCategories:
@@ -539,12 +574,20 @@ async def get_started(ctx):
             category = await server.create_category(name="Tournament Administration")
             adminChannel = await category.create_text_channel("bot-commands-admin")
 
+            vc = await category.create_voice_channel("vc")
+
             registerIdAPI(ctx, adminRole.name, adminRole.id)
             registerIdAPI(ctx, adminChannel.name, adminChannel.id)
 
             await adminChannel.set_permissions(adminRole, view_channel=True)
             await adminChannel.set_permissions(server.self_role, view_channel=True)
             await adminChannel.set_permissions(server.default_role, view_channel=False)
+
+            await vc.set_permissions(adminRole, view_channel=True)
+            await vc.set_permissions(server.self_role, view_channel=True)
+            await vc.set_permissions(server.default_role, view_channel=False)
+
+
             botCommands = adminChannel
         else:
             config = getConfigAPI(ctx)
@@ -596,6 +639,83 @@ Things to do
         await ctx.send_response("Admin only command", ephemeral=True)
  
 
+new_group = discord.SlashCommandGroup("new", "For new Tournaments and such")
+
+
+
+
+
+@new_group.command(description="Allows commands to be run by the the bot. Can only be run by admins")
+async def tournament(
+    ctx, 
+    tournament_name: discord.Option(discord.SlashCommandOptionType.string, description="Name of the tournament, making this short or a acronym will help with space as this name will be appended to many different things"),
+    show: bool = False
+    ):
+
+    show = not show
+    if getServerReadyAPI(ctx):
+        user = ctx.author
+        channel = ctx.channel
+        server = ctx.guild
+        category = channel.category
+
+        #Gets a list of categories
+        usedCategories = server.categories
+        usedCategoriesNames = []
+        for x in usedCategories:
+            usedCategoriesNames.append(x.name)
+        
+        if tournament_name not in usedCategoriesNames:
+
+            #Makes file structure in database
+            genTournamentAPI(ctx, tournament_name)
+
+            #Creates League Role
+            leagueRole = await server.create_role(name=f"{tournament_name}") # for general participents
+
+            #Registers League Role
+            registerIdAPI(ctx, leagueRole.name, leagueRole.id)
+
+            #Makes category
+            category = await server.create_category(name=tournament_name)
+
+            # add default pers so only people with league role
+            adminChannel = await category.create_text_channel(f"{tournament_name}-bot-admin")
+
+            #Creates Generic Channels
+            general = await category.create_text_channel("general")
+            bot_commands = await category.create_text_channel(f"{tournament_name}-bot-commands")
+
+            vibes = await category.create_voice_channel("vibes")
+
+            config = getConfigAPI(ctx)
+            adminRole = server.get_role(int(config["Tournament Admin"]))
+
+            #Applies Permissions
+
+            await category.set_permissions(adminRole, view_channel=True)
+            await category.set_permissions(leagueRole, view_channel=True)
+            await category.set_permissions(server.self_role, view_channel=True)
+            await category.set_permissions(server.default_role, view_channel=False)
+            
+
+            await user.add_roles(adminRole, atomic=True)
+            await adminChannel.set_permissions(adminRole, view_channel=True)
+            await adminChannel.set_permissions(leagueRole, view_channel=False)
+            await adminChannel.set_permissions(server.self_role, view_channel=True)
+            await adminChannel.set_permissions(server.default_role, view_channel=False)
+
+            
+            await ctx.send_response("The league has been created, head over to the admin channel to see what to do next", ephemeral=show)
+        else:
+            await ctx.send_response("This league Name is already in use", ephemeral=show)
+
+
+
+
+
+
+        await ctx.send_response("", ephemeral=show)
 
 
 
@@ -605,13 +725,8 @@ Things to do
 
 
 
-
-
-
-
-
-
-
+    else:
+        await ctx.respond(enableError())
 
 
 
@@ -828,6 +943,7 @@ async def players(ctx, show: bool = False):
 @get_group.command(description="Returns all Teams in database")
 async def teams(ctx, show: bool = False):
     show = not show
+    print(getServerReadyAPI(ctx))
     if getServerReadyAPI(ctx):
         await ctx.send_response(getTeamsAPI(ctx), ephemeral=show)
     else:
@@ -873,12 +989,12 @@ async def roster(
 
 
 #Doesn't Work
-@bot.event
+#@bot.event
 async def on_guild_join(guild):
     pass
 
 #For testing interactions
-@bot.slash_command()
+#@bot.slash_command()
 async def test4(ctx):
     user = ctx.author
     channel = ctx.channel
