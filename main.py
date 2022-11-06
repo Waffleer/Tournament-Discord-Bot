@@ -1,17 +1,16 @@
 import discord
 import discord.ext
 from discord.ext import commands #, tasks
-from secrets import TOKEN
 import json, requests
-
+from discord.ui import Button, View
 
 intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
 
 from time import sleep
-
 client = discord.Client(intents=intents)
+
 
 def strToList(data):
     if "'" not in data and '"' not in data:
@@ -440,9 +439,9 @@ def checkChannel(message):
         if str(category.name) in usedCategories:
             return True
         else:
-            return f""
+            return False
     else:
-        return f""
+        return False
 
 
 def createChannel(message):
@@ -457,6 +456,8 @@ def applyRole(message, name, role):
             memberObj = z
     return memberObj.add_roles(role)
 
+
+
 @client.event
 async def on_ready():
     pass
@@ -468,6 +469,7 @@ async def on_message(message):
 
 
     if message.content.startswith('!addServerRoles'):
+        context = checkChannel(message)
         if type(context) == bool:
             user = message.author
             channel = message.channel
@@ -589,9 +591,23 @@ async def on_message(message):
     if message.content.startswith('!test2'):
         context = checkChannel(message)
         if type(context) == bool:
-            await message.channel.send("In a valid channel")
+
+            button = Button(label = "Testing", style=discord.ButtonStyle.green, emoji="😁")
+
+            view = View()
+            view.add_item(button)
+
+            await message.channel.send("In a valid channel", view=view)
+
+
+
+
+
         else:
-            await message.channel.send(context)
+            await message.channel.send(str(context))
+
+
+
 
 
     if message.content.startswith('!adminHelp'):
@@ -796,13 +812,11 @@ see !adminHelp for help in a adminChannel
             await message.channel.send(getTeamRoster(message))
         else:
             pass
-        
 
 
 
 
-
-
-
-client.run(TOKEN)
+from secrets import TOKEN1
+print("run")
+client.run(TOKEN1)
 

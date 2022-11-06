@@ -131,7 +131,6 @@ def addServerPlayer(user, serverName, tournamentName,playerName): # adds player 
             "rank": "",
             "role": "",
             "discordName": "",
-            "discordTag": "",
         }
         playerDict = str(playerDict).replace("'",'"')
         f.write(playerDict)
@@ -174,13 +173,13 @@ def editServerPlayerRank(user, serverName, tournamentName, playerName, rank): # 
 
 
 @api.get("/editServerPlayerDiscordName")
-def editServerPlayerRank(user, serverName, tournamentName, playerName, discordName, discordTag): # edits player rank
+def editServerPlayerRank(user, serverName, tournamentName, playerName, discordName): # edits player rank
     info = getServerPlayerInfo(serverName, tournamentName, playerName)
-    info.update({"discordName": discordName, "discordTag": discordTag})
+    info.update({"discordName": discordName})
     f = open(f"servers/{serverName}/{tournamentName}/players/{playerName}.txt", "w")
     f.write(str(info).replace("'",'"')) # changes ' to " in string to not make the json loader break
     f.close()
-    return logServer(serverName, f'{user} - Discord Name for player "{playerName}" has been updated to "{discordName}#{discordTag}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
+    return logServer(serverName, f'{user} - Discord Name for player "{playerName}" has been updated to "{discordName}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
 #print(editServerPlayerRank("testUser", "testing", "waffleer#URMOM", "Diamond 2"))
 
 
@@ -197,19 +196,18 @@ def editServerPlayerAge(user, serverName, tournamentName, playerName, age): # ed
 #print(editServerPlayerAge("testUser", "testing", "waffleer#URMOM", "18"))
 
 @api.get("/editServerPlayerComplete")
-def editServerPlayerComplete(user, serverName, tournamentName, playerName, rank, age, role, discordName, discordTag): # edits player team, rank, age
+def editServerPlayerComplete(user, serverName, tournamentName, playerName, rank, age, role, discordName): # edits player team, rank, age
     info = getServerPlayerInfo(serverName, tournamentName, playerName)
     info.update({
         "rank": rank,
         "age": age,
         "role": role,
         "discordName": discordName,
-        "discordTag": discordTag,
         })
     f = open(f"servers/{serverName}/{tournamentName}/players/{playerName}.txt", "w")
     f.write(str(info).replace("'",'"')) # changes ' to " in string to not make the json loader break
     f.close()
-    return logServer(serverName, f'{user} - Role, Rank, Age and Discord Name for player "{playerName}" has been updated to "{role}", "{rank}", "{age}", "{discordName}#{discordTag}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
+    return logServer(serverName, f'{user} - Role, Rank, Age and Discord Name for player "{playerName}" has been updated to "{role}", "{rank}", "{age}", "{discordName}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
 #print(editServerPlayerComplete("testUser", "testing", "waffleer#URMOM", "freeAgent", "Diamond 2", "18"))
 
 @api.get("/editServerPlayerRole")
@@ -264,16 +262,16 @@ def removeTeamPlayer(user, serverName, tournamentName, teamName, playerName): # 
     if playerName in data:
         try:
             for x in range(0, len(data)):
-                print(x)
+                #print(x)
                 if data[x] == str(playerName):
-                    print(f"\n\n\n removed \n\n\n")
+                    #print(f"\n\n\n removed \n\n\n")
                     data.pop(x)
             f = open(f"servers/{serverName}/{tournamentName}/teams/{teamName}/players.txt","w")
             f.write(str(data))
             f.close()
         except IndexError:
             pass
-        print(editServerPlayerTeam(user, serverName, tournamentName, playerName, ""))
+        #print(editServerPlayerTeam(user, serverName, tournamentName, playerName, ""))
         return logServer(serverName, f'{user} - Player "{playerName}" has been removed from "{teamName}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
     else:
         return logServer(serverName, f'{user} - Player "{playerName}" was not found in "{teamName}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
@@ -284,7 +282,7 @@ def getTeamRoster(serverName, tournamentName, teamName): # returns all of the pl
     f = open(f"servers/{serverName}/{tournamentName}/teams/{teamName}/players.txt","r")
     playerList = f.read()
     f.close()
-    print(playerList)
+    #print(playerList)
     if "," not in playerList and "'" not in playerList:
         return None
     playerList = strToList(playerList)
