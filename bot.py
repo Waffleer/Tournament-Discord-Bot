@@ -275,20 +275,21 @@ def getServerReadyAPI(ctx):
     category = str(ctx.channel.category.name)
     resp = str(requests.get(f'http://127.0.0.1:9101/getServerExist?&serverName={server}').text)
     resp = resp.strip('"')
-    #print("True")
-    
-    if resp == "True":
-        #print("Second Check is running")
-        resp = str(requests.get(f'http://127.0.0.1:9101/getServerReady?&serverName={server}').text)
-        resp = resp.strip('"')
-        if resp == "True":
-            context = True
-        else:
-            context = False
+    print(resp)
+    if resp == 'f':
+        print("First Check Failed")
+        return False
+    print("first Check Success")
 
-        return context
+    #print("Second Check is running")
+    resp = str(requests.get(f'http://127.0.0.1:9101/getServerReady?&serverName={server}').text)
+    resp = resp.strip('"')
+    print(resp)
+    if resp == "t":
+        return True
     else:
         return False
+
 
 def enableServerAPI(ctx):
     user = str(ctx.author).replace("#","%23")
@@ -507,14 +508,14 @@ async def on_guild_join(guild):
 
 @bot.slash_command(description="Test")
 async def test(ctx):
-    getServerReadyAPI(ctx)
-    print(type(getServerReadyAPI(ctx)))
+    #getServerReadyAPI(ctx)
+    #print(type(getServerReadyAPI(ctx)))
     print(getServerReadyAPI(ctx))
 
 
 
 
-@bot.slash_command(description="you can add descriptons")
+#@bot.slash_command(description="you can add descriptons")
 async def test3(ctx):
     if await getServerReadyAPI(ctx):
         await ctx.respond(str(ctx.channel.category))
@@ -648,7 +649,7 @@ new_group = discord.SlashCommandGroup("new", "For new Tournaments and such")
 @new_group.command(description="Allows commands to be run by the the bot. Can only be run by admins")
 async def tournament(
     ctx, 
-    tournament_name: discord.Option(discord.SlashCommandOptionType.string, description="Name of the tournament, making this short or a acronym will help with space as this name will be appended to many different things"),
+    tournament_name: discord.Option(discord.SlashCommandOptionType.string, description="Name of Tournament, DO NOT USE  '  IN THE NAME, recommended that you keep this short"),
     show: bool = False
     ):
 
@@ -658,6 +659,10 @@ async def tournament(
         channel = ctx.channel
         server = ctx.guild
         category = channel.category
+
+        if "'" in tournament_name:
+            ctx.send_response("The league has been created, head over to the admin channel to see what to do next", ephemeral=show)
+            return None
 
         #Gets a list of categories
         usedCategories = server.categories
@@ -680,11 +685,11 @@ async def tournament(
             category = await server.create_category(name=tournament_name)
 
             # add default pers so only people with league role
-            adminChannel = await category.create_text_channel(f"{tournament_name}-bot-admin")
+            adminChannel = await category.create_text_channel(f"bot-admin-{tournament_name}")
 
             #Creates Generic Channels
             general = await category.create_text_channel("general")
-            bot_commands = await category.create_text_channel(f"{tournament_name}-bot-commands")
+            bot_commands = await category.create_text_channel(f"bot-commands-{tournament_name}")
 
             vibes = await category.create_voice_channel("vibes")
 
@@ -705,26 +710,50 @@ async def tournament(
             await adminChannel.set_permissions(server.self_role, view_channel=True)
             await adminChannel.set_permissions(server.default_role, view_channel=False)
 
+
+
+
+            text = f"""
+<@{user.id}>
+Welcome to the tournament, there are just a few thing you need to to before you can get rolling
+
+Things to do
+    1. Set integration Permissions
+        - Go to Server Settings and then integrations
+        - Click on this bot
+
+        - Under Channels add new
+        - Add the channel <#{adminChannel.id}> and set to True
+
+        - Scroll Down to Commands and find /get
+        - Click and add the channel <#{bot_commands.id}>
+        - Set to True - DO NOT CLICK SYNC, YOU WILL HAVE TO REDUE THIS STEP
+
+    Your all finished, it wasn't that bad.
+
+Things to Do Next   
+    Look at /add new to start setting up your tournament
+        I would start with the players
+
+    /edit will let you edit player's profiles
+
+    /add team player will assign a player to a team
+
+    /get is all of the commands for looking though the database
+        - all people with the {leagueRole.mention} role can use these
+
+    If something breaks, pint "TheBetterNick#5462" and he will try his best to fix it,
             
+    This bot is still in its alpha so if you see any bugs or think of any features, then please do tell via github
+    github - https://github.com/Waffleer/Tournament-Discord-Bot
+            
+            """
+
+            await adminChannel.send(text)
+
             await ctx.send_response("The league has been created, head over to the admin channel to see what to do next", ephemeral=show)
         else:
             await ctx.send_response("This league Name is already in use", ephemeral=show)
-
-
-
-
-
-
-        await ctx.send_response("", ephemeral=show)
-
-
-
-
-
-
-
-
-
     else:
         await ctx.respond(enableError())
 
@@ -925,6 +954,8 @@ async def player(
         await ctx.send_response(addTeamPlayerAPI(ctx, player_name, team_name), ephemeral=show)
     else:
         await ctx.respond(enableError())
+
+
 #Generic Get Commands
 @get_group.command(description="Returns all matches in database, see /get team matches for more information")
 async def matches(ctx, show: bool = False):
@@ -948,6 +979,8 @@ async def teams(ctx, show: bool = False):
         await ctx.send_response(getTeamsAPI(ctx), ephemeral=show)
     else:
         await ctx.respond(enableError())
+
+
 #Player Commands
 @player_group.command(description="Returns Player Information")
 async def info(
@@ -1014,6 +1047,7 @@ bot.add_application_command(get_group)
 bot.add_application_command(add_group)
 bot.add_application_command(remove_group)
 bot.add_application_command(edit_group)
+bot.add_application_command(new_group)
 
 from secrets import TOKEN2
 bot.run(TOKEN2)

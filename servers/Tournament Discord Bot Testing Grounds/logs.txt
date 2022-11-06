@@ -49,3 +49,8 @@ TheBetterNick#5462 - Role for player "PFunk#URMOM" has been updated to "mid" - 0
 TheBetterNick#5462 - Discord Name for player "PFunk#URMOM" has been updated to "PFunk#0093" - 06/11/2022 12:00:43
 TheBetterNick#5462 - Player "fjdls#tjkels" has been added to server- 06/11/2022 12:09:01
 TheBetterNick#5462 - Team "bacon" has been added - 06/11/2022 12:17:25
+TheBetterNick#5462 - Tournament Created - "bacons rebellion" - 06/11/2022 15:28:55
+TheBetterNick#5462 - Tournament Created - "testing1" - 06/11/2022 15:52:23
+TheBetterNick#5462 - Tournament Created - "testing2" - 06/11/2022 15:53:17
+TheBetterNick#5462 - Tournament Created - "testing3" - 06/11/2022 15:53:46
+TheBetterNick#5462 - Tournament Created - "testing4" - 06/11/2022 15:55:34

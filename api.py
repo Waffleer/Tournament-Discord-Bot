@@ -27,6 +27,7 @@ def genNum(num, list): # generates a random number "num" digits that isn't on th
     return returnNumber
 
 def strToDict(string): # turns a string into a dict via json
+    string = string.replace("'", '"')
     context = json.loads(string)
     return context
 
@@ -85,7 +86,7 @@ def genServer(user, serverName): # Generates a server and file structure
         os.mkdir(f"servers/{serverName}")
         f = open(f"servers/{serverName}/logs.txt","x")
         f = open(f"servers/{serverName}/config.txt","x")
-        f.write(str({"ready": "False"}).replace("'",'"'))
+        f.write(str({"ready": "f"}).replace("'",'"'))
         f.close()
         return logServer(serverName, f'{user} - Server Created - "{serverName}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
     else:
@@ -96,21 +97,21 @@ def genServer(user, serverName): # Generates a server and file structure
 def getServerReady(serverName): # Generates a server and file structure
     f = open(f"servers/{serverName}/config.txt","r")
     read = f.read()
+    print(f"\n\n{read}\n\n")
     read = strToDict(read)
+    print(read)
     f.close()
     return read["ready"]
 
 @api.get("/getServerExist")
 def getServerExist(serverName): # Generates a server and file structure
-    print("\n\nstarted\n\n")
     try:
         f = open(f"servers/{serverName}/config.txt","r")
         read = f.read()
-        print("\n\n\nworked\n\n")
     except:
         print("\n\nFailed\n\n")
-        return "False"
-    return "True"
+        return str('f')
+    return str('t')
 
 @api.get("/readyServer")
 def readyServer(user, serverName): # Generates a server and file structure

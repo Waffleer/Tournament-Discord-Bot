@@ -1,1 +1,1 @@
-{"ready": "True", "Tournament Admin": "1038842186298577037", "bot-commands-admin": "1038842187598807051"}
+{"ready": "t", "Tournament Admin": "1038842186298577037", "bot-commands-admin": "1038842187598807051", "bacons rebellion": "1038927991016804485", "testing1": "1038933897007870002", "testing2": "1038934121927430255", "testing3": "1038934244631793774", "testing4": "1038934697138458664"}
