@@ -243,3 +243,8 @@ TheBetterNick#5462 - Tournament Created - "testing1" - 06/11/2022 15:52:23
 TheBetterNick#5462 - Tournament Created - "testing2" - 06/11/2022 15:53:17
 TheBetterNick#5462 - Tournament Created - "testing3" - 06/11/2022 15:53:46
 TheBetterNick#5462 - Tournament Created - "testing4" - 06/11/2022 15:55:34
+TheBetterNick#5462 - Team "chicken" has been added - 06/11/2022 16:31:31
+TheBetterNick#5462 - Team "ranch" has been added - 06/11/2022 16:32:57
+TheBetterNick#5462 - Team for player "PFunk#URMOM" has been updated to "ranch" - 06/11/2022 16:33:24
+TheBetterNick#5462 - Player "PFunk#URMOM" has been added to "ranch" - 06/11/2022 16:33:24
+TheBetterNick#5462 - Team "free" has been added - 06/11/2022 16:36:46

@@ -66,7 +66,7 @@ def genTournament(user, serverName, tournamentName): # Generates a server and fi
         os.makedirs(f"servers/{serverName}/{tournamentName}/matches")
         f = open(f"servers/{serverName}/{tournamentName}/config.txt","x")
         config = {
-            "allChannels": False,
+            "place": "place",
         }
         f.write(str(config).replace("'",'"'))
         f.close()
@@ -128,6 +128,14 @@ def getConfig(serverName):
     f.close()
     return read
 
+@api.get("/getConfigTournament")
+def getConfigTournament(serverName, tournamentName):
+    f = open(f"servers/{serverName}/{tournamentName}/config.txt", "r")
+    read = f.read()
+    read = strToDict(read)
+    f.close()
+    return read
+
 @api.get("/registerRole")
 def registerRole(serverName, roleName, id):
     config = getConfig(serverName)
@@ -137,6 +145,18 @@ def registerRole(serverName, roleName, id):
         )
     print(config)
     f = open(f"servers/{serverName}/config.txt","w")
+    f.write(str(config).replace("'",'"'))
+    f.close()
+
+@api.get("/registerRoleTournament")
+def registerRole(serverName, tournamentName,  roleName, id):
+    config = getConfigTournament(serverName, tournamentName)
+    print(config)
+    config.update(
+        {roleName: id}
+        )
+    print(config)
+    f = open(f"servers/{serverName}/{tournamentName}/config.txt","w")
     f.write(str(config).replace("'",'"'))
     f.close()
 
@@ -186,6 +206,8 @@ def addServerPlayer(user, serverName, tournamentName,playerName,discordName): # 
         playerDict = str(playerDict).replace("'",'"')
         f.write(playerDict)
         f.close()
+        addTeamPlayer("bot", serverName, tournamentName, "free", playerName)
+        
         return logServer(serverName, f'{user} - Player "{playerName}" has been added to server- {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
     else:
         return logServer(serverName, f'{user} - Player "{playerName}" already exists on server- {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')

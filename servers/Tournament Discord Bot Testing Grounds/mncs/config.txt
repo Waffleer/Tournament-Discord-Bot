@@ -1,1 +1,1 @@
-{"ready": False}
+{"ready": "False", "ranch-mncs": "1038944105448873984", "free-mncs": "1038945063708921886"}

@@ -321,6 +321,15 @@ def getConfigAPI(ctx):
     context = strToDict(resp.text)
     return context
 
+def getConfigTournamentAPI(ctx, tournamentName):
+    user = str(ctx.author).replace("#","%23")
+    channel = str(ctx.channel)
+    server = str(ctx.guild)
+    category = str(ctx.channel.category.name)
+    resp = requests.get(f'http://127.0.0.1:9101/getConfigTournament?&tournamentName={tournamentName}&serverName={server}')
+    context = strToDict(resp.text)
+    return context
+
 def registerIdAPI(ctx, roleName, id):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
@@ -328,6 +337,15 @@ def registerIdAPI(ctx, roleName, id):
     category = str(ctx.channel.category.name)
     id = str(id)
     resp = requests.get(f'http://127.0.0.1:9101/registerRole?&serverName={server}&roleName={roleName}&id={id}')
+
+def registerIdTournamentAPI(ctx, tournamentName, roleName, id):
+    user = str(ctx.author).replace("#","%23")
+    channel = str(ctx.channel)
+    server = str(ctx.guild)
+    category = str(ctx.channel.category.name)
+    id = str(id)
+    resp = requests.get(f'http://127.0.0.1:9101/registerRoleTournament?&tournamentName={tournamentName}&serverName={server}&roleName={roleName}&id={id}')
+
 
 #Utility Functions
 
@@ -498,6 +516,25 @@ def applyRole(message, name, role):
     return memberObj.add_roles(role)
 
 
+def getRole(serverRoles, roleName):
+    for x in serverRoles:
+        if x.name == roleName:
+            return x
+    return None
+def ifMemberHasRole(roles, role: discord.role):
+    for x in roles:
+        if x == role:
+            return True
+    return False
+async def addRole(member: discord.member, role: discord.role):
+    await member.add_roles(role)
+async def removeRole(member: discord.member, role: discord.role):
+    await member.remove_roles(role)
+
+
+
+
+
 
 @bot.event
 async def on_guild_join(guild):
@@ -508,19 +545,36 @@ async def on_guild_join(guild):
 
 @bot.slash_command(description="Test")
 async def test(ctx):
+    user = ctx.author
+    channel = ctx.channel
+    server = ctx.guild
+    category = channel.category
+
+    serverRoles = server.roles
+
+    print(serverRoles)
+
+
+
+    #print(getConfigTournamentAPI(ctx, category))
+    #registerIdTournamentAPI(ctx, category, "test", 7890)
+    #print(getConfigTournamentAPI(ctx, category))
     #getServerReadyAPI(ctx)
     #print(type(getServerReadyAPI(ctx)))
-    print(getServerReadyAPI(ctx))
+    #print(getServerReadyAPI(ctx))
 
 
 
 
-#@bot.slash_command(description="you can add descriptons")
+@bot.slash_command()
 async def test3(ctx):
-    if await getServerReadyAPI(ctx):
-        await ctx.respond(str(ctx.channel.category))
-    else:
-        await ctx.respond("Server has not been made enabled by the admin")
+    user = ctx.author
+    channel = ctx.channel
+    server = ctx.guild
+    category = channel.category
+
+    
+        
 
 
 #Setup Commands
@@ -641,7 +695,7 @@ Things to do
  
 
 new_group = discord.SlashCommandGroup("new", "For new Tournaments and such")
-
+sync_group = discord.SlashCommandGroup("sync", "For new Tournaments and such")
 
 
 
@@ -679,7 +733,7 @@ async def tournament(
             leagueRole = await server.create_role(name=f"{tournament_name}") # for general participents
 
             #Registers League Role
-            registerIdAPI(ctx, leagueRole.name, leagueRole.id)
+            registerIdTournamentAPI(ctx, category, leagueRole.name, leagueRole.id)
 
             #Makes category
             category = await server.create_category(name=tournament_name)
@@ -709,6 +763,10 @@ async def tournament(
             await adminChannel.set_permissions(leagueRole, view_channel=False)
             await adminChannel.set_permissions(server.self_role, view_channel=True)
             await adminChannel.set_permissions(server.default_role, view_channel=False)
+
+            teamRole = await server.create_role(name=f"{'free'}-{category}") # for general participents
+            registerIdTournamentAPI(ctx, category, teamRole.name, teamRole.id)
+            addServerTeamAPI(ctx, "free")
 
 
 
@@ -756,12 +814,6 @@ Things to Do Next
             await ctx.send_response("This league Name is already in use", ephemeral=show)
     else:
         await ctx.respond(enableError())
-
-
-
-
-
-
 
 
 
@@ -921,8 +973,16 @@ async def team(
     show: bool = False
     ):
 
+    user = ctx.author
+    channel = ctx.channel
+    server = ctx.guild
+    category = channel.category
+
     show = not show
+
     if getServerReadyAPI(ctx):
+        teamRole = await server.create_role(name=f"{team_name}-{category}") # for general participents
+        registerIdTournamentAPI(ctx, category, teamRole.name, teamRole.id)
         await ctx.send_response(addServerTeamAPI(ctx, team_name), ephemeral=show)
     else:
         await ctx.respond(enableError())
@@ -1048,6 +1108,7 @@ bot.add_application_command(add_group)
 bot.add_application_command(remove_group)
 bot.add_application_command(edit_group)
 bot.add_application_command(new_group)
+bot.add_application_command(sync_group)
 
 from secrets import TOKEN2
 bot.run(TOKEN2)
