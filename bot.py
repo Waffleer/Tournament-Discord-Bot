@@ -318,7 +318,12 @@ def genTournamentAPI(ctx, name):
     server = str(ctx.guild)
     category = str(ctx.channel.category.name)
 
+    
+
     resp = requests.get(f'http://127.0.0.1:9015/genTournament?user={user}&serverName={server}&tournamentName={name}')
+    
+    
+    
     context = resp.text
     return context
 
@@ -554,7 +559,9 @@ async def addRole(member: discord.member, role: discord.role):
 async def removeRole(member: discord.member, role: discord.role):
     await member.remove_roles(role)
 
-
+def genDefaultTeams(ctx):
+    addServerTeamAPI(ctx, "free")
+    addServerTeamAPI(ctx, "inactive")
 
 @bot.event
 async def on_guild_join(guild):
@@ -600,6 +607,13 @@ async def test3(ctx):
     channel = ctx.channel
     server = ctx.guild
     category = channel.category
+
+    teams = strToList(getTeamsAPI(ctx))
+    if "free" not in teams:
+        genDefaultTeams(ctx)
+        print("Didn't find free")
+    else:
+        print("did find free")
 
     category = getCategory(server, "Tournament Administration")
     print(getChannel(category,"bot-commands-admin"))
@@ -842,9 +856,9 @@ async def tournament(
             await adminChannel.set_permissions(server.self_role, view_channel=True)
             await adminChannel.set_permissions(server.default_role, view_channel=False)
 
-            teamRole = await server.create_role(name=f"{'free'}-{category}") # for general participents
-            #registerIdTournamentAPI(ctx, category, teamRole.name, teamRole.id)
-            addServerTeamAPI(ctx, "free")
+            freeRole = await server.create_role(name=f"{'free'}-{category}") # for general participents
+            inactiveRole = await server.create_role(name=f"{'inactive'}-{category}")
+            
 
             
 
@@ -872,7 +886,12 @@ Things to Do Next
 
     /edit will let you edit player's profiles
 
-    /add team player will assign a player to a team
+    /move player will more a player to a team
+        All players are on the team free by default
+        You can move players back to free
+
+        inactive is a default team that you can move inactive players too
+            there is no delete player so use this instead
 
     /get is all of the commands for looking though the database
         - all people with the {leagueRole.mention} role can use these
@@ -900,7 +919,6 @@ github - https://github.com/Waffleer/Tournament-Discord-Bot
             await ctx.send_response("This league Name is already in use", ephemeral=show)
     else:
         await ctx.send_response(enableError(), ephemeral=show)
-
 
 
 
@@ -1054,6 +1072,14 @@ async def player(
     show = not show
     if getServerReadyAPI(ctx):
         server = ctx.guild
+
+
+        # Creates default teams if they didn't already exist
+        teams = strToList(getTeamsAPI(ctx))
+        if "free" not in teams:
+            genDefaultTeams(ctx)
+
+
         member = getMember(server.members, discord_username)
         role = getRole(server.roles, str(ctx.channel.category))
         await addRole(member, role)
@@ -1237,5 +1263,5 @@ bot.add_application_command(move_group)
 
 
 
-from secrets import TOKEN
-bot.run(TOKEN)
+from secrets import TOKEN2
+bot.run(TOKEN2)

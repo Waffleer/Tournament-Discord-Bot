@@ -298,3 +298,14 @@ TheBetterNick#5462 - Tournament Created - "testing" - 09/11/2022 11:16:53
 TheBetterNick#5462 - Tournament Created - "bacon" - 09/11/2022 11:18:52
 TheBetterNick#5462 - Tournament Created - "testing2" - 09/11/2022 11:19:32
 TheBetterNick#5462 - Tournament Created - "testing3" - 09/11/2022 11:21:30
+TheBetterNick#5462 - Team "inactive" has been added - 09/11/2022 11:57:52
+TheBetterNick#5462 - Tournament Created - "testing69" - 09/11/2022 11:59:39
+TheBetterNick#5462 - Team "free" has been added - 09/11/2022 11:59:43
+TheBetterNick#5462 - Team "inactive" already exists - 09/11/2022 11:59:43
+TheBetterNick#5462 - Tournament Created - "testing4" - 09/11/2022 12:02:54
+TheBetterNick#5462 - Team "free" has been added - 09/11/2022 12:02:54
+TheBetterNick#5462 - Team "inactive" has been added - 09/11/2022 12:02:54
+TheBetterNick#5462 - Team "free" has been added - 09/11/2022 12:03:35
+TheBetterNick#5462 - Team "inactive" has been added - 09/11/2022 12:03:35
+TheBetterNick#5462 - Team "free" has been added - 09/11/2022 12:07:55
+TheBetterNick#5462 - Team "inactive" has been added - 09/11/2022 12:07:55
