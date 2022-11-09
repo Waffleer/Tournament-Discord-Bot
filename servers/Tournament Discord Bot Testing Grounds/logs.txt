@@ -59,3 +59,44 @@ TheBetterNick#5462 - Team "ranch" has been added - 06/11/2022 16:32:57
 TheBetterNick#5462 - Team for player "PFunk#URMOM" has been updated to "ranch" - 06/11/2022 16:33:24
 TheBetterNick#5462 - Player "PFunk#URMOM" has been added to "ranch" - 06/11/2022 16:33:24
 TheBetterNick#5462 - Team "free" has been added - 06/11/2022 16:36:46
+TheBetterNick#5462 - Player "baconleader2" was not found in "ranch" - 08/11/2022 17:06:05
+TheBetterNick#5462 - Team for player "baconleader2" has been updated to "ranch" - 08/11/2022 17:06:05
+TheBetterNick#5462 - Player "baconleader2" has been added to "ranch" - 08/11/2022 17:06:05
+TheBetterNick#5462 - Player "baconLeader2" was not found in "ranch" - 08/11/2022 17:12:06
+TheBetterNick#5462 - Team for player "baconLeader2" has been updated to "free" - 08/11/2022 17:12:06
+TheBetterNick#5462 - Player "baconLeader2" has been added to "free" - 08/11/2022 17:12:06
+TheBetterNick#5462 - Team for player "baconLeader2" has been updated to "free" - 08/11/2022 17:13:33
+TheBetterNick#5462 - Player "baconLeader2" has been removed from "free" - 08/11/2022 17:13:33
+TheBetterNick#5462 - Player "baconLeader2" was not found in "ranch" - 08/11/2022 17:19:33
+TheBetterNick#5462 - Team for player "baconLeader2" has been updated to "free" - 08/11/2022 17:19:33
+TheBetterNick#5462 - Player "baconLeader2" has been added to "free" - 08/11/2022 17:19:33
+TheBetterNick#5462 - Player "baconLeader2" was not found in "ranch" - 08/11/2022 17:20:36
+TheBetterNick#5462 - Team for player "baconLeader2" has been updated to "ranch" - 08/11/2022 17:31:40
+TheBetterNick#5462 - Player "baconLeader2" has been added to "ranch" - 08/11/2022 17:31:40
+TheBetterNick#5462 - Team for player "baconLeader2" has been updated to "ranch" - 08/11/2022 17:36:44
+TheBetterNick#5462 - Player "baconLeader2" has been added to "ranch" - 08/11/2022 17:36:44
+TheBetterNick#5462 - Team for player "baconLeader2" has been updated to "free" - 08/11/2022 17:38:12
+TheBetterNick#5462 - Player "baconLeader2" has been added to "free" - 08/11/2022 17:38:12
+TheBetterNick#5462 - Team for player "baconLeader2" has been updated to "ranch" - 08/11/2022 17:39:12
+TheBetterNick#5462 - Player "baconLeader2" has been added to "ranch" - 08/11/2022 17:39:12
+TheBetterNick#5462 - Team for player "baconLeader2" has been updated to "free" - 08/11/2022 17:40:52
+TheBetterNick#5462 - Player "baconLeader2" has been added to "free" - 08/11/2022 17:40:52
+TheBetterNick#5462 - Team for player "baconLeader2" has been updated to "ranch" - 08/11/2022 17:44:21
+TheBetterNick#5462 - Player "baconLeader2" has been added to "ranch" - 08/11/2022 17:44:21
+TheBetterNick#5462 - Team for player "baconLeader2" has been updated to "free" - 08/11/2022 17:46:00
+TheBetterNick#5462 - Player "baconLeader2" has been added to "free" - 08/11/2022 17:46:00
+TheBetterNick#5462 - Team for player "baconLeader2" has been updated to "ranch" - 08/11/2022 17:46:19
+TheBetterNick#5462 - Player "baconLeader2" has been added to "ranch" - 08/11/2022 17:46:19
+bot - Team for player "waffleer#URMOM" has been updated to "free" - 08/11/2022 17:54:06
+bot - Player "waffleer#URMOM" has been added to "free" - 08/11/2022 17:54:06
+TheBetterNick#5462 - Player "waffleer#URMOM" has been added to server- 08/11/2022 17:54:06
+bot - Team for player "PFunk#URMOM" has been updated to "free" - 08/11/2022 17:58:33
+bot - Player "PFunk#URMOM" has been added to "free" - 08/11/2022 17:58:33
+TheBetterNick#5462 - Player "PFunk#URMOM" has been added to server- 08/11/2022 17:58:33
+bot - Team for player "waffleer#URMOM" has been updated to "free" - 08/11/2022 22:14:53
+bot - Player "waffleer#URMOM" has been added to "free" - 08/11/2022 22:14:53
+TheBetterNick#5462 - Player "waffleer#URMOM" has been added to server- 08/11/2022 22:14:53
+bot - Team for player "waffleer#URMOM" has been updated to "free" - 08/11/2022 22:16:38
+bot - Player "waffleer#URMOM" has been added to "free" - 08/11/2022 22:16:38
+TheBetterNick#5462 - Player "waffleer#URMOM" has been added to server- 08/11/2022 22:16:38
+TheBetterNick#5462 - Team "bagel" has been added - 08/11/2022 22:24:47

@@ -3,11 +3,21 @@ import discord
 from discord.ui import Button, View
 from discord.ext import commands
 
+import datetime
+
 #https://discord.com/api/oauth2/authorize?client_id=1038641710835703808&permissions=8&scope=bot%20applications.commands
 
 
 bot = discord.Bot(
-    debug_guilds = [1032120703094362192,1010740300823662623]
+    activity=
+        discord.Activity(
+            type=discord.ActivityType.custom, 
+            name="See /Get for Help", 
+            details="Just Trying to help, sheesh.", 
+            start = datetime.datetime.now()
+             )
+
+    #debug_guilds = [1032120703094362192,1010740300823662623]
 )
 import json, requests
 from time import sleep
@@ -40,7 +50,6 @@ def addServerTeamAPI(ctx, teamName):
     return context
 def addServerPlayerAPI(ctx, name, discord_username): 
     user = str(ctx.author).replace("#","%23")
-    channel = str(ctx.channel)
     server = str(ctx.guild)
     category = str(ctx.channel.category)
 
@@ -48,7 +57,8 @@ def addServerPlayerAPI(ctx, name, discord_username):
     discord_username = discord_username.replace("#","%23")
 
     resp = requests.get(f'http://127.0.0.1:9101/addServerPlayer?user={user}&serverName={server}&tournamentName={category}&playerName={name}&discordName={discord_username}')
-    context = json.loads(resp.text)
+    print(resp.text)
+    context = json.loads(str(resp.text).replace("'",'"'))
     return context
 """ Ignore this block
 def editServerPlayerTeam(message):
@@ -275,16 +285,16 @@ def getServerReadyAPI(ctx):
     category = str(ctx.channel.category.name)
     resp = str(requests.get(f'http://127.0.0.1:9101/getServerExist?&serverName={server}').text)
     resp = resp.strip('"')
-    print(resp)
+    #print(resp)
     if resp == 'f':
-        print("First Check Failed")
+        #print("First Check Failed")
         return False
-    print("first Check Success")
+    #print("first Check Success")
 
     #print("Second Check is running")
     resp = str(requests.get(f'http://127.0.0.1:9101/getServerReady?&serverName={server}').text)
     resp = resp.strip('"')
-    print(resp)
+    #print(resp)
     if resp == "t":
         return True
     else:
@@ -485,7 +495,7 @@ Things that you can do now:
             """]
     return context
 def enableError():
-    return "This Server Has not been Enabled by an Admin"
+    return "This Server Has not been Enabled by an Admin, see /get_started"
 
 def checkChannel(ctx):
     channel = ctx.channel
@@ -515,7 +525,10 @@ def applyRole(message, name, role):
             memberObj = z
     return memberObj.add_roles(role)
 
-
+def getMember(members, name):
+    for x in members:
+        if f"{x.name}#{x.discriminator}" == name:
+            return x
 def getRole(serverRoles, roleName):
     for x in serverRoles:
         if x.name == roleName:
@@ -543,17 +556,25 @@ async def on_guild_join(guild):
     #adminRole = await guild.create_role(name=f"Tournament Admin", mentionable=True)
     pass
 
-@bot.slash_command(description="Test")
+#@bot.slash_command(description="Test")
 async def test(ctx):
     user = ctx.author
     channel = ctx.channel
     server = ctx.guild
     category = channel.category
 
-    serverRoles = server.roles
 
-    print(serverRoles)
 
+
+
+    #serverRoles = server.roles
+    #member = getMember(server.members, "TheBetterNick#5462")
+    #role = getRole(serverRoles, "ranch-mncs")
+    #print(member.roles)
+
+    #await addRole(member, role)
+    #await removeRole(member, role)
+    #print(member.roles)
 
 
     #print(getConfigTournamentAPI(ctx, category))
@@ -566,7 +587,7 @@ async def test(ctx):
 
 
 
-@bot.slash_command()
+#@bot.slash_command()
 async def test3(ctx):
     user = ctx.author
     channel = ctx.channel
@@ -698,7 +719,44 @@ new_group = discord.SlashCommandGroup("new", "For new Tournaments and such")
 sync_group = discord.SlashCommandGroup("sync", "For new Tournaments and such")
 
 
+@bot.slash_command(description="Help for those in need, not very useful though")
+async def help(ctx, show: bool = False):
+    show = not show
 
+    text = f"""
+It looks like you need help.
+
+- Starting Out
+    See /get_started if you starting out on a new server, you need to be an admin though
+
+- Player
+    as a player you have access to all of the /get commands, use them to find information on what ever you need
+    if you have access to other commands then something went terribly wrong, please contact an admin imitatively
+
+- Admin
+    see /get_started for initial set up and that should prompt you on what to do next
+    Other than that play around with the bot and see what you can do
+        If something is not self explanatory then contact TheBetterNick#5462 and he will try his best to fix something
+
+- Bug or error  
+    First make sure you spelt everything correctly, that will cause most errors
+
+    Somethings that will brick your bot will be using banned characters like  '  or  "  in the name of anything, blame json not me
+        This will likely be fixed later down the line, I need to sleep too
+
+    Make sure you are running the commands in the right bot command channel
+    tournament specific commands can only be run in there own bot channel
+    administration commands can only be run in the admin channel of there respective tournament
+
+    Do not rename the category as it will break you tournament
+
+
+    
+    
+    
+    """
+
+    ctx.send_response(text, ephemeral=show)
 
 @new_group.command(description="Allows commands to be run by the the bot. Can only be run by admins")
 async def tournament(
@@ -714,8 +772,8 @@ async def tournament(
         server = ctx.guild
         category = channel.category
 
-        if "'" in tournament_name:
-            ctx.send_response("The league has been created, head over to the admin channel to see what to do next", ephemeral=show)
+        if "'" in tournament_name or '"' in tournament_name:
+            ctx.send_response("""Don't Use the characters  "  or  '  in any names, it will break shit""", ephemeral=show)
             return None
 
         #Gets a list of categories
@@ -751,7 +809,7 @@ async def tournament(
             adminRole = server.get_role(int(config["Tournament Admin"]))
 
             #Applies Permissions
-
+            
             await category.set_permissions(adminRole, view_channel=True)
             await category.set_permissions(leagueRole, view_channel=True)
             await category.set_permissions(server.self_role, view_channel=True)
@@ -800,10 +858,15 @@ Things to Do Next
     /get is all of the commands for looking though the database
         - all people with the {leagueRole.mention} role can use these
 
-    If something breaks, pint "TheBetterNick#5462" and he will try his best to fix it,
+Things to not do
+    Do not rename the category as it will break you tournament
+    Do not use the characters  '  "  at any point,  #  can only be used in discord or player names
+
+
+If something breaks, pint "TheBetterNick#5462" and he will try his best to fix it,
             
-    This bot is still in its alpha so if you see any bugs or think of any features, then please do tell via github
-    github - https://github.com/Waffleer/Tournament-Discord-Bot
+This bot is still in its V1 release so if you see any bugs or think of any features that can be added, then please do tell via github
+github - https://github.com/Waffleer/Tournament-Discord-Bot
             
             """
 
@@ -819,6 +882,8 @@ Things to Do Next
 
 
 #Generic Smaller Commands Below
+move_group = discord.SlashCommandGroup("move", "All move related Commands")
+
 get_group = discord.SlashCommandGroup("get", "All Get Commands")
 team_group = get_group.create_subgroup("team", "Commands related to get team")
 player_group = get_group.create_subgroup("player", "Commands related to get player")
@@ -924,6 +989,7 @@ async def all(
         await ctx.send_response(editServerPlayerCompleteAPI(ctx, player_name, rank, age, role, discord_username), ephemeral=show)
     else:
         await ctx.respond(enableError())
+
 #Remove Commands
 @remove_group.command(description="Removes a match from database")
 async def match(
@@ -937,6 +1003,7 @@ async def match(
         await ctx.send_response(removeMatchAPI(ctx, match_id), ephemeral=show)
     else:
         await ctx.respond(enableError())
+
 #Add Commands
 @add_new_group.command(description="Adds a match to database, ")
 async def match(
@@ -963,6 +1030,11 @@ async def player(
 
     show = not show
     if getServerReadyAPI(ctx):
+        server = ctx.guild
+        member = getMember(server.members, discord_username)
+        role = getRole(server.roles, str(ctx.channel.category))
+        await addRole(member, role)
+        
         await ctx.send_response(addServerPlayerAPI(ctx, player_name, discord_username), ephemeral=show)
     else:
         await ctx.respond(enableError())
@@ -977,17 +1049,42 @@ async def team(
     channel = ctx.channel
     server = ctx.guild
     category = channel.category
+    serverRoles = server.roles
 
     show = not show
 
     if getServerReadyAPI(ctx):
         teamRole = await server.create_role(name=f"{team_name}-{category}") # for general participents
         registerIdTournamentAPI(ctx, category, teamRole.name, teamRole.id)
+
+        #Creates Channels
+
+        
+        teamGeneral = await category.create_text_channel(f"{team_name}-private")
+        vc = await category.create_voice_channel(f"{team_name}-private")
+
+        adminRole = getRole(serverRoles, "Tournament Admin")
+
+        await teamGeneral.set_permissions(adminRole, view_channel=True)
+        await teamGeneral.set_permissions(teamRole, view_channel=True)
+        await teamGeneral.set_permissions(server.self_role, view_channel=True)
+        await teamGeneral.set_permissions(server.default_role, view_channel=False)
+
+        await vc.set_permissions(adminRole, view_channel=True)
+        await vc.set_permissions(teamRole, view_channel=True)
+        await vc.set_permissions(server.self_role, view_channel=True)
+        await vc.set_permissions(server.default_role, view_channel=False)
+
+
         await ctx.send_response(addServerTeamAPI(ctx, team_name), ephemeral=show)
     else:
         await ctx.respond(enableError())
+
 #Remove Team Commands
-@remove_team_group.command(description="")
+
+
+#Move Commands
+@move_group.command(description="Moves player to team")
 async def player(
     ctx, 
     player_name: playerOption(),
@@ -997,20 +1094,23 @@ async def player(
 
     show = not show
     if getServerReadyAPI(ctx):
-        await ctx.send_response(removeTeamPlayerAPI(ctx, player_name, team_name), ephemeral=show)
-    else:
-        await ctx.respond(enableError())
-#Add Team Commands
-@add_team_group.command(description="Adds player to team")
-async def player(
-    ctx, 
-    player_name: playerOption(),
-    team_name: teamOption(),
-    show: bool = False
-    ):
+        server = ctx.guild
+        category = ctx.channel.category
+        serverRoles = server.roles
+        player = strToDict(getServerPlayerInfoAPI(ctx, player_name))
+        member = getMember(server.members, player["discordName"])
 
-    show = not show
-    if getServerReadyAPI(ctx):
+        #print(member)
+        #print(type(player))
+        #print(player['team'])
+
+        #print(getRole(serverRoles, f"{player['team']}-{category}"))
+
+        await removeRole(member, getRole(serverRoles, f"{player['team']}-{category}"))
+        await addRole(member, getRole(serverRoles, f"{team_name}-{category}"))
+
+        removeTeamPlayerAPI(ctx, player_name, str(player['team']))
+
         await ctx.send_response(addTeamPlayerAPI(ctx, player_name, team_name), ephemeral=show)
     else:
         await ctx.respond(enableError())
@@ -1100,7 +1200,9 @@ async def test4(ctx):
 
     await ctx.send_response(integrations, ephemeral=False)
 
-
+@bot.event
+async def on_ready():
+    print(f"{bot.user} is ready and online!")
 
 
 bot.add_application_command(get_group)
@@ -1108,7 +1210,8 @@ bot.add_application_command(add_group)
 bot.add_application_command(remove_group)
 bot.add_application_command(edit_group)
 bot.add_application_command(new_group)
-bot.add_application_command(sync_group)
+bot.add_application_command(move_group)
+
 
 from secrets import TOKEN2
 bot.run(TOKEN2)

@@ -313,6 +313,23 @@ def addServerTeam(user, serverName, tournamentName, teamName): # adds team to a 
 
 @api.get("/addTeamPlayer")
 def addTeamPlayer(user, serverName, tournamentName, teamName, playerName): # adds a player under a team, changes player information to the team as well
+    
+    playerInfo = getServerPlayerInfo(serverName, tournamentName, playerName)
+    print(f"\n\n{type(playerInfo)}\n\n")
+    f = open(f"servers/{serverName}/{tournamentName}/teams/{playerInfo['team']}/players.txt","r")
+    data = f.read()
+    data = strToList(data)
+    print(data)
+    for x in range(0, len(data)):
+        print(x)
+        if data[x] == playerName:
+            print("dfsjklsdfkl;jsdghjkl;asdgkl;hjsdgal;hnksdghjkl;sdghnkl;sdfgankldfgs")
+            data.pop(x)
+    print(data)
+    f = open(f"servers/{serverName}/{tournamentName}/teams/{playerInfo['team']}/players.txt","w")
+    f.write(str(data))
+    f.close()
+
     f = open(f"servers/{serverName}/{tournamentName}/teams/{teamName}/players.txt","r")
     data = f.read()
     data = strToList(data)
@@ -327,28 +344,11 @@ def addTeamPlayer(user, serverName, tournamentName, teamName, playerName): # add
         return logServer(serverName, f'{user} - Player "{playerName}" was already in "{teamName}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
 #print(addTeamPlayer("testUser", "testing","testTeam","waffleer#URMOM"))
 
-@api.get("/removeTeamPlayer")
-def removeTeamPlayer(user, serverName, tournamentName, teamName, playerName): # adds a player under a team, changes player information to the team as well
-    f = open(f"servers/{serverName}/{tournamentName}/teams/{teamName}/players.txt","r")
-    data = f.read()
-    data = strToList(data)
-    if playerName in data:
-        try:
-            for x in range(0, len(data)):
-                #print(x)
-                if data[x] == str(playerName):
-                    #print(f"\n\n\n removed \n\n\n")
-                    data.pop(x)
-            f = open(f"servers/{serverName}/{tournamentName}/teams/{teamName}/players.txt","w")
-            f.write(str(data))
-            f.close()
-        except IndexError:
-            pass
-        #print(editServerPlayerTeam(user, serverName, tournamentName, playerName, ""))
-        return logServer(serverName, f'{user} - Player "{playerName}" has been removed from "{teamName}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
-    else:
-        return logServer(serverName, f'{user} - Player "{playerName}" was not found in "{teamName}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
-#print(removeTeamPlayer("testUser", "testing","testTeam","waffleer#URMOM"))
+
+
+
+
+
 
 @api.get("/getTeamRoster")
 def getTeamRoster(serverName, tournamentName, teamName): # returns all of the player's data for a team
