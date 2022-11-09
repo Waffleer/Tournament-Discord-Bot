@@ -289,3 +289,23 @@ bot - Team for player "waffleer#URMOM" has been updated to "free" - 08/11/2022 2
 bot - Player "waffleer#URMOM" has been added to "free" - 08/11/2022 22:16:38
 TheBetterNick#5462 - Player "waffleer#URMOM" has been added to server- 08/11/2022 22:16:38
 TheBetterNick#5462 - Team "bagel" has been added - 08/11/2022 22:24:47
+TheBetterNick - Server Created - "Tournament Bot Dev" - 09/11/2022 10:28:34
+TheBetterNick - Server Created - "Tournament Bot Dev" - 09/11/2022 10:31:15
+TheBetterNick#5462 - Server has been enabled - "Tournament Bot Dev" - 09/11/2022 10:37:08
+TheBetterNick#5462 - Tournament Created - "mncs" - 09/11/2022 10:39:57
+TheBetterNick#5462 - Tournament Created - "mncs" - 09/11/2022 11:10:36
+TheBetterNick#5462 - Tournament Created - "testing" - 09/11/2022 11:16:53
+TheBetterNick#5462 - Tournament Created - "bacon" - 09/11/2022 11:18:52
+TheBetterNick#5462 - Tournament Created - "testing2" - 09/11/2022 11:19:32
+TheBetterNick#5462 - Tournament Created - "testing3" - 09/11/2022 11:21:30
+TheBetterNick#5462 - Team "inactive" has been added - 09/11/2022 11:57:52
+TheBetterNick#5462 - Tournament Created - "testing69" - 09/11/2022 11:59:39
+TheBetterNick#5462 - Team "free" has been added - 09/11/2022 11:59:43
+TheBetterNick#5462 - Team "inactive" already exists - 09/11/2022 11:59:43
+TheBetterNick#5462 - Tournament Created - "testing4" - 09/11/2022 12:02:54
+TheBetterNick#5462 - Team "free" has been added - 09/11/2022 12:02:54
+TheBetterNick#5462 - Team "inactive" has been added - 09/11/2022 12:02:54
+TheBetterNick#5462 - Team "free" has been added - 09/11/2022 12:03:35
+TheBetterNick#5462 - Team "inactive" has been added - 09/11/2022 12:03:35
+TheBetterNick#5462 - Team "free" has been added - 09/11/2022 12:07:55
+TheBetterNick#5462 - Team "inactive" has been added - 09/11/2022 12:07:55
