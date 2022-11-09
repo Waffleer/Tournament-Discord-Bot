@@ -16,9 +16,9 @@ bot = discord.Bot(
             name="See /Get for Help", 
             details="Just Trying to help, sheesh.", 
             start = datetime.datetime.now()
-             )
+             ),
 
-    #debug_guilds = [1032120703094362192,1010740300823662623]
+    debug_guilds = [1032120703094362192,1010740300823662623,1039937599063728279]
 )
 
 
@@ -534,6 +534,16 @@ def getRole(serverRoles, roleName):
         if x.name == roleName:
             return x
     return None
+def getChannel(category, channelName):
+    for x in category.text_channels:
+        if x.name == channelName:
+            return x
+    return None
+def getCategory(server, categoryName):
+    for x in server.categories:
+        if x.name == categoryName:
+            return x
+    return None
 def ifMemberHasRole(roles, role: discord.role):
     for x in roles:
         if x == role:
@@ -543,9 +553,6 @@ async def addRole(member: discord.member, role: discord.role):
     await member.add_roles(role)
 async def removeRole(member: discord.member, role: discord.role):
     await member.remove_roles(role)
-
-
-
 
 
 
@@ -587,12 +594,15 @@ async def test(ctx):
     await ctx.send_response("pong", ephemeral=True)
 
 
-#@bot.slash_command()
+@bot.slash_command()
 async def test3(ctx):
     user = ctx.author
     channel = ctx.channel
     server = ctx.guild
     category = channel.category
+
+    category = getCategory(server, "Tournament Administration")
+    print(getChannel(category,"bot-commands-admin"))
 
     
         
@@ -632,6 +642,7 @@ async def get_started(ctx):
     channel = ctx.channel
     server = ctx.guild
     category = channel.category
+    serverRoles = server.roles
 
 
 
@@ -652,8 +663,12 @@ async def get_started(ctx):
 
             vc = await category.create_voice_channel("vc")
 
-            registerIdAPI(ctx, adminRole.name, adminRole.id)
-            registerIdAPI(ctx, adminChannel.name, adminChannel.id)
+            #registerIdAPI(ctx, adminRole.name, adminRole.id)
+            #registerIdAPI(ctx, adminChannel.name, adminChannel.id)
+
+            await category.set_permissions(adminRole, view_channel=True)
+            await category.set_permissions(server.self_role, view_channel=True)
+            await category.set_permissions(server.default_role, view_channel=False)
 
             await adminChannel.set_permissions(adminRole, view_channel=True)
             await adminChannel.set_permissions(server.self_role, view_channel=True)
@@ -666,11 +681,9 @@ async def get_started(ctx):
 
             botCommands = adminChannel
         else:
-            config = getConfigAPI(ctx)
-            adminRole = server.get_role(int(config["Tournament Admin"]))
-            botCommands = server.get_channel(int(config["bot-commands-admin"]))
-            category = botCommands.category
-            print(type(category))
+            adminRole = getRole(serverRoles,"Tournament Admin")
+            category = getCategory(server, "Tournament Administration")
+            botCommands = getChannel(category, "bot-commands-admin")
 
         text = f"""
 Welcome to Tournament Bot
@@ -691,6 +704,12 @@ Things to do
         - Under Channels set All Channels to False
         - Add the channel <#{botCommands.id}> and set to True
 
+        - Under Commands click /help
+        - make @everyone True
+        - make all channels True
+
+        - It will say not synced and thats ok, clicking sync will undo your changes
+
         - Now only members with the role {adminRole.mention} and in the channel <#{botCommands.id}> can run all of the administration commands
         - Make sure to add the people who need access, including yourself
 
@@ -698,13 +717,13 @@ Things to do
     2. Enable Server
         - Next thing to do is enable your server
         - This will allow the running of /commands other then the set-up commands
-        - You need to set integration permissions otherwise anyone can start generating tournaments which would be a shit show
+        - You need to set integration permissions otherwise anyone can start generating tournaments which would result in a shit show
         - Run /enable_server in any channel
 
 
     3. Generate your First Tournament
         - Congratulations on getting the bot working
-        - Next Run /genTournament in <#{botCommands.name}>, it will get you started from there
+        - Next Run /new tournament in <#{botCommands.name}>, it will get you started from there
     
 
     4. Have Fun and TO better
@@ -761,7 +780,7 @@ It looks like you need help.
 @new_group.command(description="Allows commands to be run by the the bot. Can only be run by admins")
 async def tournament(
     ctx, 
-    tournament_name: discord.Option(discord.SlashCommandOptionType.string, description="Name of Tournament, DO NOT USE  '  IN THE NAME, recommended that you keep this short"),
+    tournament_name: discord.Option(discord.SlashCommandOptionType.string, description="""Name of Tournament, DO NOT USE  '  or  "  IN THE NAME, recommended that you keep this short"""),
     show: bool = False
     ):
 
@@ -771,6 +790,7 @@ async def tournament(
         channel = ctx.channel
         server = ctx.guild
         category = channel.category
+        serverRoles = server.roles
 
         if "'" in tournament_name or '"' in tournament_name:
             ctx.send_response("""Don't Use the characters  "  or  '  in any names, it will break shit""", ephemeral=show)
@@ -791,7 +811,7 @@ async def tournament(
             leagueRole = await server.create_role(name=f"{tournament_name}") # for general participents
 
             #Registers League Role
-            registerIdTournamentAPI(ctx, category, leagueRole.name, leagueRole.id)
+            #registerIdTournamentAPI(ctx, category, leagueRole.name, leagueRole.id)
 
             #Makes category
             category = await server.create_category(name=tournament_name)
@@ -805,8 +825,8 @@ async def tournament(
 
             vibes = await category.create_voice_channel("vibes")
 
-            config = getConfigAPI(ctx)
-            adminRole = server.get_role(int(config["Tournament Admin"]))
+            #config = getConfigAPI(ctx)
+            adminRole = getRole(serverRoles, "Tournament Admin")
 
             #Applies Permissions
             
@@ -823,11 +843,10 @@ async def tournament(
             await adminChannel.set_permissions(server.default_role, view_channel=False)
 
             teamRole = await server.create_role(name=f"{'free'}-{category}") # for general participents
-            registerIdTournamentAPI(ctx, category, teamRole.name, teamRole.id)
+            #registerIdTournamentAPI(ctx, category, teamRole.name, teamRole.id)
             addServerTeamAPI(ctx, "free")
 
-
-
+            
 
             text = f"""
 <@{user.id}>
@@ -870,9 +889,13 @@ github - https://github.com/Waffleer/Tournament-Discord-Bot
             
             """
 
+            
             await adminChannel.send(text)
-
             await ctx.send_response("The league has been created, head over to the admin channel to see what to do next", ephemeral=show)
+            
+            #except:
+            #    await ctx.respond("The league has been created, head over to the admin channel to see what to do next", ephemeral=show)
+        
         else:
             await ctx.send_response("This league Name is already in use", ephemeral=show)
     else:
@@ -1055,7 +1078,7 @@ async def team(
 
     if getServerReadyAPI(ctx):
         teamRole = await server.create_role(name=f"{team_name}-{category}") # for general participents
-        registerIdTournamentAPI(ctx, category, teamRole.name, teamRole.id)
+        #registerIdTournamentAPI(ctx, category, teamRole.name, teamRole.id)
 
         #Creates Channels
 

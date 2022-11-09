@@ -116,7 +116,7 @@ def getServerExist(serverName): # Generates a server and file structure
 @api.get("/readyServer")
 def readyServer(user, serverName): # Generates a server and file structure
     f = open(f"servers/{serverName}/config.txt","w")
-    f.write(str({"ready": "True"}).replace("'",'"'))
+    f.write(str({"ready": "t"}).replace("'",'"'))
     f.close()
     return logServer(serverName, f'{user} - Server has been enabled - "{serverName}" - {datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}')
 
