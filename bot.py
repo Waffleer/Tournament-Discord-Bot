@@ -570,14 +570,12 @@ async def on_guild_join(guild):
     #adminRole = await guild.create_role(name=f"Tournament Admin", mentionable=True)
     pass
 
-@bot.slash_command(description="Test")
+@bot.slash_command(description="Tests to see if bot is alive")
 async def test(ctx):
     user = ctx.author
     channel = ctx.channel
     server = ctx.guild
     category = channel.category
-
-
 
 
 
@@ -598,7 +596,7 @@ async def test(ctx):
     #print(type(getServerReadyAPI(ctx)))
     #print(getServerReadyAPI(ctx))
 
-    await ctx.send_response("pong", ephemeral=True)
+    await ctx.send_response("pong - v1.0.1", ephemeral=True)
 
 
 @bot.slash_command()
