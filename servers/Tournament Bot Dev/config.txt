@@ -1,0 +1,1 @@
+{"ready": "f", "Tournament Admin": "1039939555199045783", "bot-commands-admin": "1039939557254246400"}

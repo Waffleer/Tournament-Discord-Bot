@@ -289,3 +289,4 @@ bot - Team for player "waffleer#URMOM" has been updated to "free" - 08/11/2022 2
 bot - Player "waffleer#URMOM" has been added to "free" - 08/11/2022 22:16:38
 TheBetterNick#5462 - Player "waffleer#URMOM" has been added to server- 08/11/2022 22:16:38
 TheBetterNick#5462 - Team "bagel" has been added - 08/11/2022 22:24:47
+TheBetterNick - Server Created - "Tournament Bot Dev" - 09/11/2022 10:28:34
