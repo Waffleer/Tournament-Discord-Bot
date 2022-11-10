@@ -16,6 +16,7 @@ Testing Discord Join Link : https://discord.gg/QmXCCRPBJz
   feel free to join if you want, 
   If you need help with what ever then join this discord and ping me (The admin)
 
+If you know how to .gitignore the pycache files then please tell me, I would like to get rid of them but i dont want to mess around this
 
 This will be revamped in due time
 
