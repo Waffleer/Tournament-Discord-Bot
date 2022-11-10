@@ -603,10 +603,10 @@ async def test(ctx):
     #print(type(getServerReadyAPI(ctx)))
     #print(getServerReadyAPI(ctx))
 
-    await ctx.send_response("pong - v1.0.1", ephemeral=True)
+    await ctx.send_response("pong - v1.0.2", ephemeral=True)
 
 
-@bot.slash_command()
+#@bot.slash_command()
 async def test3(ctx):
     user = ctx.author
     channel = ctx.channel
