@@ -18,7 +18,7 @@ bot = discord.Bot(
             start = datetime.datetime.now()
              ),
 
-    debug_guilds = [1032120703094362192,1010740300823662623,1039937599063728279]
+    debug_guilds = [1032120703094362192,1010740300823662623,1039937599063728279,1040367729741414441]
 )
 
 
@@ -40,8 +40,8 @@ def strToDict(string): # turns a string into a dict via json
 def addServerTeamAPI(ctx, teamName):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
 
     teamName = teamName.replace("#","%23")
 
@@ -50,8 +50,8 @@ def addServerTeamAPI(ctx, teamName):
     return context
 def addServerPlayerAPI(ctx, name, discord_username): 
     user = str(ctx.author).replace("#","%23")
-    server = str(ctx.guild)
-    category = str(ctx.channel.category)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
 
     name = name.replace("#","%23")
     discord_username = discord_username.replace("#","%23")
@@ -74,8 +74,8 @@ def editServerPlayerTeam(message):
 def editServerPlayerRankAPI(ctx, name, rank):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
 
     name = name.replace("#","%23")
 
@@ -85,8 +85,8 @@ def editServerPlayerRankAPI(ctx, name, rank):
 def editServerPlayerAgeAPI(ctx, name, age):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
 
     name = name.replace("#","%23")
 
@@ -96,8 +96,8 @@ def editServerPlayerAgeAPI(ctx, name, age):
 def editServerPlayerRoleAPI(ctx, name, role):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
 
     name = name.replace("#","%23")
     role = role.replace("#","%23")
@@ -108,8 +108,8 @@ def editServerPlayerRoleAPI(ctx, name, role):
 def editServerPlayerDiscordNameAPI(ctx, name, discordUsername):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
 
     name = name.replace("#","%23")
 
@@ -121,8 +121,8 @@ def editServerPlayerDiscordNameAPI(ctx, name, discordUsername):
 def editServerPlayerCompleteAPI(ctx, name, rank, age, role, discordUsername):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
 
     name = name.replace("#","%23")
 
@@ -138,8 +138,8 @@ def editServerPlayerCompleteAPI(ctx, name, rank, age, role, discordUsername):
 def addTeamPlayerAPI(ctx, name, team):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
 
     name = name.replace("#","%23")
     team = team.replace("#","%23")
@@ -150,8 +150,8 @@ def addTeamPlayerAPI(ctx, name, team):
 def removeTeamPlayerAPI(ctx, name, team):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
 
     name = name.replace("#","%23")
     team = team.replace("#","%23")
@@ -162,8 +162,8 @@ def removeTeamPlayerAPI(ctx, name, team):
 def addMatchAPI(ctx, date, time, team1, team2):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
 
     date = date.replace("#","%23")
     time = time.replace("#","%23")
@@ -176,8 +176,8 @@ def addMatchAPI(ctx, date, time, team1, team2):
 def removeMatchAPI(ctx, matchTag):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
 
     matchTag = matchTag.replace("#","%23")
 
@@ -189,8 +189,8 @@ def removeMatchAPI(ctx, matchTag):
 def getTournamentAPI(ctx):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
 
     resp = requests.get(f'http://127.0.0.1:9015/getTournament?&serverName={server}')
     context = resp.text
@@ -198,8 +198,8 @@ def getTournamentAPI(ctx):
 def getTeamsAPI(ctx):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
 
     resp = requests.get(f'http://127.0.0.1:9015/getTeams?&serverName={server}&tournamentName={category}')
     context = resp.text
@@ -207,16 +207,16 @@ def getTeamsAPI(ctx):
 def getPlayersAPI(ctx):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
     resp = requests.get(f'http://127.0.0.1:9015/getPlayers?&serverName={server}&tournamentName={category}')
     context = resp.text
     return context
 def getMatchesAPI(ctx):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
 
     resp = requests.get(f'http://127.0.0.1:9015/getMatches?&serverName={server}&tournamentName={category}')
     context = resp.text
@@ -224,8 +224,8 @@ def getMatchesAPI(ctx):
 def getServerPlayerInfoAPI(ctx, player):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category.name)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
     player = str(player).replace("#","%23")
     resp = requests.get(f'http://127.0.0.1:9015/getServerPlayerInfo?&serverName={server}&tournamentName={category}&playerName={player}')
     context = resp.text
@@ -233,8 +233,8 @@ def getServerPlayerInfoAPI(ctx, player):
 def getServerPlayerInfoByNameAPI(ctx, name):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category.name)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
 
 
     playerName = name.replace("#","%23")
@@ -245,8 +245,8 @@ def getServerPlayerInfoByNameAPI(ctx, name):
 def getTeamMatchesAPI(ctx, teamName):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category.name)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
 
     teamName = teamName.replace("#","%23")
 
@@ -256,8 +256,8 @@ def getTeamMatchesAPI(ctx, teamName):
 def getTeamRosterAPI(ctx, teamName):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category.name)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
 
     teamName = teamName.replace("#","%23")
 
@@ -274,20 +274,24 @@ def genServerAPI(ctx):
     serverList = strToList(serverList.text)
     if server.name not in serverList:
         userName = str(user.name).replace("#","%23")
-        serverName = str(server.name).replace("#","%23")
+        serverName = str(server.id).replace("#","%23")
         resp = requests.get(f'http://127.0.0.1:9015/genServer?user={userName}&serverName={serverName}')
         return resp.text
 
 def getServerReadyAPI(ctx):
+    #print("1")
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category.name)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
+
     resp = str(requests.get(f'http://127.0.0.1:9015/getServerExist?&serverName={server}').text)
+    print(resp)
     resp = resp.strip('"')
-    #print(resp)
+    print(resp)
     if resp == 'f':
         #print("First Check Failed")
+        #print("false1")
         return False
     #print("first Check Success")
 
@@ -296,18 +300,20 @@ def getServerReadyAPI(ctx):
     resp = resp.strip('"')
     #print(resp)
     if resp == "t":
+        #print("true")
         return True
     else:
+        #print("false")
         return False
 
 
 def enableServerAPI(ctx):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild.name)
-    category = str(ctx.channel.category.name)
-    print(user)
-    print(server)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
+    #print(user)
+    #print(server)
     resp = requests.get(f'http://127.0.0.1:9015/readyServer?&user={user}&serverName={server}')
     context = resp.text
     return context
@@ -315,8 +321,8 @@ def enableServerAPI(ctx):
 def genTournamentAPI(ctx, name):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category.name)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
 
     
 
@@ -330,34 +336,35 @@ def genTournamentAPI(ctx, name):
 def getConfigAPI(ctx):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category.name)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
     resp = requests.get(f'http://127.0.0.1:9015/getConfig?&serverName={server}')
     context = strToDict(resp.text)
     return context
 
-def getConfigTournamentAPI(ctx, tournamentName):
+#def getConfigTournamentAPI(ctx, tournamentName):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category.name)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
     resp = requests.get(f'http://127.0.0.1:9015/getConfigTournament?&tournamentName={tournamentName}&serverName={server}')
     context = strToDict(resp.text)
     return context
 
-def registerIdAPI(ctx, roleName, id):
+
+#def registerIdAPI(ctx, roleName, id):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category.name)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
     id = str(id)
     resp = requests.get(f'http://127.0.0.1:9015/registerRole?&serverName={server}&roleName={roleName}&id={id}')
 
-def registerIdTournamentAPI(ctx, tournamentName, roleName, id):
+#def registerIdTournamentAPI(ctx, tournamentName, roleName, id):
     user = str(ctx.author).replace("#","%23")
     channel = str(ctx.channel)
-    server = str(ctx.guild)
-    category = str(ctx.channel.category.name)
+    server = str(ctx.guild.id)
+    category = str(ctx.channel.category.id)
     id = str(id)
     resp = requests.get(f'http://127.0.0.1:9015/registerRoleTournament?&tournamentName={tournamentName}&serverName={server}&roleName={roleName}&id={id}')
 
@@ -502,7 +509,7 @@ Things that you can do now:
 def enableError():
     return "This Server Has not been Enabled by an Admin, see /get_started"
 
-def checkChannel(ctx):
+#def checkChannel(ctx):
     channel = ctx.channel
     category = channel.category
     if str(channel.name) == "adminchannel":
@@ -570,14 +577,12 @@ async def on_guild_join(guild):
     #adminRole = await guild.create_role(name=f"Tournament Admin", mentionable=True)
     pass
 
-@bot.slash_command(description="Test")
+@bot.slash_command(description="Tests to see if bot is alive")
 async def test(ctx):
     user = ctx.author
     channel = ctx.channel
     server = ctx.guild
     category = channel.category
-
-
 
 
 
@@ -598,7 +603,7 @@ async def test(ctx):
     #print(type(getServerReadyAPI(ctx)))
     #print(getServerReadyAPI(ctx))
 
-    await ctx.send_response("pong", ephemeral=True)
+    await ctx.send_response("pong - v1.0.1", ephemeral=True)
 
 
 @bot.slash_command()
@@ -668,7 +673,7 @@ async def get_started(ctx):
         usedCategories = server.categories
         usedCategoriesNames = []
         for x in usedCategories:
-            usedCategoriesNames.append(x.name)
+            usedCategoriesNames.append(x.id)
 
         if "Tournament Administration" not in usedCategoriesNames:
             adminRole = await server.create_role(name=f"Tournament Admin", mentionable=True)
@@ -799,11 +804,13 @@ async def tournament(
     ):
 
     show = not show
+    #print("bacon")
     if getServerReadyAPI(ctx):
+        #print("jkldfsljk;sdfjkl;sdfa")
         user = ctx.author
         channel = ctx.channel
         server = ctx.guild
-        category = channel.category
+        #category = channel.category
         serverRoles = server.roles
 
         if "'" in tournament_name or '"' in tournament_name:
@@ -818,8 +825,13 @@ async def tournament(
         
         if tournament_name not in usedCategoriesNames:
 
+            
+            #Makes category
+            category = await server.create_category(name=tournament_name)
+
             #Makes file structure in database
-            genTournamentAPI(ctx, tournament_name)
+            #print("test")
+            print(genTournamentAPI(ctx, category.id)) 
 
             #Creates League Role
             leagueRole = await server.create_role(name=f"{tournament_name}") # for general participents
@@ -827,9 +839,7 @@ async def tournament(
             #Registers League Role
             #registerIdTournamentAPI(ctx, category, leagueRole.name, leagueRole.id)
 
-            #Makes category
-            category = await server.create_category(name=tournament_name)
-
+            
             # add default pers so only people with league role
             adminChannel = await category.create_text_channel(f"bot-admin-{tournament_name}")
 
@@ -922,7 +932,7 @@ github - https://github.com/Waffleer/Tournament-Discord-Bot
 
 
 
-#Generic Smaller Commands Below
+#Generic Smaller Commands Below 
 move_group = discord.SlashCommandGroup("move", "All move related Commands")
 
 get_group = discord.SlashCommandGroup("get", "All Get Commands")
@@ -1130,8 +1140,6 @@ async def team(
         await ctx.send_response(enableError(), ephemeral=show)
 
 #Remove Team Commands
-
-
 #Move Commands
 @move_group.command(description="Moves player to team")
 async def player(
@@ -1263,5 +1271,5 @@ bot.add_application_command(move_group)
 
 
 
-from secrets import TOKEN2
-bot.run(TOKEN2)
+from secrets import TOKEND
+bot.run(TOKEND)

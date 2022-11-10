@@ -309,3 +309,18 @@ TheBetterNick#5462 - Team "free" has been added - 09/11/2022 12:03:35
 TheBetterNick#5462 - Team "inactive" has been added - 09/11/2022 12:03:35
 TheBetterNick#5462 - Team "free" has been added - 09/11/2022 12:07:55
 TheBetterNick#5462 - Team "inactive" has been added - 09/11/2022 12:07:55
+TheBetterNick - Server Created - "dev2" - 10/11/2022 14:51:14
+TheBetterNick - Server Created - "1040367729741414441" - 10/11/2022 15:04:45
+TheBetterNick - Server Already Exists - "1040367729741414441" - 10/11/2022 15:05:06
+TheBetterNick - Server Already Exists - "1040367729741414441" - 10/11/2022 15:07:10
+TheBetterNick - Server Already Exists - "1040367729741414441" - 10/11/2022 15:07:57
+TheBetterNick - Server Already Exists - "1040367729741414441" - 10/11/2022 15:08:02
+TheBetterNick#5462 - Server has been enabled - "1040367729741414441" - 10/11/2022 15:08:03
+TheBetterNick#5462 - Tournament Created - "1040372501139693707" - 10/11/2022 15:08:53
+TheBetterNick#5462 - Tournament Created - "1040381031926206595" - 10/11/2022 15:42:47
+TheBetterNick#5462 - Team "test1" has been added - 10/11/2022 15:48:59
+TheBetterNick#5462 - Team "free" has been added - 10/11/2022 15:50:37
+TheBetterNick#5462 - Team "inactive" has been added - 10/11/2022 15:50:37
+bot - Team for player "bacon#URMOM" has been updated to "free" - 10/11/2022 15:50:37
+bot - Player "bacon#URMOM" has been added to "free" - 10/11/2022 15:50:37
+TheBetterNick#5462 - Player "bacon#URMOM" has been added to server- 10/11/2022 15:50:37
