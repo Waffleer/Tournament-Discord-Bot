@@ -1,5 +1,5 @@
 # Tournament-Discord-Bot
-This is a discord bot intended for use for MNCS tournaments to get match times and manage players. In progress and my not be finished due to my own laziness. NVM its in v1.
+This is a discord bot intended for use for MNCS tournaments to get match times and manage players. In progress and may not be finished due to my own laziness. Nevermind its in v1
 
 
 Uses a api to do all of the heavy lifting and a discord bot calls the api
